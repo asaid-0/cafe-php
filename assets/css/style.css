@@ -183,6 +183,7 @@ body {
     flex-basis: 30%;
     border: 2px solid #000000;
     padding: .5rem;
+    height: 100%;
 }
 
 .cart .drinks-list {
@@ -220,10 +221,11 @@ body {
 
 .items {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .item {
-    flex: 0 25%;
+    flex: 0 23%;
     margin-right: .4rem;
     padding: .3rem;
     background-color: #fff;
@@ -231,6 +233,12 @@ body {
 
 .item img {
     width: 100%;
+}
+
+.item-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .add-to-cart {
