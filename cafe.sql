@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(64) NOT NULL AUTO_INCREMENT,
-  `name` int(64) NOT NULL,
+  `name` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL,
