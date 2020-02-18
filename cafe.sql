@@ -1,5 +1,7 @@
-CREATE DATABASE IF NOT EXISTS cafe;
-use cafe;
+--
+-- Host: localhost    Database: cafe
+-- ------------------------------------------------------
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +18,9 @@ use cafe;
 -- Table structure for table `categories`
 --
 
+CREATE DATABASE IF NOT EXISTS cafe;
+use cafe;
+
 DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -23,7 +28,7 @@ CREATE TABLE `categories` (
   `id` int(64) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -32,6 +37,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Soft drinks'),(2,'Hard drinks'),(3,'Hot drinks'),(4,'Juice');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -46,10 +52,11 @@ CREATE TABLE `orders` (
   `id` int(64) NOT NULL AUTO_INCREMENT,
   `status` enum('out-for-delivery','processing','done') NOT NULL,
   `user_id` int(64) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,6 +65,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'processing',2,'2020-02-18 16:41:00'),(2,'out-for-delivery',2,'2020-02-18 15:41:00');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,9 +79,8 @@ DROP TABLE IF EXISTS `orders_products`;
 CREATE TABLE `orders_products` (
   `order_id` int(64) NOT NULL,
   `product_id` int(64) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `quantity` int(64) NOT NULL,
-  PRIMARY KEY (`order_id`,`product_id`,`date`),
+  PRIMARY KEY (`order_id`,`product_id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `orders_products_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `orders_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE
@@ -86,6 +93,7 @@ CREATE TABLE `orders_products` (
 
 LOCK TABLES `orders_products` WRITE;
 /*!40000 ALTER TABLE `orders_products` DISABLE KEYS */;
+INSERT INTO `orders_products` VALUES (1,1,4),(1,2,2),(2,2,8),(2,3,7);
 /*!40000 ALTER TABLE `orders_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +113,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`),
   KEY `cat_id` (`cat_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,6 +122,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,3,'Tea',3.55,'images/products/tea.png'),(2,3,'Coffee',10.99,'images/products/coffee.png'),(3,4,'lemon',15.99,'images/products/lemon.png');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +143,7 @@ CREATE TABLE `users` (
   `room` varchar(64) NOT NULL,
   `pic` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,6 +152,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'ahmed','ahmed@mail.com','123456',0,'1416','cloud','images/users/ahmed.png'),(2,'admin','admin@mail.com','123456',1,'145','main','images/users/admin.png');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -155,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-18 17:47:54
+-- Dump completed on 2020-02-18 18:42:38
