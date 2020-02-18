@@ -27,8 +27,6 @@ body {
     color: #fff;
 }
 
-
-
 .btn {
     box-sizing: border-box;
     background-color: transparent;
@@ -55,9 +53,6 @@ body {
 .text-white {
     color: #fff;
 }
-
-
-
 
 /* Start Of The Form */
 .login-container {
@@ -101,7 +96,6 @@ body {
     color: #fff;
 }
 
-
 .login-form .submit {
     background-color: var(--btn-color);
     border: 2px solid var(--btn-color);
@@ -109,9 +103,7 @@ body {
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-
 /* Start Of Home Page */
-
 
 /* navbar */
 .navbar {
@@ -151,15 +143,42 @@ body {
     text-decoration: underline;
 }
 
-
-/* drinks */
-
 .container {
     display: flex;
     padding: 2rem 1rem;
     justify-content: space-around;
 }
 
+/* search form */
+
+.search-group {
+    display: flex;
+}
+
+.search-btn {
+    background: transparent;
+    border: none;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    margin-right: -20px;
+}
+
+.search-icon {
+    font-size: 2.3rem;
+}
+
+.search-input {
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    outline: none;
+    margin-right: -47px;
+    margin-top: -3px;
+    width: 94%;
+}
+
+/* Left Cart */
 .container .cart {
     flex-basis: 30%;
     border: 2px solid #000000;
@@ -189,54 +208,18 @@ body {
     margin-top: 1rem;
 }
 
-
 .btn-confirm {
     background-color: #000000;
     color: #fff;
 }
 
+/* Drinks  */
 .container .content {
     flex-basis: 65%;
 }
 
 .items {
     display: flex;
-}
-
-.search-group {
-    display: flex;
-}
-
-.search-btn {
-    background: transparent;
-    border: none;
-    width: 0;
-    height: 0;
-    cursor: pointer;
-    margin-right: -20px;
-}
-
-
-.search-icon {
-    font-size: 2.3rem;
-}
-
-.search-input {
-    height: 45px;
-    padding: 0 20px;
-    font-size: 1rem;
-    outline: none;
-    margin-right: -47px;
-    margin-top: -3px;
-    width: 93%;
-}
-
-
-
-.container .heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .item {
@@ -248,14 +231,6 @@ body {
 
 .item img {
     width: 100%;
-}
-
-h2 {
-    font-size: 16px;
-    display: block;
-    border-bottom: 1px solid #ccc;
-    margin: 0 0 10px 0;
-    padding: 0 0 5px 0;
 }
 
 .add-to-cart {
