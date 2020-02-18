@@ -180,6 +180,10 @@ body {
 
 /* Left Cart */
 .container .cart {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1rem;
+    height: 60vh;
     flex-basis: 30%;
     border: 2px solid #000000;
     padding: .5rem;
@@ -220,6 +224,8 @@ body {
 
 .items {
     display: flex;
+    flex-flow: row wrap;
+    /* width: 65%; */
 }
 
 .item {
