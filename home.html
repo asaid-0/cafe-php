@@ -32,50 +32,16 @@
             <div class="cart">
                 <form action="">
                     <ul class="drinks-list">
-                        <li>
-                            <span class="name">Tea </span>
-                            <span class="quantity">5</span>
+                        <li class="hidden-item">
+                            <span class="name"> </span>
+                            <span class="quantity">0</span>
                             <i class="fa fa-plus"></i>
                             <i class="fa fa-minus"></i>
-                            <span class="price"> EGP 25</span>
+                            <span class="price">0</span>
                             <i class="fa fa-close"></i>
                             <input type="text" name="drink_name" hidden>
                             <input type="text" name="drink_quantity" hidden>
                         </li>
-                        <hr>
-                        <li>
-                            <span class="name">Tea </span>
-                            <span class="quantity">5</span>
-                            <i class="fa fa-plus"></i>
-                            <i class="fa fa-minus"></i>
-                            <span class="price"> EGP 25</span>
-                            <i class="fa fa-close"></i>
-                            <input type="text" name="drink_name" hidden>
-                            <input type="text" name="drink_quantity" hidden>
-                        </li>
-                        <hr>
-                        <li>
-                            <span class="name">Tea </span>
-                            <span class="quantity">5</span>
-                            <i class="fa fa-plus"></i>
-                            <i class="fa fa-minus"></i>
-                            <span class="price"> EGP 25</span>
-                            <i class="fa fa-close"></i>
-                            <input type="text" name="drink_name" hidden>
-                            <input type="text" name="drink_quantity" hidden>
-                        </li>
-                        <hr>
-                        <li>
-                            <span class="name">Tea </span>
-                            <span class="quantity">5</span>
-                            <i class="fa fa-plus"></i>
-                            <i class="fa fa-minus"></i>
-                            <span class="price"> EGP 25</span>
-                            <i class="fa fa-close"></i>
-                            <input type="text" name="drink_name" hidden>
-                            <input type="text" name="drink_quantity" hidden>
-                        </li>
-
                     </ul>
 
                     <div class="notes">
@@ -92,7 +58,7 @@
                     </div>
                     <hr>
                     <div class="confirm">
-                        <span>EGP 55 </span>
+                        <span class="total-price"></span>
                         <input type="submit" value="confirm" class="btn btn-confirm">
                     </div>
                 </form>
@@ -106,124 +72,33 @@
                 </form>
                 <div class="items">
 
-                    <div class="item">
+                    <div class="item" id="Tea">
                         <img src="assets/images/tea.jpg" alt="tea" />
                         <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
+                            <h2 class="item-name">Tea</h2>
+                            <p>Price: <em class="item-price">9 EGP</em>
                             </p>
                         </div>
                         <button class="add-to-cart" type="button">Add to cart</button>
                     </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2>Tea</h2>
-                            <p>Price: <em>$9</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <h2>Tea</h2>
 
-                        <p>Price: <em>$9</em>
-                        </p>
+                    <div class="item" id="Mint">
+                        <img src="assets/images/tea.jpg" alt="tea" />
+                        <div class="item-details">
+                            <h2 class="item-name">Mint</h2>
+                            <p>Price: <em class="item-price">9 EGP</em>
+                            </p>
+                        </div>
                         <button class="add-to-cart" type="button">Add to cart</button>
                     </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <h2>Tea</h2>
 
-                        <p>Price: <em>$9</em>
-                        </p>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
+                    <div class="item" id="Cafe">
                         <img src="assets/images/tea.jpg" alt="tea" />
-                        <h2>Tea</h2>
-
-                        <p>Price: <em>$9</em>
-                        </p>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <h2>Tea</h2>
-
-                        <p>Price: <em>$9</em>
-                        </p>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <h2>Tea</h2>
-
-                        <p>Price: <em>$9</em>
-                        </p>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-                    <div class="item">
-                        <img src="assets/images/tea.jpg" alt="tea" />
-                        <h2>Tea</h2>
-
-                        <p>Price: <em>$9</em>
-                        </p>
+                        <div class="item-details">
+                            <h2 class="item-name">Cafe</h2>
+                            <p>Price: <em class="item-price">9 EGP</em>
+                            </p>
+                        </div>
                         <button class="add-to-cart" type="button">Add to cart</button>
                     </div>
 
@@ -234,6 +109,7 @@
     </section>
 
 
+    <script src="assets/javascript/cart.js"></script>
 </body>
 
 </html>
