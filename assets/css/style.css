@@ -36,7 +36,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1;
-    padding: 1em 2em;
+    padding: .8em 1em;
     text-decoration: none;
     text-align: center;
     text-transform: uppercase;
@@ -200,6 +200,10 @@ body {
     align-items: center;
 }
 
+.cart .drinks-list li.hidden-item {
+    display: none;
+}
+
 .cart .drinks-list li i {
     cursor: pointer;
 }
@@ -240,7 +244,7 @@ body {
     width: 100%;
 }
 
-.item-details{
+.item-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -260,4 +264,11 @@ body {
 .add-to-cart:hover {
     color: #fff;
     background-color: #000;
+}
+
+.add-to-cart:disabled {
+    background-color: rgb(93, 93, 93);
+    border: 2px solid #eee;
+    color: rgb(179, 179, 179);
+    cursor: default;
 }
