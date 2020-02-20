@@ -1,4 +1,6 @@
-
+.container{
+  padding: 0;
+}
 .add-container {
     display: flex;
     padding: 2rem 1rem;
@@ -11,12 +13,20 @@
     font-weight: 600;
     color: #000;
     font-size: 1.5rem;
+   
     
     
+}
+.order{
+  z-index: 20;
+}
+.navbar{
+  z-index: 2;
 }
   .collapse-content {
     width: 90%;
     margin: auto;
+    z-index: 1;
     
   }
   
@@ -24,7 +34,7 @@
     background: #fff;
   }
   
-  .collapse a {
+  .collapse > a {
     display: block;
     font-size: 1rem;
     font-weight: 500;
@@ -36,15 +46,15 @@
   
 
   
-  .collapse:nth-child(odd) a {
+  .collapse:nth-child(odd) > a {
     background: #444;
   }
-  .collapse:nth-child(even) a {
+  .collapse:nth-child(even) > a {
     background: #1e1e1e;
   }
   
   
-  .collapse a:before {
+  .collapse > a:before {
     content: "";
     border-top: 7px solid #fff;
     border-left: 7px solid transparent;
@@ -64,7 +74,7 @@
     overflow: hidden;
   }
   
-  .collapse + .collapse a {
+  .collapse + .collapse > a {
     border-top: 1px solid rgba(255, 255, 255, 0.7);
   }
   
