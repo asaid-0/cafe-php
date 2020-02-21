@@ -1,0 +1,16 @@
+.navbar{
+    top: 0;
+    position: sticky;
+}
+.content .room{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 5rem;
+}
+.content .room select{
+    flex-basis: 50%;
+}
+.container .cart {
+    top: 8rem;
+}

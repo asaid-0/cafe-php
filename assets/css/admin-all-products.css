@@ -1,0 +1,41 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.container header{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+/* ***************************************** */
+/* orders table style */
+.orders{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.orders-table{
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.orders-table td:hover {background-color: #ddd;}
+
+.orders-table td, .orders-table th {
+  border: 0.2rem solid #ddd;
+  padding: 0.5rem;
+}
+.orders-table td {
+    text-align: center;
+}
+.orders-table td a{
+    display: flex;
+    justify-content: space-evenly;
+}
+.orders-table img {
+    width: 5rem;
+    height: 5rem;
+}
