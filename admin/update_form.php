@@ -48,12 +48,7 @@
     <br><br>
     <input type="text" name="ext" id="ext" value="<?php echo $row['ext']?>">
     <br><br>
-    <select id="room" name="room">
-        <option value="" selected="selected"></option>
-        <option value="application"> Application </option>
-        <option value="main"> Main </option>
-        <option value="cloud"> Cloud </option>
-    </select>
+    <input type="text" name="room" id="room" value="<?php echo $row['room']?>">
     <br><br>
     <input type="file" name="photo" id="photo" value="<?php echo $row['pic']?>">
     <br><br>

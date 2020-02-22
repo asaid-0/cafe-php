@@ -40,19 +40,38 @@
                         <th>Image</th>
                         <th>Ext.</th>
                         <th>Action</th>
+                        <th colspan="2">Options</th>
                     </tr>
-                    <tr>
-                        <td>User</td>
-                        <td>3001</td>
-                        <td>
-                        <img src="../assets/images/tea.jpg" alt="tea" />
-                        </td>
-                        <td>1111</td>
-                        <td>
-                            <a href="">edit</a>
-                            <a href="">delete</a>
-                        </td>
-                    </tr>
+                    <?php
+
+                        include "../database/config.php";
+
+                        $dbServername = DB_HOST;
+                        $dbUsername = DB_USER;
+                        $dbPassword = DB_PWD;
+                        $dbname = DB_NAME;
+
+                        $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+                        try {
+                            $con = new \PDO($dsn, $dbUsername, $dbPassword);
+
+                            $query = "SELECT * FROM users";
+                            $stmt = $con->prepare($query);
+                            $stmt->execute();
+
+                            while ($row = $stmt->fetch()) {
+                                $id = $row['id'];
+                                echo "<tr><td>".$row['name']."</td> <td>".$row['email']."</td> <td> <img src=".$row['pic']." alt='tea'/></td> <td>".$row['ext']."</td> <td>".$row['room']."</td>";
+                                echo"<td><a href ='update_form.php?num=$id'>Update</a></td>";
+                                echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
+                                echo "</tr>";
+                            }
+                        } catch(\Throwable $th) {
+                            echo "Connection Error"."<br>"."<br>";
+                        }
+
+                        $con = null;
+                    ?>
                 </table>
             </div>
         </div>

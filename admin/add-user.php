@@ -31,7 +31,7 @@
         <div class="add-container">
             <div class="main-title">Add User</div>
             <div id='form' class='_form'>
-                <form action='#' method='POST' name='addUser'>
+                <form action='add_user_action.php' method='POST' enctype="multipart/form-data" name='addUser'>
               
                   <fieldset>
                     <legend>NAME</legend>
@@ -60,7 +60,7 @@
 
                   <fieldset>
                     <legend>EXT.</legend>
-                    <input type='text' name='room' placeholder='Ext.' />
+                    <input type='text' name='ext' placeholder='Ext.' />
                   </fieldset>
 
 
