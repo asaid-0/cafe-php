@@ -190,6 +190,7 @@
                         $dbPassword = "";
                         $dbname = "cafe";
                         $userId = 2;
+                        $total = 0;
                         try {
                             $conn = new PDO('mysql:host='.$dbServername.';dbname='.$dbname, $dbUsername, $dbPassword);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -211,7 +212,6 @@
                             foreach ($data_order_products as $product_details) {
                                 $amount += $product_details["price"]*$product_details["quantity"];
                             }
-
                             echo '  <tr>
                                     <td>'.$order_details["date"].'</td>
                                     <td>'.$order_details["status"].'</td>
@@ -225,6 +225,7 @@
                                 <td><a href="#" class="hidden">Cancel</a><a href="#order_1">View</a></td>
                                 </tr>';
                             }
+                            $total+=$amount;
                         }
                         ?>
                     </table>
@@ -232,7 +233,9 @@
                 
                 <div class="calculate">
                     <label for="">total</label>
-                    <label for="">150 EGP</label>
+                    <?php
+                        echo ' <label for="">' .$total.' EGP</label> '
+                     ?>
                 </div>
             </div>
     </section>
