@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/admin-all-products.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin-all-products.css">
 
 
 </head>
@@ -44,7 +44,7 @@
                         <td>Tea</td>
                         <td>50 EGP</td>
                         <td>
-                        <img src="assets/images/tea.jpg" alt="tea" />
+                        <img src="../assets/images/tea.jpg" alt="tea" />
                         </td>
                         <td>
                             <a href="">available</a>

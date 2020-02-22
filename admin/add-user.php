@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
+    <title>Add User</title>
     <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/add.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/add.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
    
 
 
@@ -29,9 +29,9 @@
     </nav>
     <section>
         <div class="add-container">
-            <div class="main-title">Add Product</div>
+            <div class="main-title">Add User</div>
             <div id='form' class='_form'>
-                <form action='#' method='POST' name='addUser'>
+                <form action='add_user_action.php' method='POST' enctype="multipart/form-data" name='addUser'>
               
                   <fieldset>
                     <legend>NAME</legend>
@@ -39,33 +39,33 @@
                   </fieldset>
 
                   <fieldset>
-                    <legend>PRICE</legend>
-                    <input type='text' name='email' placeholder='0.00' />
+                    <legend>EMAIL</legend>
+                    <input type='text' name='email' placeholder='Email' />
                   </fieldset>
               
-                  <fieldset id="new_cat">
-                    <legend>NEW CATEGORY</legend>
-                    <input type='text' name='cat_name' placeholder='Category Name' />
+                  <fieldset>
+                    <legend>PASSWORD</legend>
+                    <input type='password' name='password' placeholder='password' />
                   </fieldset>
 
-                  <fieldset id="select-menu">
-                    <legend class="category">CATEGORY</legend>
-                    <span onclick="newCategory();" class="new-cat">new category</span>
-                    <label class='input-select'>
-                        <select name='film'>
-                          <option selected='selected'>- Select -</option>
-                          <option value='Hot Drinks'>Hot Drinks</option>
-                          <option value='Soft Drinks'>Soft Drinks</option>
-                          <option value='Juice'>Juice</option>
-                        </select>
-                      </label>
+                  <fieldset>
+                    <legend>CONFIRM PASSWORD</legend>
+                    <input type='password' name='confirm_password' placeholder='confirm password' />
                   </fieldset>
 
-           
+                  <fieldset>
+                    <legend>ROOM NO.</legend>
+                    <input type='text' name='room' placeholder='Room No.' />
+                  </fieldset>
+
+                  <fieldset>
+                    <legend>EXT.</legend>
+                    <input type='text' name='ext' placeholder='Ext.' />
+                  </fieldset>
 
 
                   <fieldset>
-                    <legend>PRODUCT PICTURE</legend>
+                    <legend>PROFILE PICTURE</legend>
                     <label for="file" class="file-upload">
                       <span class="fa fa-cloud-upload"><span> Upload
                     </label>
@@ -80,13 +80,5 @@
               </div>
         </div>
     </section>
-    <script type="text/javascript">
-        function newCategory(){
-            // console.log("test");
-            document.getElementById('select-menu').remove();
-            document.getElementById('new_cat').style.display = "block";
-        }
-
-    </script>
 </body>
 </html>

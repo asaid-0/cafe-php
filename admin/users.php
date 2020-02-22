@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/admin-all-products.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin-all-products.css">
 
 
 </head>
@@ -40,16 +40,20 @@
                         <th>Image</th>
                         <th>Ext.</th>
                         <th>Action</th>
+                        <th colspan="2">Options</th>
                     </tr>
                     <?php
 
-                        $dsn = 'mysql:dbname=cafe;host=localhost;port=3306;';
-                        $user = 'macrina';
-                        $pass = 'ROOT';
-                        $con;
+                        include "../database/config.php";
 
+                        $dbServername = DB_HOST;
+                        $dbUsername = DB_USER;
+                        $dbPassword = DB_PWD;
+                        $dbname = DB_NAME;
+
+                        $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
                         try {
-                            $con = new \PDO($dsn, $user, $pass);
+                            $con = new \PDO($dsn, $dbUsername, $dbPassword);
 
                             $query = "SELECT * FROM users";
                             $stmt = $con->prepare($query);
