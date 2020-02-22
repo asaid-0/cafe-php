@@ -1,9 +1,16 @@
 <?php
 
+    include "../database/config.php";
+
+    $dbServername = DB_HOST;
+    $dbUsername = DB_USER;
+    $dbPassword = DB_PWD;
+    $dbname = DB_NAME;
+
     try {
-        $dsn = 'mysql:dbname=cafe;host=localhost;port=3306;';
-        $user = 'macrina';
-        $pass = 'ROOT';
+        $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+                
+        $con = new \PDO($dsn, $dbUsername, $dbPassword);
 
         $id = $_GET['num'];
         $result = $_GET['result'];
@@ -15,8 +22,6 @@
             $error = 'Some fields are empty, please complete the form to update your data.';
         else
             $error = '';*/
-
-        $con = new \PDO($dsn, $user, $pass);
 
         $query = "SELECT * FROM users WHERE id=?";
         $stmt = $con->prepare($query);
@@ -43,12 +48,7 @@
     <br><br>
     <input type="text" name="ext" id="ext" value="<?php echo $row['ext']?>">
     <br><br>
-    <select id="room" name="room">
-        <option value="" selected="selected"></option>
-        <option value="application"> Application </option>
-        <option value="main"> Main </option>
-        <option value="cloud"> Cloud </option>
-    </select>
+    <input type="text" name="room" id="room" value="<?php echo $row['room']?>">
     <br><br>
     <input type="file" name="photo" id="photo" value="<?php echo $row['pic']?>">
     <br><br>

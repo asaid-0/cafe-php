@@ -1,3 +1,13 @@
+<?php 
+include "database/config.php"; 
+
+$dbServername = DB_HOST;
+$dbUsername = DB_USER;
+$dbPassword = DB_PWD;
+$dbname = DB_NAME;
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -185,10 +195,6 @@
                             <th>Action</th>
                         </tr>
                         <?php
-                        $dbServername = "localhost";
-                        $dbUsername = "root";
-                        $dbPassword = "";
-                        $dbname = "cafe";
                         $userId = 2;
                         $total = 0;
                         try {

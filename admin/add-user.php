@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/add.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/add.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
    
 
 
@@ -31,7 +31,7 @@
         <div class="add-container">
             <div class="main-title">Add User</div>
             <div id='form' class='_form'>
-                <form action='#' method='POST' name='addUser'>
+                <form action='add_user_action.php' method='POST' enctype="multipart/form-data" name='addUser'>
               
                   <fieldset>
                     <legend>NAME</legend>
@@ -60,7 +60,7 @@
 
                   <fieldset>
                     <legend>EXT.</legend>
-                    <input type='text' name='room' placeholder='Ext.' />
+                    <input type='text' name='ext' placeholder='Ext.' />
                   </fieldset>
 
 

@@ -1,13 +1,16 @@
 <?php
 
+include "../database/config.php";
+
+$dbServername = DB_HOST;
+$dbUsername = DB_USER;
+$dbPassword = DB_PWD;
+$dbname = DB_NAME;
+
 $id = $_POST["id"];
 $name = $_POST["name"];
 
 
-$dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
-$dbname = "cafe";
 
 
  try {

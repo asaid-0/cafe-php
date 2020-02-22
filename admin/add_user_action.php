@@ -1,5 +1,12 @@
 <?php
 
+    include "../database/config.php";
+
+    $dbServername = DB_HOST;
+    $dbUsername = DB_USER;
+    $dbPassword = DB_PWD;
+    $dbname = DB_NAME;
+
     $errors;
     
     if(isset($_POST)) {
@@ -70,41 +77,22 @@
 
         /*******************Data is validated and ready for insertion*******************/
 
-        if(empty($errors) == true){
-
-            if(move_uploaded_file($file_tmp, "imgs/$file_name"))
-                echo "User Registered Successfully and Image is uploaded.<br>";
-            else 
-                echo "Error uploading the image but user is registered.<br>";
-            
-            
-            insertUser($name, $email, $password, $room, "imgs/".$file_name);
-            echo "User successfully inserted."."<br>";
+        if(move_uploaded_file($file_tmp, "imgs/$file_name"))
+            echo "User Registered Successfully and Image is uploaded.<br>";
+        else 
+            echo "Error uploading the image but user is registered.<br>";
         
-            echo"<br>Do you want to add anothor name or print the other names?<br>";
-            echo"<a href='http://localhost/PHPLabs/Lab4/form.html'>Yes</a>";
-            echo"	";
-            echo"<a href='http://localhost/PHPLabs/Lab4/user_table.php'>Print</a>";
-
-            
-        }else{
-            foreach($errors as $error) 
-                echo $error;
-            
-            echo "<br>Please review your information as it is not complete.<br>";
-            echo"<a href='http://localhost/PHPLabs/Lab4/form.html'>Go back.</a>";
         
-        }
+        insertUser($name, $email, $password, $room, "imgs/".$file_name);
+
     }
     
     function insertUser($name, $email, $password, $room, $filename) {
         try {
             //code...
-            $dsn = 'mysql:dbname=PHPDB_users;host=localhost;port=3306;';
-            $user = 'macrina';
-            $pass = 'ROOT';
-    
-            $con = new \PDO($dsn, $user, $pass);
+            $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+                
+            $con = new \PDO($dsn, $dbUsername, $dbPassword);
             
             $query = 'INSERT INTO users (name, email, password, room, path_to_file) VALUES (?, ?, ?, ?, ?)';
             $stmt = $con->prepare($query);

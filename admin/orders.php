@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/user-orders.css">
-        <link rel="stylesheet" href="assets/css/popup.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/user-orders.css">
+        <link rel="stylesheet" href="../assets/css/popup.css">
 
 
 </head>
@@ -38,7 +38,7 @@
                       <h1>order 1</h1>
                       <div class="items">
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -80,7 +80,7 @@
                       <h1>order 2</h1>
                       <div class="items">
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -123,7 +123,7 @@
                       <h1>order 3</h1>
                       <div class="items">
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
+                            <img src="../assets/images/tea.jpg" alt="tea" />
                             <div class="item-details">
                                 <h2>Tea</h2>
                                 <p>Price: <em>$9</em>

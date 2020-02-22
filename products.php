@@ -1,68 +1,52 @@
 <?php
-session_start();
-$id = $_POST["id"];
-$category_id = $_POST["cat_id"];
-$name = $_POST["name"];
-$price = $_POST["price"];
-$pic = $_FILES['pic']['name']; 
-$target_path = "F:\\ITI\\"; 
-$target_path = $target_path.basename( $pic);   
-  
-if(move_uploaded_file($_FILES['pic']['tmp_name'], $target_path)) {  
-    echo "File uploaded successfully!";  
-} else{  
-    echo "Sorry, file not uploaded, please try again!";  
-}
+include "database/config.php";
+
+$dbServername = DB_HOST;
+$dbUsername = DB_USER;
+$dbPassword = DB_PWD;
+$dbname = DB_NAME;
 
 
-$dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
-$dbname = "cafe";
-
-try {
+ try {
     $conn = new PDO('mysql:host='.$dbServername.';dbname='.$dbname, $dbUsername, $dbPassword);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $query = "SELECT * FROM products";
+    $data = $conn->query($query);
+
+    echo '<table width="70%" border="1"cellpadding="5" cellspacing="5">
+            <tr>
+            <th>ID</th>
+            <th>Category ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Picture</th>
+            </tr>';   
+    
+      foreach($data as $row)
+      {
+          echo ' <tr>
+                 <td>'.$row["id"].'</td>
+                 <td>'.$row["cat_id"].'</td>
+                 <td>'.$row["name"].'</td>
+                 <td>'.$row["price"].'</td>
+                 <td>'.$row["pic"].'</td>
+          </tr>';
+      }
+      echo '</tabl>';
+
+
+
+
 }
+
+
 catch(PDOException $e)
 {
     echo "Connection failed: " . $e->getMessage();
-    
+    dd("Connection failed: " . $e->getMessage());
 }
 
-
-if(isset($_POST['submit'])){
-
-
-    $query = "INSERT INTO products ( id , cat_id , name , price, pic ) VALUES ( ? , ? , ? , ? , ? );";
-    $stmt = $conn->prepare($query);
-    $stmt->execute([$id,$category_id,$name,$price,$target_path]);
-
-    $result = $stmt->rowCount();
-
-    if($result > 0){
-        ?>
-        <script type="text/javascript">
-            alert('Successfully Added');
-            window.location.href="view_products.php";
-        </script>
-        <?php 
-
-    //    echo 'Data added successfully';
-        
-    }else{
-        echo'Data rejected!';
-    }
-        
-	}else{
-        ?>
-        <script type="text/javascript">
-            alert('Error while adding data and iamge');
-            window.location.href="poducts.html";
-        </script>
-        <?php
-            
-	}
 
 
 
