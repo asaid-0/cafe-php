@@ -68,3 +68,15 @@
     color: white;
     font-size: 2rem;
 }
+.hidden{
+    display: none;
+}
+td a {
+    margin-right: 1rem;
+    color:black;
+    text-decoration: none;
+    /* font-size: 1.2rem; */
+}
+td a:hover{
+    text-decoration: underline;
+}

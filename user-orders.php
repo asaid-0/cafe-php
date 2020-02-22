@@ -161,7 +161,7 @@
 
                   <!-- end all hidden popup orders -->
 
-                <form action="">
+                <form action="" method="post">
                     <div class="search-group">
                         <div>
                             <label for="">Date from</label>
@@ -184,24 +184,49 @@
                             <th>Amount</th>
                             <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>Date</td>
-                            <td>Processing</td>
-                            <td>50 EGP</td>
-                            <td><a href="#"></a>Cancel <a href="#order_1">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>Date</td>
-                            <td>Out for delivery</td>
-                            <td>50 EGP</td>
-                            <td><a href="#"></a>Cancel <a href="#order_2">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>Date</td>
-                            <td>Done</td>
-                            <td>50 EGP</td>
-                            <td><a href="#"></a>Cancel <a href="#order_3">View</a></td>
-                        </tr>
+                        <?php
+                        $dbServername = "localhost";
+                        $dbUsername = "root";
+                        $dbPassword = "";
+                        $dbname = "cafe";
+                        $userId = 2;
+                        try {
+                            $conn = new PDO('mysql:host='.$dbServername.';dbname='.$dbname, $dbUsername, $dbPassword);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        }
+                        catch(PDOException $e)
+                        {
+                            echo "Connection failed: " . $e->getMessage();
+                        }
+                        $query_list_orders = "Select * from orders where user_id=$userId;";
+                        $data_list_orders = $conn->query($query_list_orders); 
+                        foreach($data_list_orders as $order_details)
+                        {
+                            $orderId = $order_details["id"];
+                            $query_order_products = "select id , price , quantity from products , orders_products where order_id = ? and product_id = id ";
+                            $stmt_order_products = $conn->prepare($query_order_products);
+                            $stmt_order_products->execute([$orderId]);
+                            $data_order_products = $stmt_order_products->fetchAll();
+                            $amount=0;
+                            foreach ($data_order_products as $product_details) {
+                                $amount += $product_details["price"]*$product_details["quantity"];
+                            }
+
+                            echo '  <tr>
+                                    <td>'.$order_details["date"].'</td>
+                                    <td>'.$order_details["status"].'</td>
+                                    <td>'.$amount.'</td>';
+                            if ($order_details["status"] == "processing") {
+                                echo'
+                                <td><a href="#">Cancel</a><a href="#order_1">View</a></td>
+                                </tr>';
+                            }else{
+                                echo'
+                                <td><a href="#" class="hidden">Cancel</a><a href="#order_1">View</a></td>
+                                </tr>';
+                            }
+                        }
+                        ?>
                     </table>
                 </div>
                 
