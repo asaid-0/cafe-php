@@ -1,5 +1,12 @@
 <?php
 
+    include "../database/config.php";
+
+    $dbServername = DB_HOST;
+    $dbUsername = DB_USER;
+    $dbPassword = DB_PWD;
+    $dbname = DB_NAME;
+
     $id;
     if(empty($_POST['id']))
         $id = $_GET['num'];
@@ -51,10 +58,9 @@
                 echo "Error uploading the image but user is registered.<br>";
         
             try {
-                $dsn = 'mysql:dbname=cafe;host=localhost;port=3306;';
-                $user = 'macrina';
-                $pass = 'ROOT';
-                $con = new \PDO($dsn, $user, $pass);
+                $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+                
+                $con = new \PDO($dsn, $dbUsername, $dbPassword);
         
                 var_dump($ext, $room);
 

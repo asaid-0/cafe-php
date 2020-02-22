@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <title>Login</title>
-</head>
-<body>
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-      <h2 class="active"> Sign In </h2>
 
-  
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="https://cdn4.iconfinder.com/data/icons/basic-interface-overcolor/512/user-512.png" id="icon" alt="User Icon" />
-      </div>
-  
-      <!-- Login Form -->
-      <form id="myForm">
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form>
-  
-      <!-- Remind Passowrd -->
-      <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
-      </div>
-  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Cafe - Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="overly">
+            <h1 class="main-title">-- OS Coffee --</h1>
+
+            <form action="" class="login-form">
+
+                <div class="form-control">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required class="form-input" placeholder="email">
+                </div>
+
+                <div class="from-control">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" placeholder="password" required
+                        class="form-input">
+                </div>
+                <a href="#" class="text-white"> forget password</a>
+                <div class="form-control">
+                    <input type="submit" class="btn submit" value="Login">
+                </div>
+            </form>
+
+        </div>
     </div>
-  </div>
-  <script type="text/javascript" src="assets/javascript/login.js"></script>
 </body>
+
 </html>

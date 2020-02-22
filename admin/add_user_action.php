@@ -1,5 +1,12 @@
 <?php
 
+    include "../database/config.php";
+
+    $dbServername = DB_HOST;
+    $dbUsername = DB_USER;
+    $dbPassword = DB_PWD;
+    $dbname = DB_NAME;
+
     $errors;
     
     if(isset($_POST)) {
@@ -100,11 +107,9 @@
     function insertUser($name, $email, $password, $room, $filename) {
         try {
             //code...
-            $dsn = 'mysql:dbname=PHPDB_users;host=localhost;port=3306;';
-            $user = 'macrina';
-            $pass = 'ROOT';
-    
-            $con = new \PDO($dsn, $user, $pass);
+            $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+                
+            $con = new \PDO($dsn, $dbUsername, $dbPassword);
             
             $query = 'INSERT INTO users (name, email, password, room, path_to_file) VALUES (?, ?, ?, ?, ?)';
             $stmt = $con->prepare($query);

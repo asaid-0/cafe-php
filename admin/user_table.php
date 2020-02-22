@@ -8,14 +8,19 @@
     <td>Path To Image</td>
 </tr>
 <?php
+    include "../database/config.php";
 
-    $dsn = 'mysql:dbname=cafe;host=localhost;port=3306;';
-    $user = 'macrina';
-    $pass = 'ROOT';
+    $dbServername = DB_HOST;
+    $dbUsername = DB_USER;
+    $dbPassword = DB_PWD;
+    $dbname = DB_NAME;
+
+    $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+                
     $con;
 
     try {
-        $con = new \PDO($dsn, $user, $pass);
+        $con = new \PDO($dsn, $dbUsername, $dbPassword);
 
         $query = "SELECT * FROM users";
         $stmt = $con->prepare($query);
