@@ -29,17 +29,15 @@
 
     function updateUserData($id, $name, $email, $password, $room, $ext, $file_name, $file_tmp) {
         $pic_name = uploadPhoto($name, $file_tmp, $file_name);
-        $con;
         $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
         try {
             
-            var_dump($con);
             $con = new \PDO($dsn, DB_USER, DB_PWD);
     
             $query = "UPDATE users SET name=?, email=?, password=?, room=?, ext=?, pic=? WHERE id=?";
             $stmt = $con->prepare($query);
             $stmt->execute([$name, $email, $password, $room, $ext, $pic_name, $id]);
-           // header("location:../admin/users.php");
+            header("location:../admin/users.php");
             $con = null;
         } catch (\Throwable $th) {
             echo "connection error"."<br>"."<br>";
@@ -54,7 +52,7 @@
         if(in_array($file_ext, $extensions) === false)
             header("location:update_form.php?num=$id&result=ext");
         else {
-            $pic_name = "../images/".$name.".".$file_ext;
+            $pic_name = "../assets/images/".$name.".".$file_ext;
 
             if(move_uploaded_file($file_tmp, $pic_name))
                 echo "User Registered Successfully and Image is uploaded.<br>";
