@@ -212,7 +212,7 @@
                             foreach ($data_order_products as $product_details) {
                                 $amount += $product_details["price"]*$product_details["quantity"];
                             }
-                            echo '  <tr>
+                            echo '  <tr class = "data-row">
                                     <td>'.$order_details["date"].'</td>
                                     <td>'.$order_details["status"].'</td>
                                     <td>'.$amount.'</td>';
