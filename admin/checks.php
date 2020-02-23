@@ -35,8 +35,10 @@ $allChecks = $checks->getChecks($user_id);
   
 
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/user-orders.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
   <link rel="stylesheet" href="../assets/css/checks.css">
+  
 
 
 
