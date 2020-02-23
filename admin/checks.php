@@ -1,3 +1,27 @@
+<?php
+
+include "../database/config.php";
+require_once('../models/checks.php');
+$from = (isset($_REQUEST['from']) && !empty($_REQUEST['from'])) ? $_REQUEST['from'] : '1800-01-01';
+$to = (isset($_REQUEST['to']) && !empty($_REQUEST['to'])) ? $_REQUEST['to'] : date("Y-m-d H:i:s");
+$user_id = (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])) ? $_REQUEST['user_id'] : null;
+$serverName = DB_HOST;
+$username = DB_USER;
+$password = DB_PWD;
+$dbName = DB_NAME;
+try {
+    $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+$checks = new Checks($conn);
+$allChecks = $checks->getChecks($user_id);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +38,8 @@
   <link rel="stylesheet" href="../assets/css/user-orders.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
   <link rel="stylesheet" href="../assets/css/checks.css">
+  
+
 
 
 
@@ -36,144 +62,35 @@
   <section>
     <div class="add-container">
       <div class="main-title">Checks</div>
-      <!-- start all hidden popup orders -->
-      <div class="order" id="order_1">
-        <div class="orderForm">
-          <a href="#" class="fa fa-window-close"></a>
-          <h1>order 1</h1>
-          <div class="items">
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-        </div>
-        </div>
-        <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
-      </div>
-
-      <div class="order" id="order_2">
-        <div class="orderForm">
-          <a href="#" class="fa fa-window-close"></a>
-          <h1>order 2</h1>
-          <div class="items">
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-        </div>
-        </div>
-        <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
-      </div>
+      <!-- start all hidden popup orders' products  -->
+     
 
 
-      <div class="order" id="order_3">
-        <div class="orderForm">
-          <a href="#" class="fa fa-window-close"></a>
-          <h1>order 3</h1>
-          <div class="items">
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../assets/images/tea.jpg" alt="tea" />
-                <div class="item-details">
-                    <h2>Tea</h2>
-                    <p>Price: <em>$9</em>
-                    </p>
-                </div>
-            </div>
-        </div>
-        </div>
-        <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
-      </div>
-
-      <!-- end all hidden popup orders -->
+      <!-- end all hidden popup orders' products -->
       <form action="">
         <div class="search-group">
           <div>
+          <label for="">User</label>
+            <div class="select search-input">
+              <select name="user_id" id="user_id">
+                <option selected disabled>Select User</option>
+                <?php
+                  foreach($allChecks as $i){
+                    echo  "<option value=\"{$i["user_id"]}\">{$i["user_name"]}</option>";
+                  }
+                ?>
+               
+              </select>
+            </div>
+          </div>
+
+          <div>
             <label for="">Date from</label>
-            <input type="date" class="search-input" placeholder="">
+            <input type="date" class="search-input" name="from" placeholder="">
           </div>
           <div>
             <label for="">Date to</label>
-            <input type="date" class="search-input" placeholder="Date to">
+            <input type="date" class="search-input" name="to" placeholder="Date to">
           </div>
           <div>
             <button type="submit" class="search-btn"><i class="fa fa-search search-icon"></i></button>
@@ -182,79 +99,102 @@
       </form>
 
       <div class="collapse-content">
-        <div class="collapse" id="user_1">
-          <a class="" href="#user_1"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="container">
-            <div class="content">
-              <div class="orders">
-                <table class="orders-table">
-                  <tr>
-                    <th>Order Date</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                  </tr>
-                  <tr>
-                    <td>Date</td>
-                    <td>Out for delivery</td>
-                    <td>50 EGP</td>
-                    <td><a href="#"></a>Cancel <a href="#order_2">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Date</td>
-                    <td>Done</td>
-                    <td>50 EGP</td>
-                    <td><a href="#"></a>Cancel <a href="#order_3">View</a></td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="collapse" id="user_2">
-          <a href="#user_2"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="content">
-            <div class="inner-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              nobis iusto deleniti corporis alias quo a quam similique cupiditate
-              pariatur aliquid, omnis, officia dicta officiis impedit nisi dolores
-              ut, distinctio placeat. Magni dolores perferendis ab laborum in
-              neque, non exercitationem!
-            </div>
-          </div>
-        </div>
-        <div class="collapse" id="user_3">
-          <a href="#user_3"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="content">
-            <div class="inner-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              nobis iusto deleniti corporis alias quo a quam similique cupiditate
-              pariatur aliquid, omnis, officia dicta officiis impedit nisi dolores
-              ut, distinctio placeat. Magni dolores perferendis ab laborum in
-              neque, non exercitationem!
-            </div>
-          </div>
-        </div>
-        <div class="collapse" id="user_4">
-          <a href="#user_4"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="content">
-            <div class="inner-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              nobis iusto deleniti corporis alias quo a quam similique cupiditate
-              pariatur aliquid, omnis, officia dicta officiis impedit nisi dolores
-              ut, distinctio placeat. Magni dolores perferendis ab laborum in
-              neque, non exercitationem!
-            </div>
-          </div>
-        </div>
+        <?php
+          foreach($allChecks as $i){
+            $orders = $checks->getChecksOrders($i["user_id"], $from, $to);
+
+
+            if(count($orders) > 0)
+
+            {
+
+              echo "<div>";
+              foreach($orders as $order){
+                $items = $checks->getOrderProducts($order["id"]);
+                
+
+                echo "    <div class=\"order\" id=\"order_{$order["id"]}\">\n";
+                echo "        <div class=\"orderForm\">\n";
+                echo "          <a href=\"#user_{$i["user_id"]}\" class=\"fa fa-window-close\"></a>\n";
+                echo "          <h1>order {$order["id"]}</h1>\n";
+                echo "          <div class=\"items\">\n";
+                echo "            \n";
+
+                foreach($items as $item){
+
+                  echo "            <div class=\"item\">\n";
+                echo "                <img src=\"{$item["pic"]}\" alt=\"{$item["name"]}\" />\n";
+                echo "                <div class=\"item-details\">\n";
+                echo "                    <h2>{$item["name"]}</h2>\n";
+                echo "                    <p>Price: <em>{$item["price"]}</em>\n";
+                echo "                    </p>\n";
+                echo "                    <p>Quantity: <em>{$item["quantity"]}</em>\n";
+                echo "                    </p>\n";
+                echo "                    <p>Subtotal: <em>{$item["subtotal"]}</em>\n";
+                echo "                    </p>\n";
+                echo "                </div>\n";
+                echo "            </div>\n";
+
+                }
+                
+                echo "\n";
+                echo "         </div>\n";
+                echo "        </div>\n";
+                echo "        <a class=\"dimm-anchor\" href=\"#user_{$i["user_id"]}\"><div class=\"dimmed\"></div></a>\n";
+                echo "    </div>";
+
+              }
+
+              echo "</div>";
+            }
+              
+            
+            echo "<div class=\"collapse\" id=\"user_{$i["user_id"]}\">";
+            echo "<a href=\"#user_{$i["user_id"]}\"><i class=\"fa fa-user\"></i> {$i["user_name"]}";
+            echo "<span class=\"total\">total: {$i["total"]}</span>";
+            echo '</a>';
+            echo '<div class="container">';
+            echo '<div class="content">';
+
+            echo '<div class="orders">';
+            if(count($orders) > 0){
+              echo '<table class="orders-table">';
+              echo '<tr>';
+              echo '<th>Order Date</th>';
+              echo '<th>Status</th>';
+              echo '<th>Amount</th>';
+              echo '<th>Action</th>';
+              echo '</tr>';
+              foreach($orders as $order){
+
+               
+                echo '<tr>';
+                echo "<td>{$order["date"]}</td>";
+                echo "<td>{$order["status"]}</td>";
+                echo "<td>{$order["sub_total"]} EGP</td>";
+                echo "<td><a href=\"#\"></a><a href=\"#order_{$order["id"]}\">View</a></td>";
+                echo '</tr>';
+               
+
+              }
+              echo '</table>';
+              
+            }else{
+              echo '<h2>No Orders</h2>';
+
+            }
+            
+
+            echo '</div>';
+
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+          }
+        ?>
+
+
+        
       </div>
     </div>
   </section>
