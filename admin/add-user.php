@@ -31,7 +31,7 @@
         <div class="add-container">
             <div class="main-title">Add User</div>
             <div id='form' class='_form'>
-                <form action='#' method='POST' name='addUser'>
+                <form action='add-user.php' method='POST' enctype="multipart/form-data" name='addUser'>
               
                   <fieldset>
                     <legend>NAME</legend>
@@ -60,9 +60,8 @@
 
                   <fieldset>
                     <legend>EXT.</legend>
-                    <input type='text' name='room' placeholder='Ext.' />
+                    <input type='text' name='ext' placeholder='Ext.' />
                   </fieldset>
-
 
                   <fieldset>
                     <legend>PROFILE PICTURE</legend>
@@ -70,11 +69,8 @@
                       <span class="fa fa-cloud-upload"><span> Upload
                     </label>
                     <input type='file' name='file' id="file" />
-                   
-                    
                   </fieldset>
-              
-              
+                  
                   <input type='submit' name='submit' value='Add' />
                 </form>
               </div>
@@ -82,3 +78,116 @@
     </section>
 </body>
 </html>
+
+<?php
+
+	include "../database/config.php";
+
+	if(isset($_POST)) {
+		// $file_ext;	#to be used in uploading image to folder function
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirm = $_POST['confirm_password'];
+        $ext = $_POST['ext'];
+        $room = $_POST['room'];
+        $file_info = $_FILES['file'];
+        $file_name = $file_info['name'];
+        $file_size = $file_info['size'];
+        $file_tmp = $file_info['tmp_name'];
+        $file_type = $file_info['type'];
+
+        if($name == "")
+            $errors[] = "Name field is required.<br>";
+        
+        if($email != "") {
+            $pattern = "/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix";
+            $emailval1 = preg_match($pattern, $email);
+            $emailval2 = filter_var($email, FILTER_VALIDATE_EMAIL);
+            if($emailval2 == false || $emailval1 == false) 
+                $errors[] = "Wrong Email Format.<br>";
+        }
+        else {
+            $errors[] = "Email field is required.<br>";
+        }
+
+        if($password != "") {
+            $passwordval1 = preg_match("/^([a-z0-9]|_){8}$/ix", $password);
+            if($passwordval1 == false) 
+                $errors[] = "Unacceptable password format, password should contain 
+                exactly 8 lowercase letters, numbers and/or _.<br>";
+        }
+        else {
+            $errors[] = "Password field is required.<br>";
+        }
+
+        if($confirm != "") {
+            if($confirm != $password)
+                $errors[] = "Confirm Password field should match Password field.<br>";
+        }
+        else {
+            $errors[] = "Confirm Password field is required.<br>";
+        }
+
+        if($room == "") 
+            $errors[] = "Please enter the room number.<br>";
+
+        if(!empty($file_name)) {
+            $extens = explode('.', $file_name);
+            $file_ext = strtolower(end($extens));
+            $extensions = array("jpeg", "jpg", "png");
+        
+            if(in_array($file_ext, $extensions) === false){
+                $errors[] = "extension not allowed, please choose a JPEG, JPG or PNG file.";
+            } 
+        }
+        else {
+            $errors[] = "No Photos uploaded.<br>";
+		}
+
+	/*******************Data is validated and ready for insertion*******************/
+
+		if(empty($errors)) {
+			$pic_name = uploadPhoto($name, $file_tmp, $file_ext);
+			insertUser($name, $email, $password, $room, $ext, $pic_name);
+		}
+		else {
+			#handling validation errors
+			/*foreach($errors as $error) {
+				echo $error;
+			}*/
+		}
+	}
+
+	
+	function insertUser($name, $email, $password, $room, $ext, $pic) {
+		try {
+			//code...
+			$dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
+				
+			$con = new \PDO($dsn, DB_USER, DB_PWD);
+			
+			$query = 'INSERT INTO users (name, email, password, room, pic, ext) VALUES (?, ?, ?, ?, ?, ?)';
+			$stmt = $con->prepare($query);
+			$stmt->execute([$name, $email, $password, $room, $pic, $ext]);
+			$result = $stmt->rowCount();
+			$con = null;
+		} catch (\Throwable $th) {
+			echo "connection error"."<br>"."<br>";
+		}
+	}
+
+	function uploadPhoto($name, $file_tmp, $file_ext) {
+		
+		$pic_name = "../assets/images/".$name.".".$file_ext;
+
+		if(move_uploaded_file($file_tmp, $pic_name))
+			echo "User Registered Successfully and Image is uploaded.<br>";
+		else 
+			echo "Error uploading the image but user is registered.<br>";
+	
+
+		return $pic_name;
+	}
+
+?>

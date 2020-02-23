@@ -1,15 +1,16 @@
 <?php
 
 require_once('models/order.php');
+include "database/config.php";
 
 session_start();
 
 $_SESSION["user_id"] = 1;
 
-$serverName = "localhost";
-$username = "admin";
-$password = "Islam@123";
-$dbName = "cafe";
+$serverName = DB_HOST;
+$username = DB_USER;
+$password = DB_PWD;
+$dbName = DB_NAME;
 try {
     $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
     // set the PDO error mode to exception
