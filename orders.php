@@ -226,10 +226,10 @@ include "database/config.php";
                             foreach ($data_order_products as $product_details) {
                                 $amount += $product_details["price"] * $product_details["quantity"];
                             }
-                            echo '  <tr>
-                                    <td>' . $order_details["date"] . '</td>
-                                    <td>' . $order_details["status"] . '</td>
-                                    <td>' . $amount . '</td>';
+                            echo '  <tr class = "data-row">
+                                    <td>'.$order_details["date"].'</td>
+                                    <td>'.$order_details["status"].'</td>
+                                    <td>'.$amount.'</td>';
                             if ($order_details["status"] == "processing") {
                                 echo '
                                 <td><a href="#">Cancel</a><a href="#order_1">View</a></td>
