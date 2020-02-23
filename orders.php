@@ -5,7 +5,6 @@ $dbServername = DB_HOST;
 $dbUsername = DB_USER;
 $dbPassword = DB_PWD;
 $dbname = DB_NAME;
-// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,7 +124,6 @@ $dbname = DB_NAME;
                     <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
                   </div>
 
-
                   <div class="order" id="order_3">
                     <div class="orderForm">
                       <a href="#" class="fa fa-window-close"></a>
@@ -166,19 +164,28 @@ $dbname = DB_NAME;
                     </div>
                     </div>
                     <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
-                  </div>
+                </div>
+                <!-- end all hidden popup orders -->
 
-                  <!-- end all hidden popup orders -->
+                <!-- start hidden popup delete order successfully -->
 
-                <form action="" method="post">
+                    <div class="order"  id="order_d">
+                        <div class="msg-container">
+                            <h1>Order deleted Successfully</h1>
+                        </div>
+                        <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>  
+                    </div>
+                <!-- end hidden popup delete order successfully -->
+                
+                <form action="./orders.php" method="post">
                     <div class="search-group">
                         <div>
                             <label for="">Date from</label>
-                            <input type="date" class="search-input" placeholder="">
+                            <input type="date" name="date_from" class="search-input">
                         </div>
                         <div>
                             <label for="">Date to</label>
-                            <input type="date" class="search-input" placeholder="Date to">
+                            <input type="date" name="date_to" class="search-input">
                         </div>
                         <div>
                             <button type="submit" class="search-btn"><i class="fa fa-search search-icon"></i></button>
@@ -196,6 +203,7 @@ $dbname = DB_NAME;
                         <?php
                         $userId = 2;
                         $total = 0;
+                        $orders_data;
                         try {
                             $conn = new PDO('mysql:host='.$dbServername.';dbname='.$dbname, $dbUsername, $dbPassword);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -204,12 +212,19 @@ $dbname = DB_NAME;
                         {
                             echo "Connection failed: " . $e->getMessage();
                         }
-                        $query_list_orders = "Select * from orders where user_id=$userId;";
-                        $data_list_orders = $conn->query($query_list_orders); 
-                        foreach($data_list_orders as $order_details)
+                        if(!empty($_POST)){
+                            $query_date_filter = "Select * from orders where user_id=$userId and date BETWEEN ? AND ?;";
+                            $stmt_date_filter = $conn->prepare($query_date_filter);
+                            $stmt_date_filter->execute([$_POST["date_from"],$_POST["date_to"]]);
+                            $orders_data = $stmt_date_filter->fetchAll(); 
+                        }else{
+                            $query_list_orders = "Select * from orders where user_id=$userId;";
+                            $orders_data = $conn->query($query_list_orders); 
+                        }
+
+                        foreach($orders_data as $order_details)
                         {
                             $orderId = $order_details["id"];
-                            // $_SESSION['order_id'] = $orderId;
                             $query_order_products = "select id , price , quantity from products , orders_products where order_id = ? and product_id = id ";
                             $stmt_order_products = $conn->prepare($query_order_products);
                             $stmt_order_products->execute([$orderId]);
@@ -230,7 +245,7 @@ $dbname = DB_NAME;
                                 </tr>';
                             }else{
                                 echo'
-                                <td><a href="#" class="hidden">Cancel</a><a href="#order_1">View</a></td>
+                                <td><a href="#order_1">View</a></td>
                                 </tr>';
                             }
                             $total+=$amount;
