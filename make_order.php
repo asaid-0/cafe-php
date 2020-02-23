@@ -31,7 +31,7 @@ if (isset($_POST['confirm'])) {
 
         if ($order->create($user_id, $drinks, $quantities, $notes)) {
             $_SESSION['flash'] = 'ordered';
-            header("Location: ./home.php");
+            header("Location: home.php");
         };
     }
 }

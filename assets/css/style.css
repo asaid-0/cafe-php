@@ -64,6 +64,10 @@ textarea {
     resize: none;
 }
 
+#notes {
+    width: 19rem
+}
+
 .text-white {
     color: #fff;
 }

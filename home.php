@@ -59,7 +59,7 @@ session_start();
 
                     <div class="notes">
                         <label for="notes">Notes</label>
-                        <textarea name="notes" id="notes" cols="40" placeholder="do you have any comment?" rows="5"></textarea>
+                        <textarea name="notes" id="notes" placeholder="do you have any comment?" rows="5"></textarea>
                     </div>
                     <div class="room">
                         <label for="room">Room</label>
