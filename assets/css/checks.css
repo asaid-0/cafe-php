@@ -174,4 +174,12 @@
   .select:hover::after {
     color: rgb(0, 0, 0);
   }
-  
+  h3, p{
+    margin: 0;
+  }
+
+  .item-details{
+    justify-content: space-between;
+    flex-flow: column wrap;
+    align-items: flex-start;
+  }

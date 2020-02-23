@@ -32,7 +32,7 @@ class Checks
 
     public function getOrderProducts($order_id){
         try {
-            $stmt = $this->conn->prepare('select op.order_id, op.product_id, op.quantity, p.name, p.price, p.pic from orders_products as op, products as p WHERE op.order_id = :order_id AND p.id = op.product_id');
+            $stmt = $this->conn->prepare('select op.order_id, op.product_id, op.quantity, p.name, p.price, p.pic, quantity*price as subtotal from orders_products as op, products as p WHERE op.order_id = :order_id AND p.id = op.product_id');
             $stmt->bindParam(":order_id", $order_id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll();
