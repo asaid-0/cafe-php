@@ -2,6 +2,9 @@
 
 include "../database/config.php";
 require_once('../models/checks.php');
+$from = (isset($_REQUEST['from']) && !empty($_REQUEST['from'])) ? $_REQUEST['from'] : '1800-01-01';
+$to = (isset($_REQUEST['to']) && !empty($_REQUEST['to'])) ? $_REQUEST['to'] : date("Y-m-d H:i:s");
+$user_id = (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])) ? $_REQUEST['user_id'] : null;
 $serverName = DB_HOST;
 $username = DB_USER;
 $password = DB_PWD;
@@ -14,7 +17,7 @@ try {
 }
 
 $checks = new Checks($conn);
-$allChecks = $checks->getChecks();
+$allChecks = $checks->getChecks($user_id);
 
 
 ?>
@@ -68,22 +71,25 @@ $allChecks = $checks->getChecks();
           <div>
           <label for="">User</label>
             <div class="select search-input">
-              <select name="slct" id="slct">
+              <select name="user_id" id="user_id">
                 <option selected disabled>Select User</option>
-                <option value="1">Ahmed Ahmed</option>
-                <option value="2">Ahmed Ahmed</option>
-                <option value="3">Ahmed Ahmed</option>
+                <?php
+                  foreach($allChecks as $i){
+                    echo  "<option value=\"{$i["user_id"]}\">{$i["user_name"]}</option>";
+                  }
+                ?>
+               
               </select>
             </div>
           </div>
 
           <div>
             <label for="">Date from</label>
-            <input type="date" class="search-input" placeholder="">
+            <input type="date" class="search-input" name="from" placeholder="">
           </div>
           <div>
             <label for="">Date to</label>
-            <input type="date" class="search-input" placeholder="Date to">
+            <input type="date" class="search-input" name="to" placeholder="Date to">
           </div>
           <div>
             <button type="submit" class="search-btn"><i class="fa fa-search search-icon"></i></button>
@@ -94,16 +100,21 @@ $allChecks = $checks->getChecks();
       <div class="collapse-content">
         <?php
           foreach($allChecks as $i){
-            $orders = $checks->getChecksOrders($i["user_id"]);
+            $orders = $checks->getChecksOrders($i["user_id"], $from, $to);
 
 
             if(count($orders) > 0)
+
+            {
+
+              echo "<div>";
               foreach($orders as $order){
                 $items = $checks->getOrderProducts($order["id"]);
+                
 
                 echo "    <div class=\"order\" id=\"order_{$order["id"]}\">\n";
                 echo "        <div class=\"orderForm\">\n";
-                echo "          <a href=\"#\" class=\"fa fa-window-close\"></a>\n";
+                echo "          <a href=\"#user_{$i["user_id"]}\" class=\"fa fa-window-close\"></a>\n";
                 echo "          <h1>order {$order["id"]}</h1>\n";
                 echo "          <div class=\"items\">\n";
                 echo "            \n";
@@ -128,10 +139,14 @@ $allChecks = $checks->getChecks();
                 echo "\n";
                 echo "         </div>\n";
                 echo "        </div>\n";
-                echo "        <a class=\"dimm-anchor\" href=\"#\"><div class=\"dimmed\"></div></a>\n";
+                echo "        <a class=\"dimm-anchor\" href=\"#user_{$i["user_id"]}\"><div class=\"dimmed\"></div></a>\n";
                 echo "    </div>";
 
               }
+
+              echo "</div>";
+            }
+              
             
             echo "<div class=\"collapse\" id=\"user_{$i["user_id"]}\">";
             echo "<a href=\"#user_{$i["user_id"]}\"><i class=\"fa fa-user\"></i> {$i["user_name"]}";
