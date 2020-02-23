@@ -1,3 +1,24 @@
+<?php
+
+include "../database/config.php";
+require_once('../models/checks.php');
+$serverName = DB_HOST;
+$username = DB_USER;
+$password = DB_PWD;
+$dbName = DB_NAME;
+try {
+    $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+$checks = new Checks($conn);
+$allChecks = $checks->getChecks();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +35,7 @@
   <link rel="stylesheet" href="../assets/css/user-orders.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
   <link rel="stylesheet" href="../assets/css/checks.css">
+
 
 
 
@@ -168,6 +190,18 @@
       <form action="">
         <div class="search-group">
           <div>
+          <label for="">User</label>
+            <div class="select search-input">
+              <select name="slct" id="slct">
+                <option selected disabled>Select User</option>
+                <option value="1">Ahmed Ahmed</option>
+                <option value="2">Ahmed Ahmed</option>
+                <option value="3">Ahmed Ahmed</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
             <label for="">Date from</label>
             <input type="date" class="search-input" placeholder="">
           </div>
@@ -182,79 +216,59 @@
       </form>
 
       <div class="collapse-content">
-        <div class="collapse" id="user_1">
-          <a class="" href="#user_1"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="container">
-            <div class="content">
-              <div class="orders">
-                <table class="orders-table">
-                  <tr>
-                    <th>Order Date</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                  </tr>
-                  <tr>
-                    <td>Date</td>
-                    <td>Out for delivery</td>
-                    <td>50 EGP</td>
-                    <td><a href="#"></a>Cancel <a href="#order_2">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Date</td>
-                    <td>Done</td>
-                    <td>50 EGP</td>
-                    <td><a href="#"></a>Cancel <a href="#order_3">View</a></td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="collapse" id="user_2">
-          <a href="#user_2"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="content">
-            <div class="inner-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              nobis iusto deleniti corporis alias quo a quam similique cupiditate
-              pariatur aliquid, omnis, officia dicta officiis impedit nisi dolores
-              ut, distinctio placeat. Magni dolores perferendis ab laborum in
-              neque, non exercitationem!
-            </div>
-          </div>
-        </div>
-        <div class="collapse" id="user_3">
-          <a href="#user_3"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="content">
-            <div class="inner-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              nobis iusto deleniti corporis alias quo a quam similique cupiditate
-              pariatur aliquid, omnis, officia dicta officiis impedit nisi dolores
-              ut, distinctio placeat. Magni dolores perferendis ab laborum in
-              neque, non exercitationem!
-            </div>
-          </div>
-        </div>
-        <div class="collapse" id="user_4">
-          <a href="#user_4"><i class="fa fa-user"></i> Ahmed Ahmed
-            <span class="total">total: 1000</span>
-          </a>
-          <div class="content">
-            <div class="inner-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              nobis iusto deleniti corporis alias quo a quam similique cupiditate
-              pariatur aliquid, omnis, officia dicta officiis impedit nisi dolores
-              ut, distinctio placeat. Magni dolores perferendis ab laborum in
-              neque, non exercitationem!
-            </div>
-          </div>
-        </div>
+        
+        
+        <?php
+          foreach($allChecks as $i){
+            $orders = $checks->getChecksOrders($i["user_id"]);
+            
+            
+            echo "<div class=\"collapse\" id=\"user_{$i["user_id"]}\">";
+            echo "<a href=\"#user_{$i["user_id"]}\"><i class=\"fa fa-user\"></i> {$i["user_name"]}";
+            echo "<span class=\"total\">total: {$i["total"]}</span>";
+            echo '</a>';
+            echo '<div class="container">';
+            echo '<div class="content">';
+
+            echo '<div class="orders">';
+            if(count($orders) > 0){
+              echo '<table class="orders-table">';
+              echo '<tr>';
+              echo '<th>Order Date</th>';
+              echo '<th>Status</th>';
+              echo '<th>Amount</th>';
+              echo '<th>Action</th>';
+              echo '</tr>';
+              foreach($orders as $order){
+
+               
+                echo '<tr>';
+                echo "<td>{$order["date"]}</td>";
+                echo "<td>{$order["status"]}</td>";
+                echo "<td>{$order["sub_total"]} EGP</td>";
+                echo "<td><a href=\"#\"></a><a href=\"#order_{$order["id"]}\">View</a></td>";
+                echo '</tr>';
+               
+
+              }
+              echo '</table>';
+              
+            }else{
+              echo '<h2>No Orders</h2>';
+
+            }
+            
+
+            echo '</div>';
+
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+          }
+        ?>
+
+
+        
       </div>
     </div>
   </section>
