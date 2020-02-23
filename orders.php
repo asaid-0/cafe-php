@@ -5,8 +5,7 @@ $dbServername = DB_HOST;
 $dbUsername = DB_USER;
 $dbPassword = DB_PWD;
 $dbname = DB_NAME;
-
-
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -210,6 +209,7 @@ $dbname = DB_NAME;
                         foreach($data_list_orders as $order_details)
                         {
                             $orderId = $order_details["id"];
+                            // $_SESSION['order_id'] = $orderId;
                             $query_order_products = "select id , price , quantity from products , orders_products where order_id = ? and product_id = id ";
                             $stmt_order_products = $conn->prepare($query_order_products);
                             $stmt_order_products->execute([$orderId]);
@@ -224,7 +224,9 @@ $dbname = DB_NAME;
                                     <td>'.$amount.'</td>';
                             if ($order_details["status"] == "processing") {
                                 echo'
-                                <td><a href="#">Cancel</a><a href="#order_1">View</a></td>
+                                <td><a href="cancel-order.php?orderId='.$orderId.'">Cancel</a>
+                                    <a href="#order_1">View</a>
+                                </td>
                                 </tr>';
                             }else{
                                 echo'
