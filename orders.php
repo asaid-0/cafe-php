@@ -127,12 +127,9 @@ $dbname = DB_NAME;
                     </a>
                 </div>
 
-<<<<<<< HEAD
 
                 <div class="order" id="order_3">
-=======
                   <div class="order" id="order_3">
->>>>>>> 11187aea61961e69d7c8993a06d275b7fe998f55
                     <div class="orderForm">
                         <a href="#" class="fa fa-window-close"></a>
                         <h1>order 3</h1>
@@ -212,8 +209,8 @@ $dbname = DB_NAME;
                         <?php
 
                         $serverName = "localhost";
-                        $username = "admin";
-                        $password = "Islam@123";
+                        $username = "root";
+                        $password = "root";
                         $dbName = "cafe";
 
                         $userId = 1;
