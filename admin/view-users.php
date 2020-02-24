@@ -32,8 +32,8 @@
                 <h2>All Users</h2>
                 <a href="">Add user</a>
             </header>
-            <div class="orders">
-                <table class="orders-table">
+            <div class="users">
+                <table class="users-table">
                     <tr>
                         <th>Name</th>
                         <th>Room</th>
@@ -43,7 +43,7 @@
                         <th colspan="2">Options</th>
                     </tr>
                     <?php
-
+                        require_once("../models/user.php");
                         include "../database/config.php";
 
                         $dbServername = DB_HOST;
@@ -53,15 +53,14 @@
 
                         $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
                         try {
-                            $con = new \PDO($dsn, $dbUsername, $dbPassword);
+                            $con = new \PDO($dsn, DB_USER, DB_PWD);
 
-                            $query = "SELECT * FROM users";
-                            $stmt = $con->prepare($query);
-                            $stmt->execute();
+                            $user = new User($con);
+                            $row = $user->selectAllUsers();
 
-                            while ($row = $stmt->fetch()) {
-                                $id = $row['id'];
-                                echo "<tr><td>".$row['name']."</td> <td>".$row['email']."</td> <td> <img src=".$row['pic']." alt='photo'/></td> <td>".$row['ext']."</td> <td>".$row['room']."</td>";
+                            for ($i = 0; $i < count($row); $i++) {
+                                $id = $row[$i]['id'];
+                                echo "<tr><td>".$row[$i]['name']."</td> <td>".$row[$i]['email']."</td> <td> <img src=".$row[$i]['pic']." alt='photo'/></td> <td>".$row[$i]['ext']."</td> <td>".$row[$i]['room']."</td>";
                                 echo"<td><a href ='update-form.php?num=$id'>Update</a></td>";
                                 echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
                                 echo "</tr>";
@@ -70,7 +69,7 @@
                             echo "Connection Error"."<br>"."<br>";
                         }
 
-                        $con = null;
+                        // $con = null;*/
                     ?>
                 </table>
             </div>

@@ -7,6 +7,20 @@
             $this->conn = $conn;
         }
 
+        public function selectAllUsers() {
+            try {
+                $query = "SELECT * FROM users";
+                $stmt = $this->conn->prepare($query);
+                $stmt->execute();
+
+                $row = $stmt->fetchAll();
+                return $row;
+            } catch(\Throwable $th) {
+                echo "Connection Error"."<br>"."<br>";
+            }
+
+        }
+
         public function addNewUser($name, $email, $password, $room, $ext, $pic) {
             try {
                 //code...

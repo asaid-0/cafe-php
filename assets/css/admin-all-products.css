@@ -38,3 +38,38 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+/*******************************User Table Styling****************************/
+
+.users {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.users-table{
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.users-table td:hover {background-color: #ddd;}
+
+.users-table td, .users-table th {
+  border: 0.2rem solid #ddd;
+  padding: 0.5rem;
+}
+
+.users-table td {
+    text-align: center;
+}
+
+.users-table td a{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.users-table img {
+    width: 5rem;
+    height: 5rem;
+}
+
