@@ -16,7 +16,7 @@
         
 ?>
 
-<form action="update_action.php" method="post" enctype="multipart/form-data">
+<form action="update-action.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" id="id" value="<?php echo $row["id"]?>">
 	<input type="text" name="name" id="name" value="<?php echo $row["name"]?>">
     <br><br>

@@ -37,7 +37,7 @@
             $query = "UPDATE users SET name=?, email=?, password=?, room=?, ext=?, pic=? WHERE id=?";
             $stmt = $con->prepare($query);
             $stmt->execute([$name, $email, $password, $room, $ext, $pic_name, $id]);
-            header("location:../admin/users.php");
+            header("location:../admin/view-users.php");
             $con = null;
         } catch (\Throwable $th) {
             echo "connection error"."<br>"."<br>";
@@ -50,7 +50,7 @@
         $extensions = array("jpeg", "jpg", "png");
         $pic_name;
         if(in_array($file_ext, $extensions) === false)
-            header("location:update_form.php?num=$id&result=ext");
+            header("location:update-form.php?num=$id&result=ext");
         else {
             $pic_name = "../assets/images/".$name.".".$file_ext;
 
