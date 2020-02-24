@@ -60,6 +60,7 @@
         if($user->checkUserExist($email, $password))
             header("location:home.php");
         else
+        #handling what happens when credentials aren't correct
             ;
     }
 
