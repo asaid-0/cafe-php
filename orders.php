@@ -130,7 +130,7 @@ $dbName = DB_NAME;
                 </div>
 
 
-                <div class="order" id="order_3">
+                <div>
                   <div class="order" id="order_3">
                     <div class="orderForm">
                         <a href="#" class="fa fa-window-close"></a>
@@ -171,13 +171,13 @@ $dbName = DB_NAME;
                         </div>
                     </div>
                     </div>
-                    <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
+                    <!-- <a class="dimm-anchor" href="#"><div class="dimmed"></div></a> -->
                 </div>
                 <!-- end all hidden popup orders -->
 
                 <!-- start hidden popup delete order successfully -->
 
-                    <div class="order"  id="order_d">
+                    <div class="order" id="order_d">
                         <div class="msg-container">
                             <h1>Order deleted Successfully</h1>
                         </div>
@@ -269,6 +269,7 @@ $dbName = DB_NAME;
                     echo ' <label for="">' . $total . ' EGP</label> '
                     ?>
                 </div>
+            </div>
             </div>
     </section>
 
