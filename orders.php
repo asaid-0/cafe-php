@@ -6,6 +6,9 @@ $userName = DB_USER;
 $password = DB_PWD;
 $dbName = DB_NAME;
 
+session_start();
+if(!isset($_SESSION['id']))
+    header("location:login.php");
 
 ?>
 <!DOCTYPE html>
@@ -212,7 +215,7 @@ $dbName = DB_NAME;
 
                         
 
-                        $userId = 1;
+                        $userId = $_SESSION['id'];
                         $total = 0;
                         $orders_data;
                         try {
