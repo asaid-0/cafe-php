@@ -125,6 +125,8 @@
 
         </div>
     </section>
+
+    <script src="../assets/javascript/cart.js"></script>
 </body>
 
 </html>
