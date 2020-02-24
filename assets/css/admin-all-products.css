@@ -15,20 +15,21 @@
     justify-content: space-evenly;
 }
 .item{
-    padding: 1rem 0 1rem 0;
+    padding: 0rem 0 1rem 0;
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
-    box-shadow: 0.5rem 0.5rem 0.25rem rgba(0, 0, 0, .1);
     border-left: 1px solid #e3e3e3;
 }
 .item:hover{
+    box-shadow: 0.5rem 0.5rem 0.25rem rgba(0, 0, 0, .1);
     background: #fafafa;
-    border-color: #000;
-    border: 0.2rem solid black;
+    transform: translateY(-5px);
+    transition: all 0.2s ease-in-out;
 }
 .item img{
-    overflow: hidden;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 .item-details {
     justify-content: space-around;
