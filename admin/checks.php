@@ -1,22 +1,10 @@
 <?php
-
-include "../database/config.php";
 require_once('../models/checks.php');
 $from = (isset($_REQUEST['from']) && !empty($_REQUEST['from'])) ? $_REQUEST['from'] : '1800-01-01';
 $to = (isset($_REQUEST['to']) && !empty($_REQUEST['to'])) ? $_REQUEST['to'] : date("Y-m-d H:i:s");
 $user_id = (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])) ? $_REQUEST['user_id'] : null;
-$serverName = DB_HOST;
-$username = DB_USER;
-$password = DB_PWD;
-$dbName = DB_NAME;
-try {
-    $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
 
-$checks = new Checks($conn);
+$checks = new Checks();
 $allChecks = $checks->getChecks($user_id);
 
 

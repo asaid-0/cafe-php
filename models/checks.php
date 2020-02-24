@@ -1,12 +1,14 @@
 <?php
 
-
+include "../database/database.inc.php";
 class Checks
 {
-    private $conn;
-    public function __construct($conn)
+    private $conn; //pdo object
+    public function __construct()
     {
-        $this->conn = $conn;
+        $db = Database::getInstance();
+        $db->start();
+        $this->conn = $db->getPDO();
     }
     public function getChecks($user_id)
     {
