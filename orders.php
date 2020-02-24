@@ -1,10 +1,12 @@
 <?php
 include "database/config.php";
 
-$dbServername = DB_HOST;
-$dbUsername = DB_USER;
-$dbPassword = DB_PWD;
-$dbname = DB_NAME;
+$serverName = DB_HOST;
+$username = DB_USER;
+$password = DB_PWD;
+$dbName = DB_NAME;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -208,10 +210,7 @@ $dbname = DB_NAME;
                         </tr>
                         <?php
 
-                        $serverName = "localhost";
-                        $username = "root";
-                        $password = "root";
-                        $dbName = "cafe";
+                        
 
                         $userId = 1;
                         $total = 0;
