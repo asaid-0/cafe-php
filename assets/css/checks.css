@@ -101,36 +101,6 @@
       position: absolute;
       right: 1rem;
   }
-  
-.search-group {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.search-group label{
-  padding: 1rem;
-}
-
-.search-icon {
-    font-size: 2rem;
-}
-
-.search-input {
-    margin-bottom: 2rem ;
-    color: #fff;
-    background-color: #686868;
-    border: none;
-    border-radius: 1.5rem;
-
-}
-.search-input:hover{
-  border-radius: 1.5rem;
-  cursor: pointer;
-  border: none;
-}
-
-
 
   /* Reset Select */
   select {
