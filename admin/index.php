@@ -1,3 +1,10 @@
+<?php
+
+require_once("../database/database.inc.php");
+require_once("../models/products.php");
+$products = new Products();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,35 +97,20 @@
                 </form>
                 <div class="items">
 
-                    <div class="item" id="1">
-                        <img src="../assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2 class="item-name">Tea</h2>
-                            <p>Price: <em class="item-price">9 EGP</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
+                <?php
+                        foreach($products->getProducts() as $p){
+                            echo "<div class=\"item\" id=\"{$p['id']}\">\n";
+echo "                        <img src=\"{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+echo "                        <div class=\"item-details\">\n";
+echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
+echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";
+echo "                            </p>\n";
+echo "                        </div>\n";
+echo "                        <button class=\"add-to-cart\" type=\"button\">Add to cart</button>\n";
+echo "                    </div>";
 
-                    <div class="item" id="2">
-                        <img src="../assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2 class="item-name">Mint</h2>
-                            <p>Price: <em class="item-price">9 EGP</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
-
-                    <div class="item" id="3">
-                        <img src="../assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2 class="item-name">Cafe</h2>
-                            <p>Price: <em class="item-price">9 EGP</em>
-                            </p>
-                        </div>
-                        <button class="add-to-cart" type="button">Add to cart</button>
-                    </div>
+                        }
+                    ?>
 
                 </div>
             </div>
