@@ -1,8 +1,8 @@
 <?php
 
 $dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
+$dbUsername = "macrina";
+$dbPassword = "ROOT";
 $dbname = "cafe";
 
  

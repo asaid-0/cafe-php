@@ -2,10 +2,13 @@
 include "database/config.php";
 
 $serverName = DB_HOST;
-$username = DB_USER;
+$userName = DB_USER;
 $password = DB_PWD;
 $dbName = DB_NAME;
 
+session_start();
+if(!isset($_SESSION['id']))
+    header("location:login.php");
 
 ?>
 <!DOCTYPE html>
@@ -212,11 +215,11 @@ $dbName = DB_NAME;
 
                         
 
-                        $userId = 1;
+                        $userId = $_SESSION['id'];
                         $total = 0;
                         $orders_data;
                         try {
-                            $conn = new PDO('mysql:host=' . $serverName . ';dbname=' . $dbName, $username, $password);
+                            $conn = new PDO('mysql:host=' . $serverName . ';dbname=' . $dbName, $userName, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         } catch (PDOException $e) {
                             echo "Connection failed: " . $e->getMessage();

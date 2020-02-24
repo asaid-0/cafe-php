@@ -59,9 +59,9 @@
 
         if($user->checkUserExist($email, $password))
             header("location:home.php");
-            //echo 'signed in';
         else
-            echo "not";
+        #handling what happens when credentials aren't correct
+            ;
     }
 
 ?>

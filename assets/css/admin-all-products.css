@@ -10,32 +10,66 @@
     justify-content: space-evenly;
     align-items: baseline;
 }
-/* ***************************************** */
-/* orders table style */
-.orders{
+.items{
+    margin-top: 2rem;
+    justify-content: space-evenly;
+}
+.item{
+    padding: 0rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    border-left: 1px solid #e3e3e3;
+}
+.item:hover{
+    box-shadow: 0.5rem 0.5rem 0.25rem rgba(0, 0, 0, .1);
+    background: #fafafa;
+    transform: translateY(-5px);
+    transition: all 0.2s ease-in-out;
+}
+.item img{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+.item-details {
+    justify-content: space-around;
+}
+.action{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/*******************************User Table Styling****************************/
+
+.users {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
 }
-.orders-table{
+
+.users-table{
     width: 80%;
     border-collapse: collapse;
 }
 
-.orders-table td:hover {background-color: #ddd;}
+.users-table td:hover {background-color: #ddd;}
 
-.orders-table td, .orders-table th {
+.users-table td, .users-table th {
   border: 0.2rem solid #ddd;
   padding: 0.5rem;
 }
-.orders-table td {
+
+.users-table td {
     text-align: center;
 }
-.orders-table td a{
+
+.users-table td a{
     display: flex;
     justify-content: space-evenly;
 }
-.orders-table img {
+
+.users-table img {
     width: 5rem;
     height: 5rem;
 }
+
