@@ -2,7 +2,7 @@
 include "database/config.php";
 
 $serverName = DB_HOST;
-$username = DB_USER;
+$userName = DB_USER;
 $password = DB_PWD;
 $dbName = DB_NAME;
 
@@ -216,7 +216,7 @@ $dbName = DB_NAME;
                         $total = 0;
                         $orders_data;
                         try {
-                            $conn = new PDO('mysql:host=' . $dbServername . ';dbname=' . $dbname, $dbUsername, $dbPassword);
+                            $conn = new PDO('mysql:host=' . $serverName . ';dbname=' . $dbName, $userName, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         } catch (PDOException $e) {
                             echo "Connection failed: " . $e->getMessage();

@@ -32,27 +32,46 @@
                 <h2>All Products</h2>
                 <a href="">Add product</a>
             </header>
-            <div class="orders">
-                <table class="orders-table">
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Image</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td>Tea</td>
-                        <td>50 EGP</td>
-                        <td>
+            <div class="items">
+                    <div class="item" id="1">
                         <img src="../assets/images/tea.jpg" alt="tea" />
-                        </td>
-                        <td>
-                            <a href="">available</a>
-                            <a href="">edit</a>
-                            <a href="">delete</a>
-                        </td>
-                    </tr>
-                </table>
+                        <div class="item-details">
+                            <h2 class="item-name">Tea</h2>
+                            <p>Price: <em class="item-price">9 EGP</em>
+                            </p>
+                        </div>
+                        <div class="action">
+                            <button class="add-to-cart" type="button">Available</button>
+                            <button class="add-to-cart" type="button">Edit</button>
+                            <button class="add-to-cart" type="button">Delete</button>
+                        </div>
+                    </div>
+                    <div class="item" id="1">
+                        <img src="../assets/images/tea.jpg" alt="tea" />
+                        <div class="item-details">
+                            <h2 class="item-name">Mint</h2>
+                            <p>Price: <em class="item-price">9 EGP</em>
+                            </p>
+                        </div>
+                        <div class="action">
+                            <button class="add-to-cart" type="button">Available</button>
+                            <button class="add-to-cart" type="button">Edit</button>
+                            <button class="add-to-cart" type="button">Delete</button>
+                        </div>
+                    </div>
+                    <div class="item" id="1">
+                        <img src="../assets/images/tea.jpg" alt="tea" />
+                        <div class="item-details">
+                            <h2 class="item-name">Cafe</h2>
+                            <p>Price: <em class="item-price">9 EGP</em>
+                            </p>
+                        </div>
+                        <div class="action">
+                            <button class="add-to-cart" type="button">Available</button>
+                            <button class="add-to-cart" type="button">Edit</button>
+                            <button class="add-to-cart" type="button">Delete</button>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>

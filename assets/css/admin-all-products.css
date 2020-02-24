@@ -10,32 +10,30 @@
     justify-content: space-evenly;
     align-items: baseline;
 }
-/* ***************************************** */
-/* orders table style */
-.orders{
-    width: 100%;
-    display: flex;
+.items{
+    margin-top: 2rem;
     justify-content: space-evenly;
 }
-.orders-table{
-    width: 80%;
-    border-collapse: collapse;
+.item{
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.25rem rgba(0, 0, 0, .1);
+    border-left: 1px solid #e3e3e3;
 }
-
-.orders-table td:hover {background-color: #ddd;}
-
-.orders-table td, .orders-table th {
-  border: 0.2rem solid #ddd;
-  padding: 0.5rem;
+.item:hover{
+    background: #fafafa;
+    border-color: #000;
+    border: 0.2rem solid black;
 }
-.orders-table td {
-    text-align: center;
+.item img{
+    overflow: hidden;
 }
-.orders-table td a{
+.item-details {
+    justify-content: space-around;
+}
+.action{
     display: flex;
     justify-content: space-evenly;
-}
-.orders-table img {
-    width: 5rem;
-    height: 5rem;
 }
