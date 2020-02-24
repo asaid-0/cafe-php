@@ -62,7 +62,7 @@
                             while ($row = $stmt->fetch()) {
                                 $id = $row['id'];
                                 echo "<tr><td>".$row['name']."</td> <td>".$row['email']."</td> <td> <img src=".$row['pic']." alt='photo'/></td> <td>".$row['ext']."</td> <td>".$row['room']."</td>";
-                                echo"<td><a href ='update_form.php?num=$id'>Update</a></td>";
+                                echo"<td><a href ='update-form.php?num=$id'>Update</a></td>";
                                 echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
                                 echo "</tr>";
                             }

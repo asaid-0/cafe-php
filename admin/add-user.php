@@ -81,7 +81,8 @@
 
 <?php
 
-	include "../database/config.php";
+  include("user-functions.php");
+	// include "../database/config.php";
 
 	if(isset($_POST)) {
 		// $file_ext;	#to be used in uploading image to folder function
@@ -156,24 +157,6 @@
 			/*foreach($errors as $error) {
 				echo $error;
 			}*/
-		}
-	}
-
-	
-	function insertUser($name, $email, $password, $room, $ext, $pic) {
-		try {
-			//code...
-			$dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
-				
-			$con = new \PDO($dsn, DB_USER, DB_PWD);
-			
-			$query = 'INSERT INTO users (name, email, password, room, pic, ext) VALUES (?, ?, ?, ?, ?, ?)';
-			$stmt = $con->prepare($query);
-			$stmt->execute([$name, $email, $password, $room, $pic, $ext]);
-			$result = $stmt->rowCount();
-			$con = null;
-		} catch (\Throwable $th) {
-			echo "connection error"."<br>"."<br>";
 		}
 	}
 
