@@ -46,10 +46,10 @@
   
 
   
-  .collapse:nth-child(odd) > a {
+  .collapse:nth-child(even) > a {
     background: #444;
   }
-  .collapse:nth-child(even) > a {
+  .collapse:nth-child(odd) > a {
     background: #1e1e1e;
   }
   
@@ -67,11 +67,18 @@
   .inner-content {
     padding: 1.8rem;
   }
+
+  .orders-table{
+    border-top: none;
+
+  }
   
-  .content {
+  .container .content {
     max-height: 0em;
     transition: 0.3s linear 0s;
     overflow: hidden;
+    flex-basis: 100%;
+
   }
   
   .collapse + .collapse > a {
@@ -100,6 +107,11 @@
     justify-content: space-evenly;
     align-items: center;
 }
+
+.search-group label{
+  padding: 1rem;
+}
+
 .search-icon {
     font-size: 2rem;
 }
@@ -109,8 +121,13 @@
     color: #fff;
     background-color: #686868;
     border: none;
-    border-radius: 2rem;
+    border-radius: 1.5rem;
 
+}
+.search-input:hover{
+  border-radius: 1.5rem;
+  cursor: pointer;
+  border: none;
 }
 
 
@@ -162,4 +179,12 @@
   .select:hover::after {
     color: rgb(0, 0, 0);
   }
-  
+  h3, p{
+    margin: 0;
+  }
+
+  .item-details{
+    justify-content: space-between;
+    flex-flow: column wrap;
+    align-items: flex-start;
+  }

@@ -29,7 +29,7 @@
 }
 
 
-.orderForm{
+.orderForm, .msg-container{
     background-color: #f8f8f8;
     width: 800px;
     z-index: 1000;
@@ -41,6 +41,15 @@
     border-left: 1px solid #e3e3e3;
     position: relative;
 
+}
+.msg-container{
+    border-top: 1px solid white;
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    letter-spacing: 0.2rem;
+    border-radius: 2rem;
+    padding: 0.5rem;
 }
 
 .order{
@@ -71,7 +80,7 @@
     bottom: 0;
     right: 0;
     z-index: -1;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 .dimm-anchor:hover{
     cursor: auto;
