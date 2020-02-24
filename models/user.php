@@ -68,7 +68,7 @@
             $_SESSION['email'] = $row['email'];
             $_SESSION['imgPath'] = $row['pic'];
             $_SESSION['room'] = $row['room'];
-            $_SESSION['ext'] = $_['ext'];
+            $_SESSION['ext'] = $row['ext'];
             
             if($result <= 0){
                 //echo "<script>alert('Wrong email and password combination.')</script>";
