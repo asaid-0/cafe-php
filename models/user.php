@@ -7,7 +7,7 @@
             $this->conn = $conn;
         }
 
-        function addNewUser($name, $email, $password, $room, $ext, $pic) {
+        public function addNewUser($name, $email, $password, $room, $ext, $pic) {
             try {
                 //code...
                 $query = 'INSERT INTO users (name, email, password, room, pic, ext) VALUES (?, ?, ?, ?, ?, ?)';
@@ -45,8 +45,21 @@
 
             $result = $stmt->rowCount();
 
-            if($result <= 0)
+            $row = $stmt->fetch();
+
+            session_start();
+
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['imgPath'] = $row['pic'];
+            $_SESSION['room'] = $row['room'];
+            $_SESSION['ext'] = $_['ext'];
+            
+            if($result <= 0){
+                //echo "<script>alert('Wrong email and password combination.')</script>";
                 return false;
+            }
             else
                 return true;
         }

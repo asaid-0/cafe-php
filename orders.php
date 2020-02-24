@@ -127,12 +127,7 @@ $dbname = DB_NAME;
                     </a>
                 </div>
 
-<<<<<<< HEAD
-
-                <div class="order" id="order_3">
-=======
                   <div class="order" id="order_3">
->>>>>>> 11187aea61961e69d7c8993a06d275b7fe998f55
                     <div class="orderForm">
                         <a href="#" class="fa fa-window-close"></a>
                         <h1>order 3</h1>
@@ -211,16 +206,16 @@ $dbname = DB_NAME;
                         </tr>
                         <?php
 
-                        $serverName = "localhost";
-                        $username = "admin";
+                        /*$serverName = "localhost";
+                        $username = "macrina";
                         $password = "Islam@123";
-                        $dbName = "cafe";
+                        $dbName = "cafe";*/
 
                         $userId = 1;
                         $total = 0;
                         $orders_data;
                         try {
-                            $conn = new PDO('mysql:host=' . $serverName . ';dbname=' . $dbName, $username, $password);
+                            $conn = new PDO('mysql:host=' . $dbServername . ';dbname=' . $dbname, $dbUsername, $dbPassword);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         } catch (PDOException $e) {
                             echo "Connection failed: " . $e->getMessage();
