@@ -15,7 +15,7 @@
         <div class="overly">
             <h1 class="main-title">-- OS Coffee --</h1>
 
-            <form action="" class="login-form">
+            <form action="#" method="post" class="login-form">
 
                 <div class="form-control">
                     <label for="email">Email:</label>
@@ -38,3 +38,29 @@
 </body>
 
 </html>
+
+<?php
+    require_once("models/user.php");
+    include "database/config.php";
+    
+    $dbServername = DB_HOST;
+    $dbUsername = DB_USER;
+    $dbPassword = DB_PWD;
+    $dbname = DB_NAME;
+  
+    $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+    $con = new \PDO($dsn, $dbUsername, $dbPassword);
+
+    $user = new User($con);
+
+    if(isset($_POST)) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        if($user->checkUserExist($email, $password))
+            echo 'signed in';
+        else
+            echo "not";
+    }
+
+?>

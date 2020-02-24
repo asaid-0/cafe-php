@@ -80,9 +80,16 @@
 </html>
 
 <?php
+  require_once("../models/user.php");
+  include "../database/config.php";
+  
+  $dbServername = DB_HOST;
+  $dbUsername = DB_USER;
+  $dbPassword = DB_PWD;
+  $dbname = DB_NAME;
 
-  include("user-functions.php");
-	// include "../database/config.php";
+  $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
+  $con = new \PDO($dsn, $dbUsername, $dbPassword);
 
 	if(isset($_POST)) {
 		// $file_ext;	#to be used in uploading image to folder function
@@ -149,8 +156,9 @@
 	/*******************Data is validated and ready for insertion*******************/
 
 		if(empty($errors)) {
-			$pic_name = uploadPhoto($name, $file_tmp, $file_ext);
-			insertUser($name, $email, $password, $room, $ext, $pic_name);
+      $pic_name = uploadPhoto($name, $file_tmp, $file_ext);
+      $user = new User($con);
+			$user->addNewUser($name, $email, $password, $room, $ext, $pic_name);
 		}
 		else {
 			#handling validation errors

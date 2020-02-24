@@ -1,46 +1,54 @@
 <?php
-    // include("user.php");
-    include("../database/config.php");
+    class user {
+        private $conn;
 
-    $dbServername = DB_HOST;
-    $dbUsername = DB_USER;
-    $dbPassword = DB_PWD;
-    $dbname = DB_NAME;
+        public function __construct($conn)
+        {
+            $this->conn = $conn;
+        }
 
-    $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
-    // $con = new \PDO($dsn, $dbUsername, $dbPassword);
-    // define('con', new \PDO($dsn, $dbUsername, $dbPassword));
+        function addNewUser($name, $email, $password, $room, $ext, $pic) {
+            try {
+                //code...
+                $query = 'INSERT INTO users (name, email, password, room, pic, ext) VALUES (?, ?, ?, ?, ?, ?)';
+                $stmt = $this->conn->prepare($query);
+                $stmt->execute([$name, $email, $password, $room, $pic, $ext]);
+                $result = $stmt->rowCount();
+                
+                return true;
+            } catch (\Throwable $th) {
+                echo "connection error"."<br>"."<br>";
+            }
+        }
 
-    function insertUser($name, $email, $password, $room, $ext, $pic) {
-        $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
-        $con = new \PDO($dsn, DB_USER, DB_PWD);
+        public function selectUser ($id) {
+            //$dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
+            //$con = new \PDO($dsn, DB_USER, DB_PWD);
+            try {
+                $query = "SELECT * FROM users WHERE id=?";
+                $stmt = $this->conn->prepare($query);
+                $stmt->execute([$id]);
         
-        try {
-			//code...
-			$query = 'INSERT INTO users (name, email, password, room, pic, ext) VALUES (?, ?, ?, ?, ?, ?)';
-			$stmt = $con->prepare($query);
-			$stmt->execute([$name, $email, $password, $room, $pic, $ext]);
-			$result = $stmt->rowCount();
-			$con = null;
-		} catch (\Throwable $th) {
-			echo "connection error"."<br>"."<br>";
-		}
-    }
+                $row = $stmt->fetch();
     
-    function selectUser ($id) {
-        $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
-        $con = new \PDO($dsn, DB_USER, DB_PWD);
-        try {
-            $query = "SELECT * FROM users WHERE id=?";
-            $stmt = $con->prepare($query);
-            $stmt->execute([$id]);
-    
-            $row = $stmt->fetch();
+                //$con = null;
+                return $row;
+            }  catch (\Throwable $th) {
+                echo "Connection Error"."<br>"."<br>";
+            }
+        }
 
-            $con = null;
-            return $row;
-        }  catch (\Throwable $th) {
-            echo "Connection Error"."<br>"."<br>";
+        public function checkUserExist($email, $password) {
+            $query = "SELECT * FROM users WHERE email=? AND password=?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$email, $password]);
+
+            $result = $stmt->rowCount();
+
+            if($result <= 0)
+                return false;
+            else
+                return true;
         }
     }
 ?>

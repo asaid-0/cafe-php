@@ -1,5 +1,5 @@
-<?php 
-include "database/config.php"; 
+<?php
+include "database/config.php";
 
 $dbServername = DB_HOST;
 $dbUsername = DB_USER;
@@ -14,8 +14,7 @@ $dbname = DB_NAME;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OS Cafe - MyOrders</title>
     <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/user-orders.css">
     <link rel="stylesheet" href="assets/css/popup.css">
@@ -42,123 +41,133 @@ $dbname = DB_NAME;
                 <!-- start all hidden popup orders -->
                 <div class="order" id="order_1">
                     <div class="orderForm">
-                      <a href="#" class="fa fa-window-close"></a>
-                      <h1>order 1</h1>
-                      <div class="items">
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                        <a href="#" class="fa fa-window-close"></a>
+                        <h1>order 1</h1>
+                        <div class="items">
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
-                  </div>
+                    <a class="dimm-anchor" href="#">
+                        <div class="dimmed"></div>
+                    </a>
+                </div>
 
-                  <div class="order" id="order_2">
+                <div class="order" id="order_2">
                     <div class="orderForm">
-                      <a href="#" class="fa fa-window-close"></a>
-                      <h1>order 2</h1>
-                      <div class="items">
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                        <a href="#" class="fa fa-window-close"></a>
+                        <h1>order 2</h1>
+                        <div class="items">
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
-                  </div>
+                    <a class="dimm-anchor" href="#">
+                        <div class="dimmed"></div>
+                    </a>
+                </div>
 
+<<<<<<< HEAD
+
+                <div class="order" id="order_3">
+=======
                   <div class="order" id="order_3">
+>>>>>>> 11187aea61961e69d7c8993a06d275b7fe998f55
                     <div class="orderForm">
-                      <a href="#" class="fa fa-window-close"></a>
-                      <h1>order 3</h1>
-                      <div class="items">
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                        <a href="#" class="fa fa-window-close"></a>
+                        <h1>order 3</h1>
+                        <div class="items">
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="assets/images/tea.jpg" alt="tea" />
-                            <div class="item-details">
-                                <h2>Tea</h2>
-                                <p>Price: <em>$9</em>
-                                </p>
+                            <div class="item">
+                                <img src="assets/images/tea.jpg" alt="tea" />
+                                <div class="item-details">
+                                    <h2>Tea</h2>
+                                    <p>Price: <em>$9</em>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -201,15 +210,19 @@ $dbname = DB_NAME;
                             <th>Action</th>
                         </tr>
                         <?php
-                        $userId = 2;
+
+                        $serverName = "localhost";
+                        $username = "admin";
+                        $password = "Islam@123";
+                        $dbName = "cafe";
+
+                        $userId = 1;
                         $total = 0;
                         $orders_data;
                         try {
-                            $conn = new PDO('mysql:host='.$dbServername.';dbname='.$dbname, $dbUsername, $dbPassword);
+                            $conn = new PDO('mysql:host=' . $serverName . ';dbname=' . $dbName, $username, $password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        }
-                        catch(PDOException $e)
-                        {
+                        } catch (PDOException $e) {
                             echo "Connection failed: " . $e->getMessage();
                         }
                         if(!empty($_POST)){
@@ -229,9 +242,9 @@ $dbname = DB_NAME;
                             $stmt_order_products = $conn->prepare($query_order_products);
                             $stmt_order_products->execute([$orderId]);
                             $data_order_products = $stmt_order_products->fetchAll();
-                            $amount=0;
+                            $amount = 0;
                             foreach ($data_order_products as $product_details) {
-                                $amount += $product_details["price"]*$product_details["quantity"];
+                                $amount += $product_details["price"] * $product_details["quantity"];
                             }
                             echo '  <tr class = "data-row">
                                     <td>'.$order_details["date"].'</td>
@@ -248,17 +261,17 @@ $dbname = DB_NAME;
                                 <td><a href="#order_1">View</a></td>
                                 </tr>';
                             }
-                            $total+=$amount;
+                            $total += $amount;
                         }
                         ?>
                     </table>
                 </div>
-                
+
                 <div class="calculate">
                     <label for="">total</label>
                     <?php
-                        echo ' <label for="">' .$total.' EGP</label> '
-                     ?>
+                    echo ' <label for="">' . $total . ' EGP</label> '
+                    ?>
                 </div>
             </div>
     </section>
