@@ -1,10 +1,12 @@
 <?php
 include "database/config.php";
 
-$dbServername = DB_HOST;
-$dbUsername = DB_USER;
-$dbPassword = DB_PWD;
-$dbname = DB_NAME;
+$serverName = DB_HOST;
+$username = DB_USER;
+$password = DB_PWD;
+$dbName = DB_NAME;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -127,6 +129,8 @@ $dbname = DB_NAME;
                     </a>
                 </div>
 
+
+                <div>
                   <div class="order" id="order_3">
                     <div class="orderForm">
                         <a href="#" class="fa fa-window-close"></a>
@@ -167,13 +171,13 @@ $dbname = DB_NAME;
                         </div>
                     </div>
                     </div>
-                    <a class="dimm-anchor" href="#"><div class="dimmed"></div></a>
+                    <!-- <a class="dimm-anchor" href="#"><div class="dimmed"></div></a> -->
                 </div>
                 <!-- end all hidden popup orders -->
 
                 <!-- start hidden popup delete order successfully -->
 
-                    <div class="order"  id="order_d">
+                    <div class="order" id="order_d">
                         <div class="msg-container">
                             <h1>Order deleted Successfully</h1>
                         </div>
@@ -206,10 +210,7 @@ $dbname = DB_NAME;
                         </tr>
                         <?php
 
-                        /*$serverName = "localhost";
-                        $username = "macrina";
-                        $password = "Islam@123";
-                        $dbName = "cafe";*/
+                        
 
                         $userId = 1;
                         $total = 0;
@@ -268,6 +269,7 @@ $dbname = DB_NAME;
                     echo ' <label for="">' . $total . ' EGP</label> '
                     ?>
                 </div>
+            </div>
             </div>
     </section>
 
