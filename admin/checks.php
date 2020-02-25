@@ -6,7 +6,7 @@ $to = (isset($_REQUEST['to']) && !empty($_REQUEST['to'])) ? $_REQUEST['to'] : da
 $user_id = (isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id'])) ? $_REQUEST['user_id'] : null;
 
 $checks = new Checks();
-$allChecks = $checks->getChecks($user_id);
+$allChecks = $checks->getChecks($user_id, $from, $to);
 
 
 ?>
@@ -118,7 +118,7 @@ $allChecks = $checks->getChecks($user_id);
                 foreach($items as $item){
 
                   echo "            <div class=\"item\">\n";
-                echo "                <img src=\"{$item["pic"]}\" alt=\"{$item["name"]}\" />\n";
+                echo "                <img src=\"../{$item["pic"]}\" alt=\"{$item["name"]}\" />\n";
                 echo "                <div class=\"item-details\">\n";
                 echo "                    <h2>{$item["name"]}</h2>\n";
                 echo "                    <p>Price: <em>{$item["price"]}</em>\n";

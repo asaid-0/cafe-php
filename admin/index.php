@@ -47,7 +47,6 @@
         </span>
     </nav>
     <?php
-    session_start();
     if (isset($_SESSION['flash'])) : ?>
         <div class="success-message">
             <p>Order Created Successfully !!!</p>

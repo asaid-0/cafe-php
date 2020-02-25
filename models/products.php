@@ -22,6 +22,20 @@ class Products
 
 
     }
+    function setAvailable($id){
+        $sql = "UPDATE products SET isAvailable=1 WHERE id=:id";
+        $stmt= $pdo->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    function setUnavailable($id){
+
+        $sql = "UPDATE products SET isAvailable=0 WHERE id=:id";
+        $stmt= $pdo->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    
 
 }
 ?>

@@ -1,7 +1,6 @@
 <?php
 
 require_once('models/order.php');
-include "database/config.php";
 
 session_start();
 if(!isset($_SESSION['id']))

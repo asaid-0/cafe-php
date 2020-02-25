@@ -246,3 +246,7 @@ h1 {
 #new_cat{
 	display: none;
 }
+
+span.error{
+	color: darkred;
+}
