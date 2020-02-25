@@ -184,7 +184,7 @@
                       <span class="fa fa-cloud-upload"><span> Upload
                     </label>
                     <input type='file' name='file' id="file" />
-                    <span class="error"><?php echo !empty($_SESSION['errors']["file"]) ? $_SESSION['errors']["file"] : ""; ?></span>
+                    <span class="error"><?php echo !empty($_SESSION['errors']["file"]) ? $_SESSION['errors']["file"] : ""; if(isset($_SESSION['errors'])) unset($_SESSION['errors']); ?></span>
                   </fieldset>
                   
                   <input type='submit' name='submit' value='Add' />
