@@ -47,7 +47,7 @@
     $dbUsername = DB_USER;
     $dbPassword = DB_PWD;
     $dbname = DB_NAME;
-  
+    
     $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
     $con = new \PDO($dsn, $dbUsername, $dbPassword);
 

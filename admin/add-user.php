@@ -131,10 +131,20 @@
             <li><a href="#">Manual Order</a></li>
             <li><a href="#">Checks</a></li>
         </ul>
-        <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Admin Dashboard</span>
-        </a>
+        <span>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+
+            <a href="../logout.php">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+            </a>
+
+
+        </span>
     </nav>
     <section>
         <div class="add-container">

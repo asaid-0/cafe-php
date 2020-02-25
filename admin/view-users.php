@@ -21,22 +21,32 @@
 <body>
     <nav class="navbar">
         <ul class="menu-left">
-            <li><a href="#" class="logo">OS Coffee</a></li>
-            <li><a href="#">Products</a></li>
+            <li><a href="index.php" class="logo">OS Coffee</a></li>
+            <li><a href="view-products.php">Products</a></li>
             <li><a href="#" class="active">Users</a></li>
             <li><a href="#">Manual Order</a></li>
-            <li><a href="#">Checks</a></li>
+            <li><a href="checks.php">Checks</a></li>
         </ul>
-        <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Admin Dashboard</span>
-        </a>
+        <span>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+
+            <a href="../logout.php">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+            </a>
+
+
+        </span>
     </nav>
     <section>
         <div class="container">
             <header>
                 <h2>All Users</h2>
-                <a href="">Add user</a>
+                <a href="add-user.php">Add user</a>
             </header>
             <div class="users">
                 <table class="users-table">

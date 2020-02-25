@@ -80,12 +80,12 @@
     display: flex;
     justify-content: space-evenly;
 }
-/* 
-.users-table img {
-    min-width: 1em;
-    min-height: 1rem;
-} */
 
+.users-table img {
+    max-width: 10rem;
+    max-height: 10rem;
+}
+/********************************************************************/
 
 .add-to-cart:first-of-type{
     margin-left: 0.5rem;
