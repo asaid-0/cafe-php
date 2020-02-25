@@ -57,8 +57,13 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if($user->checkUserExist($email, $password))
-            header("location:home.php");
+        if($user->checkUserExist($email, $password)) {
+            session_start();
+            if($_SESSION['admin'] == 1)
+                header("location:admin/index.php");
+            else
+                header("location:home.php");
+        }
         else
         #handling what happens when credentials aren't correct
             ;
