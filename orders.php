@@ -1,10 +1,12 @@
 <?php
-include "database/config.php";
+// include "database/config.php";
+require_once("./models/order.php");
+$orders = new Order();
 
-$serverName = DB_HOST;
-$userName = DB_USER;
-$password = DB_PWD;
-$dbName = DB_NAME;
+// $serverName = DB_HOST;
+// $userName = DB_USER;
+// $password = DB_PWD;
+// $dbName = DB_NAME;
 
 session_start();
 if(!isset($_SESSION['id']))
@@ -212,37 +214,24 @@ if(!isset($_SESSION['id']))
                             <th>Action</th>
                         </tr>
                         <?php
-
-                        
-
                         $userId = $_SESSION['id'];
+                        // $userId = 2;
                         $total = 0;
                         $orders_data;
-                        try {
-                            $conn = new PDO('mysql:host=' . $serverName . ';dbname=' . $dbName, $userName, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        } catch (PDOException $e) {
-                            echo "Connection failed: " . $e->getMessage();
-                        }
                         if(!empty($_POST)){
-                            $query_date_filter = "Select * from orders where user_id=$userId and date BETWEEN ? AND ?;";
-                            $stmt_date_filter = $conn->prepare($query_date_filter);
-                            $stmt_date_filter->execute([$_POST["date_from"],$_POST["date_to"]]);
-                            $orders_data = $stmt_date_filter->fetchAll(); 
-                        }else{
-                            $query_list_orders = "Select * from orders where user_id=$userId;";
-                            $orders_data = $conn->query($query_list_orders); 
+                            $dateFrom = $_POST["date_from"];
+                            $dateTo = $_POST["date_to"];    
+                            $orders_data = $orders->getFilteredOrders($userId,$dateFrom,$dateTo);
+                        }else{ 
+                            $orders_data = $orders->getAllOrders($userId);
                         }
 
                         foreach($orders_data as $order_details)
                         {
-                            $orderId = $order_details["id"];
-                            $query_order_products = "select id , price , quantity from products , orders_products where order_id = ? and product_id = id ";
-                            $stmt_order_products = $conn->prepare($query_order_products);
-                            $stmt_order_products->execute([$orderId]);
-                            $data_order_products = $stmt_order_products->fetchAll();
                             $amount = 0;
-                            foreach ($data_order_products as $product_details) {
+                            $orderId = $order_details["id"];
+                            $order_products_data = $orders->getOrderProducts($orderId);
+                            foreach ($order_products_data as $product_details) {
                                 $amount += $product_details["price"] * $product_details["quantity"];
                             }
                             echo '  <tr class = "data-row">
