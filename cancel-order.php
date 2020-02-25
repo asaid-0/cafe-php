@@ -21,6 +21,6 @@ $conn->exec($query_delete_order);
 $query_delete_order = "Delete from orders where id=$orderId;";
 $conn->exec($query_delete_order);
 
-header("Location: ./orders.php");
+// header("Location: ./orders.php");
 header("Location: ./orders.php#order_d");
 ?>

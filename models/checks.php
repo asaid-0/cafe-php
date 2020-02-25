@@ -1,6 +1,4 @@
 <?php
-
-include "../database/database.inc.php";
 class Checks
 {
     private $conn; //pdo object

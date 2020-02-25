@@ -1,4 +1,5 @@
 <?php
+require_once("../database/database.inc.php");
 require_once('../models/checks.php');
 $from = (isset($_REQUEST['from']) && !empty($_REQUEST['from'])) ? $_REQUEST['from'] : '1800-01-01';
 $to = (isset($_REQUEST['to']) && !empty($_REQUEST['to'])) ? $_REQUEST['to'] : date("Y-m-d H:i:s");

@@ -72,3 +72,9 @@ td a:hover{
     /* color: white; */
     font-size: 2rem;
 }
+
+.search-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
