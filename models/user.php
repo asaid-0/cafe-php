@@ -66,6 +66,7 @@
             $_SESSION['id'] = $row['id'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['email'] = $row['email'];
+            $_SESSION['admin'] = $row['isAdmin'];
             $_SESSION['imgPath'] = $row['pic'];
             $_SESSION['room'] = $row['room'];
             $_SESSION['ext'] = $row['ext'];

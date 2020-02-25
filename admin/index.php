@@ -28,10 +28,20 @@ $products = new Products();
             <li><a href="#">Manual Order</a></li>
             <li><a href="#">Checks</a></li>
         </ul>
-        <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Admin Dashboard</span>
-        </a>
+        <span>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+
+            <a href="../logout.php">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+            </a>
+
+
+        </span>
     </nav>
     <?php
     session_start();
@@ -100,7 +110,7 @@ $products = new Products();
                 <?php
                         foreach($products->getProducts() as $p){
                             echo "<div class=\"item\" id=\"{$p['id']}\">\n";
-echo "                        <img src=\"{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
 echo "                        <div class=\"item-details\">\n";
 echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
 echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";

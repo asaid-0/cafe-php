@@ -30,10 +30,17 @@ $products = new Products();
             <li><a href="#">My Orders</a></li>
         </ul>
 
-        <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Islam Abdelhamid</span>
-        </a>
+        <span>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Islam Abdelhamid</span>
+            </a>
+            <a href="logout.php">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+            </a>
+
+        </span>
     </nav>
 
 
