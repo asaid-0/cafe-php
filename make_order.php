@@ -6,19 +6,19 @@ include "database/config.php";
 session_start();
 if(!isset($_SESSION['id']))
     header("location:home.php");
-//$_SESSION["user_id"] = 1;
+$_SESSION["user_id"] = 1;
 
-$serverName = DB_HOST;
-$username = DB_USER;
-$password = DB_PWD;
-$dbName = DB_NAME;
-try {
-    $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
+// $serverName = DB_HOST;
+// $username = DB_USER;
+// $password = DB_PWD;
+// $dbName = DB_NAME;
+// try {
+//     $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
+//     // set the PDO error mode to exception
+//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//     echo "Connection failed: " . $e->getMessage();
+// }
 
 
 if (isset($_POST['confirm'])) {
@@ -29,7 +29,9 @@ if (isset($_POST['confirm'])) {
     $user_id = $_SESSION['id'];
 
     if (!empty($drinks) && !empty($quantities) && !empty($room)) {
-        $order = new Order($conn);
+        // $order = new Order($conn);
+        $order = new Order();
+
 
         if ($order->create($user_id, $drinks, $quantities, $notes)) {
             $_SESSION['flash'] = 'ordered';
