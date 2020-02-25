@@ -1,3 +1,65 @@
+<?php
+require_once("../database/database.inc.php");
+require_once("../models/products.php");
+
+$product = new Products();
+
+?>
+
+<?php
+ if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // $file_ext;	#to be used in uploading image to folder function
+      $name = $_POST['name'];
+      $price = $_POST['price'];
+      $file_info = $_FILES['file'];
+      $file_name = $file_info['name'];
+      $file_size = $file_info['size'];
+      $file_tmp = $file_info['tmp_name'];
+      $file_type = $file_info['type'];
+    
+      if($name == "")
+          $errors["name"] = "Name field is required.<br>";
+
+      if(!empty($file_name)) {
+          $extens = explode('.', $file_name);
+          $file_ext = strtolower(end($extens));
+          $extensions = array("jpeg", "jpg", "png");
+      
+          if(in_array($file_ext, $extensions) === false){
+              $errors["file"] = "extension not allowed, please choose a JPEG, JPG or PNG file.";
+          } 
+      }
+      else {
+          $errors["file"] = "No Photos uploaded.<br>";
+  }
+
+/*******************Data is validated and ready for insertion*******************/
+
+  if(empty($errors)) {
+    
+    $pic_name = "../assets/images/"."product_".$name."_".time().".".$file_ext;
+    move_uploaded_file($file_tmp, $pic_name);
+
+    if(isset($_POST['cat_id']) && !empty($_POST['cat_id'])){
+      $category = $_POST['cat_id'];
+      $product->addProduct($category, $name, $price, $pic_name, false);
+    }else{
+      $category = $_POST['cat_name'];
+      $product->addProduct($category, $name, $price, $pic_name, true);
+      
+    }
+  }
+  else {
+    error_log(print_r($errors, TRUE)); 
+    $_SESSION['errors'] = $errors;
+    #handling validation errors
+    /*foreach($errors as $error) {
+      echo $error;
+    }*/
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +93,7 @@
         <div class="add-container">
             <div class="main-title">Add Product</div>
             <div id='form' class='_form'>
-                <form action='#' method='POST' name='addUser'>
+                <form action='' method='POST' enctype="multipart/form-data" name='addProduct'>
               
                   <fieldset>
                     <legend>NAME</legend>
@@ -40,7 +102,7 @@
 
                   <fieldset>
                     <legend>PRICE</legend>
-                    <input type='text' name='email' placeholder='0.00' />
+                    <input type='text' name='price' placeholder='0.00' />
                   </fieldset>
               
                   <fieldset id="new_cat">
@@ -52,11 +114,11 @@
                     <legend class="category">CATEGORY</legend>
                     <span onclick="newCategory();" class="new-cat">new category</span>
                     <label class='input-select'>
-                        <select name='film'>
+                        <select name='cat_id'>
                           <option selected='selected'>- Select -</option>
-                          <option value='Hot Drinks'>Hot Drinks</option>
-                          <option value='Soft Drinks'>Soft Drinks</option>
-                          <option value='Juice'>Juice</option>
+                          <option value='1'>Hot Drinks</option>
+                          <option value='2'>Soft Drinks</option>
+                          <option value='3'>Juice</option>
                         </select>
                       </label>
                   </fieldset>
