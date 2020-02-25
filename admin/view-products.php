@@ -1,3 +1,10 @@
+<?php
+
+require_once("../database/database.inc.php");
+require_once("../models/products.php");
+$products = new Products();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,45 +40,30 @@
                 <a href="">Add product</a>
             </header>
             <div class="items">
-                    <div class="item" id="1">
-                        <img src="../assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2 class="item-name">Tea</h2>
-                            <p>Price: <em class="item-price">9 EGP</em>
-                            </p>
-                        </div>
-                        <div class="action">
-                            <button class="add-to-cart" type="button">Available</button>
-                            <button class="add-to-cart" type="button">Edit</button>
-                            <button class="add-to-cart" type="button">Delete</button>
-                        </div>
-                    </div>
-                    <div class="item" id="1">
-                        <img src="../assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2 class="item-name">Mint</h2>
-                            <p>Price: <em class="item-price">9 EGP</em>
-                            </p>
-                        </div>
-                        <div class="action">
-                            <button class="add-to-cart" type="button">Available</button>
-                            <button class="add-to-cart" type="button">Edit</button>
-                            <button class="add-to-cart" type="button">Delete</button>
-                        </div>
-                    </div>
-                    <div class="item" id="1">
-                        <img src="../assets/images/tea.jpg" alt="tea" />
-                        <div class="item-details">
-                            <h2 class="item-name">Cafe</h2>
-                            <p>Price: <em class="item-price">9 EGP</em>
-                            </p>
-                        </div>
-                        <div class="action">
-                            <button class="add-to-cart" type="button">Available</button>
-                            <button class="add-to-cart" type="button">Edit</button>
-                            <button class="add-to-cart" type="button">Delete</button>
-                        </div>
-                    </div>
+
+
+
+            <?php
+                        foreach($products->getProducts() as $p){
+                            echo "<div class=\"item\" id=\"{$p['id']}\">\n";
+echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+echo "                        <div class=\"item-details\">\n";
+echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
+echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";
+echo "                            </p>\n";
+echo "                        </div>\n";
+echo "                        <div class=\"action\">\n";
+echo "                            <button class=\"add-to-cart\" type=\"button\">Available</button>\n";
+echo "                            <button class=\"add-to-cart\" type=\"button\">Edit</button>\n";
+echo "                            <button class=\"add-to-cart\" type=\"button\">Delete</button>\n";
+echo "                        </div>";
+echo "                    </div>";
+
+                        }
+                    ?>
+
+                  
+                    
             </div>
         </div>
     </section>

@@ -38,6 +38,11 @@
 }
 .item img{
     border-radius: 50%;
+    border: 1px dashed #000;
+    width: 90%;
+    margin: 0.2rem auto;
+    height: 80%;
+
 }
 .item-details {
     justify-content: space-between;
