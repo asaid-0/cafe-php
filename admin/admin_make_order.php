@@ -1,11 +1,14 @@
 <?php
+session_start();
+if(!isset($_SESSION['id']))
+    header("location:../login.php");
 
 require_once('../models/order.php');
 include "../database/config.php";
 
-session_start();
+//session_start();
 
-$_SESSION["user_id"] = 1;
+//$_SESSION["user_id"] = 1;
 
 $serverName = DB_HOST;
 $username = DB_USER;

@@ -33,7 +33,7 @@ $products = new Products();
         <span>
             <a href="#">
                 <i class="fa fa-user"></i>
-                <span>Islam Abdelhamid</span>
+                <span><?php echo $_SESSION["name"]?></span>
             </a>
             <a href="logout.php">
                 <i class="fa fa-sign-out"></i>

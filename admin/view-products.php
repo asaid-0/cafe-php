@@ -1,8 +1,11 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['id']))
+        header("location:../login.php");
 
-require_once("../database/database.inc.php");
-require_once("../models/products.php");
-$products = new Products();
+    require_once("../database/database.inc.php");
+    require_once("../models/products.php");
+    $products = new Products();
 
 ?>
 <!DOCTYPE html>

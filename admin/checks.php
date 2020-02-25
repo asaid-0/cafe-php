@@ -11,6 +11,12 @@ $allChecks = $checks->getChecks($user_id);
 
 ?>
 
+<?php
+    session_start();
+    if(!isset($_SESSION['id']))
+        header("location:../login.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

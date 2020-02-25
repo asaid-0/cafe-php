@@ -1,14 +1,17 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['id']))
+        header("location:../login.php");
 
-include "../database/config.php";
+    include "../database/config.php";
 
-$dbServername = DB_HOST;
-$dbUsername = DB_USER;
-$dbPassword = DB_PWD;
-$dbname = DB_NAME;
+    $dbServername = DB_HOST;
+    $dbUsername = DB_USER;
+    $dbPassword = DB_PWD;
+    $dbname = DB_NAME;
 
-$id = $_POST["id"];
-$name = $_POST["name"];
+    $id = $_POST["id"];
+    $name = $_POST["name"];
 
 
 

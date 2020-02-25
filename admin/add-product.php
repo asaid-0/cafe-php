@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+if(!isset($_SESSION['id']))
+    header("location:../login.php");
+
 include "../database/config.php";
 
 $dbServername = DB_HOST;
@@ -68,11 +71,5 @@ if(isset($_POST['submit'])){
         <?php
             
 	}
-
-
-
-
-
-
 
 ?>
