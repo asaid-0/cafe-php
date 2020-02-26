@@ -65,7 +65,7 @@
 
             session_start();
 
-            $_SESSION['id'] = $row['id'];
+            $_SESSION['user-id'] = $row['id'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['admin'] = $row['isAdmin'];

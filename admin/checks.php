@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!isset($_SESSION['user-id']))
+    header("location:../login.php");
+
 require_once("../database/database.inc.php");
 require_once('../models/checks.php');
 $from = (isset($_REQUEST['from']) && !empty($_REQUEST['from'])) ? $_REQUEST['from'] : '1800-01-01';
@@ -11,11 +15,6 @@ $allChecks = $checks->getChecks($user_id, $from, $to);
 
 ?>
 
-<?php
-    session_start();
-    if(!isset($_SESSION['id']))
-        header("location:../login.php");
-?>
 
 <!DOCTYPE html>
 <html lang="en">
