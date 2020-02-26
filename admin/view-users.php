@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['id']))
+    if(!isset($_SESSION['user-id']))
         header("location:../login.php");
 ?>
 
@@ -52,10 +52,10 @@
                 <table class="users-table">
                     <tr>
                         <th>Name</th>
-                        <th>Room</th>
+                        <th>Email</th>
                         <th>Image</th>
                         <th>Ext.</th>
-                        <th>Action</th>
+                        <th>Room</th>
                         <th colspan="2">Options</th>
                     </tr>
                     <?php

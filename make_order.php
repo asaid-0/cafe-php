@@ -3,9 +3,9 @@
 require_once('models/order.php');
 
 session_start();
-if(!isset($_SESSION['id']))
+if(!isset($_SESSION['user-id']))
     header("location:home.php");
-$_SESSION["user_id"] = 1;
+//$_SESSION["user_id"] = 1;
 
 // $serverName = DB_HOST;
 // $username = DB_USER;
@@ -25,7 +25,7 @@ if (isset($_POST['confirm'])) {
     $quantities = $_POST['drink_quantity'];
     $notes = $_POST['notes'];
     $room = $_POST['room'];
-    $user_id = $_SESSION['id'];
+    $user_id = $_SESSION['user-id'];
 
     if (!empty($drinks) && !empty($quantities) && !empty($room)) {
         // $order = new Order($conn);

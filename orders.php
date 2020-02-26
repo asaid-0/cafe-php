@@ -9,7 +9,7 @@ $orders = new Order();
 // $dbName = DB_NAME;
 
 session_start();
-if(!isset($_SESSION['id']))
+if(!isset($_SESSION['user-id']))
     header("location:login.php");
 
 ?>
