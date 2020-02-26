@@ -7,6 +7,7 @@
 
     $user = new User();
 
+    $user->deletePhoto($id);
     $user->deleteUser($id);
 
     header("location:view-users.php");

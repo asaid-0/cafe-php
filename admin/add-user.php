@@ -3,8 +3,11 @@
     if(!isset($_SESSION['user-id']))
         header("location:../login.php");
     elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
-      header("location:../home.php");
+	  header("location:../home.php");
+	  
     require_once("../models/user.php");      
+	require_once("../database/database.inc.php");
+
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
         // $file_ext;	#to be used in uploading image to folder function
         $name = $_POST['name'];

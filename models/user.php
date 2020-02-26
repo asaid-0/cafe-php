@@ -99,15 +99,28 @@
             try {
                 $query = "DELETE FROM users WHERE id = ?";
                 $stmt = $this->conn->prepare($query);
+                //echo hello;
+                //var_dump($row);
                 $stmt->execute([$id]);
             } catch (\Throwable $th) {
                 echo "connection error"."<br>"."<br>";
             }
         }
 
-        /*public function dletePhoto(Type $var = null)
-        {
-            # code...
-        }*/
+        public function deletePhoto($id) {
+            try {
+                $query = "SELECT pic FROM users WHERE id=?";
+                $stmt = $this->conn->prepare($query);
+                $stmt->execute([$id]);
+                $row = $stmt->fetch();
+                
+                if(file_exists($row["pic"]))
+                    unlink($row["pic"]);
+                
+            } catch (\Throwable $th) {
+                echo "connection error"."<br>"."<br>";
+            }
+
+        }
     }
 ?>

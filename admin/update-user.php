@@ -11,53 +11,6 @@
     $id = $_GET['num'];
     $user = new User();
     $row = $user->selectUser($id);    
-
-	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $name = $_POST['name'];
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		$confirm = $_POST['confirm_password'];
-		$ext = $_POST['ext'];
-		$room = $_POST['room'];
-		$file_info = $_FILES['file'];
-		$file_name = $file_info['name'];
-		$file_size = $file_info['size'];
-		$file_tmp = $file_info['tmp_name'];
-		$file_type = $file_info['type'];
-
-		if($name == "")
-			$errors["name"] = "Name field is required.<br>";
-		if($email != "") {
-			$pattern = "/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix";
-			$emailval1 = preg_match($pattern, $email);
-			$emailval2 = filter_var($email, FILTER_VALIDATE_EMAIL);
-			if($emailval2 == false || $emailval1 == false) 
-				$errors[] = "Wrong Email Format.<br>";
-		}
-		else {
-			$errors["email"] = "Email field is required.<br>";
-		}
-
-		if($password != "") {
-			$passwordval1 = preg_match("/^([a-z0-9]|_){8}$/ix", $password);
-			if($passwordval1 == false) 
-				$errors["password"] = "Unacceptable password format, password should contain 
-				exactly 8 lowercase letters, numbers and/or _.<br>";
-		}
-		else {
-			$errors["password"] = "Password field is required.<br>";
-		}
-
-		if($room == "") 
-			$errors["room"] = "Please enter the room number.<br>";
-
-	/*******************Data is validated and ready to be updated*******************/
-
-		if(!empty($errors)) {
-            error_log(print_r($errors, TRUE)); 
-			$_SESSION['errors'] = $errors;
-		}
-	}
 ?>
 
 <!DOCTYPE html>
