@@ -1,3 +1,21 @@
+<?php
+    session_start();
+    if(isset($_SESSION['user-id'])) {
+        switch ($_SESSION['admin']) {
+            case 0:
+                header("location:home.php");
+                break;
+            case 1:
+                header("location:admin/index.php");
+                break;
+            default:
+                header("location:login.php");
+                break;
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
