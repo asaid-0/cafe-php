@@ -2,6 +2,9 @@
     session_start();
     if(!isset($_SESSION['user-id']))
         header("location:../login.php");
+    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
+        header("location:../home.php");
+            
 ?>
 
 <!DOCTYPE html>
