@@ -289,7 +289,7 @@ textarea {
     /* margin-right: .4rem; */
     padding: .3rem;
     background-color: #fff;
-
+    margin-bottom: 1rem;
     padding: 0rem 0 1rem 0;
     border-top: 5px solid #000;
     display: flex;
@@ -316,9 +316,9 @@ textarea {
 .item img{
     border-radius: 50%;
     border: 1px dashed #000;
-    width: 90%;
+    width: 12rem;
     margin: 0.2rem auto;
-    height: 80%;
+    height: 12rem;
 
 }
 .item-details {
