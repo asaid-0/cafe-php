@@ -1,12 +1,7 @@
 <?php
-// include "database/config.php";
-    require_once("./models/order.php");
+    require_once("database/database.inc.php");
+    require_once("models/order.php");
     $orders = new Order();
-
-// $serverName = DB_HOST;
-// $userName = DB_USER;
-// $password = DB_PWD;
-// $dbName = DB_NAME;
 
     session_start();
     if(!isset($_SESSION['user-id']))
@@ -33,8 +28,8 @@
 
     <nav class="navbar">
         <ul class="menu-left">
-            <li><a href="#" class="logo">OS Coffee</a></li>
-            <li><a href="#">Home</a></li>
+            <li><a href="home.php" class="logo">OS Coffee</a></li>
+            <li><a href="home.php">Home</a></li>
             <li><a href="#" class="active">My Orders</a></li>
         </ul>
 
@@ -216,7 +211,7 @@
                             <th>Action</th>
                         </tr>
                         <?php
-                        $userId = $_SESSION['id'];
+                        $userId = $_SESSION['user-id'];
                         // $userId = 2;
                         $total = 0;
                         $orders_data;

@@ -29,7 +29,7 @@
         <ul class="menu-left">
             <li><a href="#" class="logo">OS Coffee</a></li>
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">My Orders</a></li>
+            <li><a href="orders.php">My Orders</a></li>
         </ul>
 
         <span>
