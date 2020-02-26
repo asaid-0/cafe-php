@@ -81,7 +81,7 @@
                                 if($row[$i]['isAdmin'] == 0) {
                                     $id = $row[$i]['id'];
                                     echo "<tr><td>".$row[$i]['name']."</td> <td>".$row[$i]['email']."</td> <td> <img src=".$row[$i]['pic']." alt='photo'/></td> <td>".$row[$i]['ext']."</td> <td>".$row[$i]['room']."</td>";
-                                    echo"<td><a href ='update-form.php?num=$id'>Update</a></td>";
+                                    echo"<td><a href ='update-user.php?num=$id'>Update</a></td>";
                                     echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
                                     echo "</tr>";
                                 }

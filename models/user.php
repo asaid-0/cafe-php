@@ -80,5 +80,17 @@
             else
                 return true;
         }
+
+        public function updateUserData($id, $name, $email, $password, $room, $ext) {//, $file_name, $file_tmp) {
+            try {
+                
+                $query = "UPDATE users SET name=?, email=?, password=?, room=?, ext=? WHERE id=?";
+                $stmt = $this->conn->prepare($query);
+                $stmt->execute([$name, $email, $password, $room, $ext, $id]);
+                //$con = null;
+            } catch (\Throwable $th) {
+                echo "connection error"."<br>"."<br>";
+            }
+        }
     }
 ?>
