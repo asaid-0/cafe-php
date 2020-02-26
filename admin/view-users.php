@@ -65,32 +65,18 @@
                         require_once("../models/user.php");
                         require_once("../database/database.inc.php");
 
-                        $dbServername = DB_HOST;
-                        $dbUsername = DB_USER;
-                        $dbPassword = DB_PWD;
-                        $dbname = DB_NAME;
+                        $user = new User();
+                        $row = $user->selectAllUsers();
 
-                        $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
-                        try {
-                            $con = new \PDO($dsn, DB_USER, DB_PWD);
-
-                            $user = new User();
-                            $row = $user->selectAllUsers();
-
-                            for ($i = 0; $i < count($row); $i++) {
-                                if($row[$i]['isAdmin'] == 0) {
-                                    $id = $row[$i]['id'];
-                                    echo "<tr><td>".$row[$i]['name']."</td> <td>".$row[$i]['email']."</td> <td> <img src=".$row[$i]['pic']." alt='photo'/></td> <td>".$row[$i]['ext']."</td> <td>".$row[$i]['room']."</td>";
-                                    echo"<td><a href ='update-user.php?num=$id'>Update</a></td>";
-                                    echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
-                                    echo "</tr>";
-                                }
+                        for ($i = 0; $i < count($row); $i++) {
+                            if($row[$i]['isAdmin'] == 0) {
+                                $id = $row[$i]['id'];
+                                echo "<tr><td>".$row[$i]['name']."</td> <td>".$row[$i]['email']."</td> <td> <img src=".$row[$i]['pic']." alt='photo'/></td> <td>".$row[$i]['ext']."</td> <td>".$row[$i]['room']."</td>";
+                                echo"<td><a href ='update-user.php?num=$id'>Update</a></td>";
+                                echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
+                                echo "</tr>";
                             }
-                        } catch(\Throwable $th) {
-                            echo "Connection Error"."<br>"."<br>";
                         }
-
-                        // $con = null;*/
                     ?>
                 </table>
             </div>
