@@ -1,16 +1,18 @@
 <?php
 // include "database/config.php";
-require_once("./models/order.php");
-$orders = new Order();
+    require_once("./models/order.php");
+    $orders = new Order();
 
 // $serverName = DB_HOST;
 // $userName = DB_USER;
 // $password = DB_PWD;
 // $dbName = DB_NAME;
 
-session_start();
-if(!isset($_SESSION['user-id']))
-    header("location:login.php");
+    session_start();
+    if(!isset($_SESSION['user-id']))
+        header("location:../login.php");
+    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 1)
+        header("location:admin/index.php");
 
 ?>
 <!DOCTYPE html>

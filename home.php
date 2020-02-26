@@ -1,12 +1,14 @@
 <?php
-session_start();
-require_once("database/database.inc.php");
-require_once("models/products.php");
-$products = new Products();
-
-
+    session_start();
     if(!isset($_SESSION['user-id']))
-        header("location:login.php");
+        header("location:../login.php");
+    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 1)
+        header("location:admin/index.php");
+
+    require_once("database/database.inc.php");
+    require_once("models/products.php");
+    $products = new Products();
+
 ?>
 
 <!DOCTYPE html>

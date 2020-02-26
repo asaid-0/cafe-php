@@ -63,7 +63,7 @@
                     </tr>
                     <?php
                         require_once("../models/user.php");
-                        include "../database/config.php";
+                        require_once("../database/database.inc.php");
 
                         $dbServername = DB_HOST;
                         $dbUsername = DB_USER;
@@ -74,7 +74,7 @@
                         try {
                             $con = new \PDO($dsn, DB_USER, DB_PWD);
 
-                            $user = new User($con);
+                            $user = new User();
                             $row = $user->selectAllUsers();
 
                             for ($i = 0; $i < count($row); $i++) {
