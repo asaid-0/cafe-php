@@ -2,18 +2,7 @@
     session_start();
     if(!isset($_SESSION['user-id']))
         header("location:../login.php");
-
-        require_once("../models/user.php");
-        include "../database/config.php";
-        
-        $dbServername = DB_HOST;
-        $dbUsername = DB_USER;
-        $dbPassword = DB_PWD;
-        $dbname = DB_NAME;
-      
-        $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
-        $con = new \PDO($dsn, $dbUsername, $dbPassword);
-      
+        require_once("../models/user.php");      
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
           // $file_ext;	#to be used in uploading image to folder function
               $name = $_POST['name'];
@@ -30,7 +19,6 @@
       
               if($name == "")
                   $errors["name"] = "Name field is required.<br>";
-              
               if($email != "") {
                   $pattern = "/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix";
                   $emailval1 = preg_match($pattern, $email);
@@ -80,7 +68,7 @@
       
           if(empty($errors)) {
             $pic_name = uploadPhoto($name, $file_tmp, $file_ext);
-            $user = new User($con);
+            $user = new User();
             $user->addNewUser($name, $email, $password, $room, $ext, $pic_name);
           }
           else {
@@ -92,10 +80,9 @@
             }*/
           }
         }
-      
         function uploadPhoto($name, $file_tmp, $file_ext) {
           
-          $pic_name = "../assets/images/".$name.".".$file_ext;
+          $pic_name = "../assets/images/"."user_".$name."_".time().".".$file_ext;
       
           if(move_uploaded_file($file_tmp, $pic_name))
             echo "User Registered Successfully and Image is uploaded.<br>";

@@ -40,8 +40,8 @@
 </html>
 
 <?php
+    require_once("database/database.inc.php");
     require_once("models/user.php");
-    include "database/config.php";
     
     $dbServername = DB_HOST;
     $dbUsername = DB_USER;
@@ -53,12 +53,11 @@
 
     $user = new User($con);
 
-    if(isset($_POST)) {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
         if($user->checkUserExist($email, $password)) {
-            session_start();
             if($_SESSION['admin'] == 1)
                 header("location:admin/index.php");
             else

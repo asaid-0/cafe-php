@@ -2,9 +2,11 @@
     class user {
         private $conn;
 
-        public function __construct($conn)
+        public function __construct()
         {
-            $this->conn = $conn;
+            $db = Database::getInstance();
+            $db->start();
+            $this->conn = $db->getPDO();
         }
 
         public function selectAllUsers() {
