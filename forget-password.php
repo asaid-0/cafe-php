@@ -2,34 +2,18 @@
     require_once("models/user.php");
     require_once("database/database.inc.php");
     $user = new User();
-    //if(isset($_SESSION['user-id'])) {
-      //  switch ($_SESSION['admin']) {
-        //    case 0:
-          //      header("location:home.php");
-            //    break;
-            //case 1:
-              //  header("location:admin/index.php");
-            //    break;
-            //default:
-              //  header("location:login.php");
-             //   break;
-       // }
-   // }
-   
-    
-   if(isset($_POST['password'])) {
+    if(isset($_POST['password'])) {
+
         $password = $_POST['password'];
         $email = $_POST['email'];
-        var_dump($_POST['password']);
         var_dump($_POST['email']);
         $isUpdated = $user->updateUserPassword($email , $password);
         if($isUpdated){
-            header("location:login.php");
+        header("location:login.php");
+        }else{
+            header("location:forget-password.php");
         }
-   }
-   else{
-        header("location:./forget-password.php");
-   }
+    }
 ?>
     
 <!DOCTYPE html>
