@@ -65,16 +65,44 @@ class Products
     }
     function setAvailable($id){
         $sql = "UPDATE products SET isAvailable=1 WHERE id=:id";
-        $stmt= $pdo->prepare($sql);
+        $stmt= $this->conn->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
     }
     function setUnavailable($id){
 
         $sql = "UPDATE products SET isAvailable=0 WHERE id=:id";
-        $stmt= $pdo->prepare($sql);
+        $stmt= $this->conn->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
+    }
+
+    public function deleteProduct($id) {
+        try {
+            $query = "DELETE FROM products WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$id]);
+            $this->deletePhoto($id);
+        } catch (\Throwable $th) {
+            echo "connection error"."<br>"."<br>". $th;
+            die();
+        }
+        
+    }
+
+    public function deletePhoto($id) {
+        try {
+            $query = "SELECT pic FROM products WHERE id=?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$id]);
+            $row = $stmt->fetch();
+            if(file_exists($row["pic"]))
+                unlink($row["pic"]);
+        } catch (\Throwable $th) {
+            echo "connection error"."<br>"."<br>". $th;
+            die();
+        }
+
     }
     
 

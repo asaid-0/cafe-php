@@ -28,22 +28,7 @@
     flex: 0 10%;
     transition: all 0.3s ease-in-out;
 }
-.item:hover{
-    cursor: pointer;
-   
-    /* box-shadow: 0.5rem 0.5rem 0.25rem rgba(0, 0, 0, .1); */
-    border-top: 10px solid #444;
-    /* transform: translateY(-5px); */
-    transition: all 0.3s ease-in-out;
-}
-.item img{
-    border-radius: 50%;
-    border: 1px dashed #000;
-    width: 90%;
-    margin: 0.2rem auto;
-    height: 80%;
 
-}
 .item-details {
     justify-content: space-between;
 }

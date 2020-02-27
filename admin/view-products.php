@@ -60,6 +60,7 @@
 
             <?php
                         foreach($products->getProducts() as $p){
+                            $statusBtn = $p['isAvailable'] ? "Unavailable" : "Available";
                             echo "<div class=\"item\" id=\"{$p['id']}\">\n";
 echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
 echo "                        <div class=\"item-details\">\n";
@@ -68,9 +69,9 @@ echo "                            <p>Price: <em class=\"item-price\">{$p['price'
 echo "                            </p>\n";
 echo "                        </div>\n";
 echo "                        <div class=\"action\">\n";
-echo "                            <button class=\"add-to-cart\" type=\"button\">Available</button>\n";
-echo "                            <button class=\"add-to-cart\" type=\"button\">Edit</button>\n";
-echo "                            <button class=\"add-to-cart\" type=\"button\">Delete</button>\n";
+echo "                            <a href=\"available.php?available={$p['isAvailable']}&id={$p['id']}\"><button class=\"add-to-cart\" type=\"button\">$statusBtn</button></a>\n";
+echo "                            <a href=\"edit-product.php?id={$p['id']}\"><button class=\"add-to-cart\" type=\"button\">Edit</button></a>\n";
+echo "                            <a href=\"delete-product.php?id={$p['id']}\"><button class=\"add-to-cart\" type=\"button\">Delete</button></a>\n";
 echo "                        </div>";
 echo "                    </div>";
 
