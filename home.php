@@ -95,23 +95,25 @@ if (!isset($_SESSION['user-id']))
                     <input type="text" class="search-input" placeholder="search..." id="search-input">
                     <button type="submit" class="search-btn"><i class="fa fa-search search-icon" id="search-icon"></i></button>
                 </div>
-                <div class="items">
-                    <?php
-                    foreach ($products->getProducts() as $p) {
-                        echo "<div class=\"item\" id=\"{$p['id']}\">\n";
-                        echo "                        <img src=\"{$p['pic']}\" alt=\"{$p['name']}\" />\n";
-                        echo "                        <div class=\"item-details\">\n";
-                        echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
-                        echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";
-                        echo "                            </p>\n";
-                        echo "                        </div>\n";
-                        echo "                        <button class=\"add-to-cart\" type=\"button\">Add to cart</button>\n";
-                        echo "                    </div>";
-                    }
-                    ?>
+                <div class="items-container">
+                    <div class="items">
+                        <?php
+                        foreach ($products->getProducts() as $p) {
+                            echo "<div class=\"item\" id=\"{$p['id']}\">\n";
+                            echo "                        <img src=\"{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+                            echo "                        <div class=\"item-details\">\n";
+                            echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
+                            echo "                            <p>Price: <em class=\"item-price\"> <span>{$p['price']}</span> EGP</em>\n";
+                            echo "                            </p>\n";
+                            echo "                        </div>\n";
+                            echo "                        <button class=\"add-to-cart\" type=\"button\">Add to cart</button>\n";
+                            echo "                    </div>";
+                        }
+                        ?>
 
 
 
+                    </div>
                 </div>
             </div>
 

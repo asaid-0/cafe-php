@@ -1,70 +1,75 @@
-document.querySelectorAll('.add-to-cart').forEach(function (item) {
 
-    item.addEventListener('click', function () {
+function addListeners() {
+    document.querySelectorAll('.add-to-cart').forEach(function (item) {
 
-        this.setAttribute('disabled', true);
+        item.addEventListener('click', function () {
 
-        const itemPrice = this.parentElement.querySelector('.item-price').innerText;
-        const itemName = this.parentElement.querySelector('.item-name').innerText;
-        const itemId = this.parentElement.id;
+            this.setAttribute('disabled', true);
 
-        document.querySelector('.hidden-item .di-quantity').required = false;
-        const cartItem = document.querySelector('.hidden-item').cloneNode(true);
+            const itemPrice = this.parentElement.querySelector('.item-price span').innerText;
+            const itemName = this.parentElement.querySelector('.item-name').innerText;
+            const itemId = this.parentElement.id;
 
-        cartItem.classList.remove('hidden-item');
-        cartItem.querySelector('.name').innerText = itemName;
-        cartItem.querySelector('.price').innerText = itemPrice;
-        cartItem.querySelector('.quantity').innerText = 1;
-        cartItem.setAttribute("item-id", itemId);
+            document.querySelector('.hidden-item .di-quantity').required = false;
+            const cartItem = document.querySelector('.hidden-item').cloneNode(true);
 
-        const nameInput = cartItem.querySelector('.di-id');
-        const quantityInput = cartItem.querySelector('.di-quantity');
+            cartItem.classList.remove('hidden-item');
+            cartItem.querySelector('.name').innerText = itemName;
+            cartItem.querySelector('.price').innerText = itemPrice;
+            cartItem.querySelector('.quantity').innerText = 1;
+            cartItem.setAttribute("item-id", itemId);
 
-        nameInput.value = itemId;
-        quantityInput.value = 1;
+            const nameInput = cartItem.querySelector('.di-id');
+            const quantityInput = cartItem.querySelector('.di-quantity');
 
-        document.querySelector('.drinks-list').appendChild(cartItem)
-        document.querySelector('.drinks-list').appendChild(document.createElement('hr'));
+            nameInput.value = itemId;
+            quantityInput.value = 1;
 
-        updateTotal();
+            document.querySelector('.drinks-list').appendChild(cartItem)
+            document.querySelector('.drinks-list').appendChild(document.createElement('hr'));
 
-
-        cartItem.querySelector('.fa-plus').addEventListener('click', function () {
-
-            const quantityNode = this.parentElement.querySelector(".quantity");
-            const priceNode = this.parentElement.querySelector(".price");
-            const quantity = parseInt(quantityNode.innerText);
-            quantityNode.innerText = quantity + 1;
-            quantityInput.value = parseInt(quantityInput.value) + 1;
-            priceNode.innerText = getInt(priceNode.innerText) + getInt(itemPrice) + " EGP";
             updateTotal();
 
-        });
 
+            cartItem.querySelector('.fa-plus').addEventListener('click', function () {
 
-        cartItem.querySelector('.fa-minus').addEventListener('click', function () {
-            const quantityNode = this.parentElement.querySelector(".quantity");
-            const priceNode = this.parentElement.querySelector(".price");
-            const quantity = parseInt(quantityNode.innerText)
-            if (quantity > 1) {
-                quantityNode.innerText = quantity - 1;
-                quantityInput.value = parseInt(quantityInput.value) - 1;
-                priceNode.innerText = getInt(priceNode.innerText) - getInt(itemPrice) + " EGP";
+                const quantityNode = this.parentElement.querySelector(".quantity");
+                const priceNode = this.parentElement.querySelector(".price");
+                const quantity = parseInt(quantityNode.innerText);
+                quantityNode.innerText = quantity + 1;
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+                priceNode.innerText = getInt(priceNode.innerText) + getInt(itemPrice);
                 updateTotal();
-            }
-        });
 
-        cartItem.querySelector('.fa-close').addEventListener('click', function () {
-            const itemId = this.parentElement.getAttribute('item-id');
-            document.getElementById(itemId).querySelector('.add-to-cart').removeAttribute('disabled')
-            this.parentElement.nextSibling.remove();
-            this.parentElement.remove();
-            updateTotal();
-        });
+            });
 
+
+            cartItem.querySelector('.fa-minus').addEventListener('click', function () {
+                const quantityNode = this.parentElement.querySelector(".quantity");
+                const priceNode = this.parentElement.querySelector(".price");
+                const quantity = parseInt(quantityNode.innerText)
+                if (quantity > 1) {
+                    quantityNode.innerText = quantity - 1;
+                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                    priceNode.innerText = getInt(priceNode.innerText) - getInt(itemPrice);
+                    updateTotal();
+                }
+            });
+
+            cartItem.querySelector('.fa-close').addEventListener('click', function () {
+                const itemId = this.parentElement.getAttribute('item-id');
+                document.getElementById(itemId).querySelector('.add-to-cart').removeAttribute('disabled')
+                this.parentElement.nextSibling.remove();
+                this.parentElement.remove();
+                updateTotal();
+            });
+
+        });
     });
-});
 
+}
+
+addListeners();
 
 function calculateTotal() {
     const items = document.querySelectorAll('.drinks-list li');
@@ -73,18 +78,19 @@ function calculateTotal() {
         totalPrice += getInt(item.querySelector(".price").innerText);
     });
 
-    return totalPrice + " EGP";
+    return totalPrice;
 }
 
 function getInt(currency) {
-    return parseInt(currency.replace(/[^\w\s]/gi, ''), 10);
+    return parseFloat(currency)
 }
 
 function updateTotal() {
     document.querySelector('.cart .total-price').innerText = calculateTotal();
 }
 
-const allItems = document.getElementsByClassName('items').cloneNode(true);
+const allItems = document.querySelector('.content .items').cloneNode(true);
+console.log(allItems);
 
 
 document.getElementById('search-icon')
@@ -93,8 +99,6 @@ document.getElementById('search-icon')
         const items = document.getElementsByClassName('item');
 
         const itemsContainer = document.getElementsByClassName('items')[0];
-
-        console.log('search', searchValue);
 
         if (searchValue !== '') {
             const filteredItems = [].slice.call(items).filter(item => item.querySelector('.item-name').innerText == searchValue);
@@ -105,10 +109,9 @@ document.getElementById('search-icon')
             })
         }
         else {
-            // itemsContainer.innerHTML = '';
-
-            console.log([].slice.call(allItems));
-
+            document.querySelector('.content .items-container').innerHTML = ''
+            document.querySelector('.content .items-container').appendChild(allItems);
+            addListeners();
         }
 
     })
