@@ -2,6 +2,8 @@
 session_start();
 if (!isset($_SESSION['user-id']))
     header("location:../login.php");
+elseif (isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
+    header("location:../home.php");
 
 require_once("../database/database.inc.php");
 require_once("../models/products.php");
@@ -59,6 +61,7 @@ $products = new Products();
 
                 <?php
                 foreach ($products->getProducts() as $p) {
+                    $statusBtn = $p['isAvailable'] ? "Unavailable" : "Available";
                     echo "<div class=\"item\" id=\"{$p['id']}\">\n";
                     echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
                     echo "                        <div class=\"item-details\">\n";
@@ -67,9 +70,9 @@ $products = new Products();
                     echo "                            </p>\n";
                     echo "                        </div>\n";
                     echo "                        <div class=\"action\">\n";
-                    echo "                            <button class=\"add-to-cart\" type=\"button\">Available</button>\n";
-                    echo "                            <button class=\"add-to-cart\" type=\"button\">Edit</button>\n";
-                    echo "                            <button class=\"add-to-cart\" type=\"button\">Delete</button>\n";
+                    echo "                            <a href=\"available.php?available={$p['isAvailable']}&id={$p['id']}\"><button class=\"add-to-cart\" type=\"button\">$statusBtn</button></a>\n";
+                    echo "                            <a href=\"edit-product.php?id={$p['id']}\"><button class=\"add-to-cart\" type=\"button\">Edit</button></a>\n";
+                    echo "                            <a href=\"delete-product.php?id={$p['id']}\"><button class=\"add-to-cart\" type=\"button\">Delete</button></a>\n";
                     echo "                        </div>";
                     echo "                    </div>";
                 }
