@@ -47,6 +47,21 @@ class Order
         }
     }
 
+    public function adminGetOrders(){
+        try {
+            $query_list_orders = "Select *, (select name from users where id = user_id)name, (select room from users where id = user_id)room from orders";
+            $stmt_date_filter = $this->conn->prepare($query_list_orders);
+            $stmt_date_filter->execute();
+            $data = $stmt_date_filter->fetchAll(); 
+            
+            return $data;
+        } catch (PDOException $e) {
+            echo "error " . $e->getMessage();
+        }
+    }
+
+
+
     public function getOrderProducts($order_id){
         try {
             $query_order_products = "select id , name, pic, price , quantity from products , orders_products where order_id = ? and product_id = id ";
@@ -73,7 +88,21 @@ class Order
             echo "error " . $e->getMessage();
         }
     }
+    function setDone($id){
+        $sql = "UPDATE orders SET status='done' WHERE id=:id";
+        $stmt= $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    function setDeliver($id){
 
+        $sql = "UPDATE orders SET status='out-for-delivery' WHERE id=:id";
+        $stmt= $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        
+    }
     // public function checkInputs($input)
     // {
     //     $input = htmlspecialchars($input);
