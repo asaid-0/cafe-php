@@ -28,7 +28,7 @@
         }
    }
    else{
-        header("location:./forget-password.php");
+        // header("location:./forget-password.php");
    }
 ?>
     
