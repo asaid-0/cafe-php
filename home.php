@@ -8,6 +8,7 @@
     require_once("database/database.inc.php");
     require_once("models/products.php");
     $products = new Products();
+    $room = $_SESSION['room'];
 
 ?>
 
@@ -80,9 +81,8 @@
                     <div class="room">
                         <label for="room">Room</label>
                         <select name="room" id="room" required>
-                            <option value="room 1">Room 1</option>
-                            <option value="room 2">Room 2</option>
-                            <option value="room 3">Room 3</option>
+                            <option value="room 1"> <?php echo $room ?> </option>
+                          
                         </select>
                     </div>
                     <hr>

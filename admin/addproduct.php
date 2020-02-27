@@ -123,9 +123,16 @@ $product = new Products();
                     <label class='input-select'>
                         <select name='cat_id'>
                           <option selected='selected'>- Select -</option>
-                          <option value='1'>Hot Drinks</option>
-                          <option value='2'>Soft Drinks</option>
-                          <option value='3'>Juice</option>
+                          <?php
+
+                            foreach($product->getCategories() as $cat){
+                              echo  "<option value=\"{$cat['id']}\">{$cat['name']}</option>";
+                            }
+
+
+                          ?>
+                         
+                        
                         </select>
                       </label>
                   </fieldset>

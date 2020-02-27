@@ -124,9 +124,14 @@ die();
                     <label class='input-select'>
                         <select name='cat_id'>
                           <option selected='selected' value="<?php echo $p['cat_id'] ?>">- no change -</option>
-                          <option value='1'>Hot Drinks</option>
-                          <option value='2'>Soft Drinks</option>
-                          <option value='3'>Juice</option>
+                          <?php
+
+                            foreach($product->getCategories() as $cat){
+                              echo  "<option value=\"{$cat['id']}\">{$cat['name']}</option>";
+                            }
+
+
+                          ?>
                         </select>
                       </label>
                   </fieldset>
@@ -145,7 +150,7 @@ die();
                   </fieldset>
               
               
-                  <input type='submit' name='submit' value='Add' />
+                  <input type='submit' name='submit' value='Update' />
                 </form>
               </div>
         </div>
