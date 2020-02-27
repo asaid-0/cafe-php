@@ -38,7 +38,7 @@ function addListeners() {
                 const quantity = parseInt(quantityNode.innerText);
                 quantityNode.innerText = quantity + 1;
                 quantityInput.value = parseInt(quantityInput.value) + 1;
-                priceNode.innerText = getInt(priceNode.innerText) + getInt(itemPrice);
+                priceNode.innerText = (getInt(priceNode.innerText) + getInt(itemPrice)).toFixed(2);
                 updateTotal();
 
             });
@@ -51,7 +51,7 @@ function addListeners() {
                 if (quantity > 1) {
                     quantityNode.innerText = quantity - 1;
                     quantityInput.value = parseInt(quantityInput.value) - 1;
-                    priceNode.innerText = getInt(priceNode.innerText) - getInt(itemPrice);
+                    priceNode.innerText = getInt(priceNode.innerText) - getInt(itemPrice).toFixed(2);;
                     updateTotal();
                 }
             });
@@ -82,15 +82,14 @@ function calculateTotal() {
 }
 
 function getInt(currency) {
-    return parseFloat(currency)
+    return parseFloat(currency);
 }
 
 function updateTotal() {
-    document.querySelector('.cart .total-price').innerText = calculateTotal();
+    document.querySelector('.cart .total-price').innerText = calculateTotal().toFixed(2);
 }
 
 const allItems = document.querySelector('.content .items').cloneNode(true);
-console.log(allItems);
 
 
 document.getElementById('search-icon')

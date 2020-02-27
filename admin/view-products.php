@@ -1,9 +1,7 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['user-id']))
-        header("location:../login.php");
-    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
-        header("location:../home.php");
+session_start();
+if (!isset($_SESSION['user-id']))
+    header("location:../login.php");
 
 require_once("../database/database.inc.php");
 require_once("../models/products.php");
@@ -26,13 +24,13 @@ $products = new Products();
 </head>
 
 <body>
-<nav class="navbar">
+    <nav class="navbar">
         <ul class="menu-left">
-            <li><a href="index.php" class="logo">OS Coffee</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="view-users.php">Users</a></li>
-            <li><a href="orders.php">Orders</a></li>
-            <li><a href="checks.php">Checks</a></li>
+            <li><a href="#" class="logo">OS Coffee</a></li>
+            <li><a href="#" class="active">Products</a></li>
+            <li><a href="#">Users</a></li>
+            <li><a href="#">Manual Order</a></li>
+            <li><a href="#">Checks</a></li>
         </ul>
         <span>
             <a href="#">
@@ -40,46 +38,45 @@ $products = new Products();
                 <span>Admin Dashboard</span>
             </a>
 
+
             <a href="../logout.php">
                 <i class="fa fa-sign-out"></i>
                 <span>Logout</span>
             </a>
+
+
         </span>
     </nav>
-
     <section>
         <div class="container">
             <header>
                 <h2>All Products</h2>
                 <a href="">Add product</a>
             </header>
-            <div class="items-container">
-
-                <div class="items">
+            <div class="items">
 
 
 
-                    <?php
-                    foreach ($products->getProducts() as $p) {
-                        echo "<div class=\"item\" id=\"{$p['id']}\">\n";
-                        echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
-                        echo "                        <div class=\"item-details\">\n";
-                        echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
-                        echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";
-                        echo "                            </p>\n";
-                        echo "                        </div>\n";
-                        echo "                        <div class=\"action\">\n";
-                        echo "                            <button class=\"add-to-cart\" type=\"button\">Available</button>\n";
-                        echo "                            <button class=\"add-to-cart\" type=\"button\">Edit</button>\n";
-                        echo "                            <button class=\"add-to-cart\" type=\"button\">Delete</button>\n";
-                        echo "                        </div>";
-                        echo "                    </div>";
-                    }
-                    ?>
+                <?php
+                foreach ($products->getProducts() as $p) {
+                    echo "<div class=\"item\" id=\"{$p['id']}\">\n";
+                    echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+                    echo "                        <div class=\"item-details\">\n";
+                    echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
+                    echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";
+                    echo "                            </p>\n";
+                    echo "                        </div>\n";
+                    echo "                        <div class=\"action\">\n";
+                    echo "                            <button class=\"add-to-cart\" type=\"button\">Available</button>\n";
+                    echo "                            <button class=\"add-to-cart\" type=\"button\">Edit</button>\n";
+                    echo "                            <button class=\"add-to-cart\" type=\"button\">Delete</button>\n";
+                    echo "                        </div>";
+                    echo "                    </div>";
+                }
+                ?>
 
 
 
-                </div>
             </div>
         </div>
     </section>
