@@ -51,7 +51,7 @@ function addListeners() {
                 if (quantity > 1) {
                     quantityNode.innerText = quantity - 1;
                     quantityInput.value = parseInt(quantityInput.value) - 1;
-                    priceNode.innerText = getInt(priceNode.innerText) - getInt(itemPrice).toFixed(2);;
+                    priceNode.innerText = (getInt(priceNode.innerText) - getInt(itemPrice)).toFixed(2);
                     updateTotal();
                 }
             });
