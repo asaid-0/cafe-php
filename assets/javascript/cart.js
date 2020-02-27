@@ -84,6 +84,36 @@ function updateTotal() {
     document.querySelector('.cart .total-price').innerText = calculateTotal();
 }
 
+const allItems = document.getElementsByClassName('items').cloneNode(true);
+
+
+document.getElementById('search-icon')
+    .addEventListener('click', function () {
+        const searchValue = document.getElementById('search-input').value;
+        const items = document.getElementsByClassName('item');
+
+        const itemsContainer = document.getElementsByClassName('items')[0];
+
+        console.log('search', searchValue);
+
+        if (searchValue !== '') {
+            const filteredItems = [].slice.call(items).filter(item => item.querySelector('.item-name').innerText == searchValue);
+            itemsContainer.innerHTML = '';
+
+            filteredItems.forEach(item => {
+                itemsContainer.appendChild(item);
+            })
+        }
+        else {
+            // itemsContainer.innerHTML = '';
+
+            console.log([].slice.call(allItems));
+
+        }
+
+    })
+
+
 
 
 // document.getElementById("confirm-btn").addEventListener("click", function (event) {

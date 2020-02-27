@@ -5,19 +5,6 @@ require_once('models/order.php');
 session_start();
 if(!isset($_SESSION['user-id']))
     header("location:home.php");
-//$_SESSION["user_id"] = 1;
-
-// $serverName = DB_HOST;
-// $username = DB_USER;
-// $password = DB_PWD;
-// $dbName = DB_NAME;
-// try {
-//     $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
-//     // set the PDO error mode to exception
-//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// } catch (PDOException $e) {
-//     echo "Connection failed: " . $e->getMessage();
-// }
 
 
 if (isset($_POST['confirm'])) {
