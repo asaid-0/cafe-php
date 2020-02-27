@@ -122,5 +122,17 @@
             }
 
         }
+        public function updateUserPassword($email , $password){
+
+            try{
+                $query = "UPDATE users SET password=? WHERE email =?;";
+                $stmt= $this->conn->prepare($query);
+                $stmt->execute([$password , $email]);
+                $stmt->execute();
+                return 1;
+            }catch (\Throwable $th) {
+                echo "connection error"."<br>"."<br>";
+            }
+        }
     }
 ?>

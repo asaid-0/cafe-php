@@ -112,7 +112,6 @@
 </head>
 <body>
     <nav class="navbar">
-    <nav class="navbar">
         <ul class="menu-left">
             <li><a href="index.php" class="logo">OS Coffee</a></li>
             <li><a href="view-products.php">Products</a></li>
