@@ -1,66 +1,65 @@
 <?php
+    session_start();
 
-    include "../database/config.php";
-
-    /*$dbServername = DB_HOST;
-    $dbUsername = DB_USER;
-    $dbPassword = DB_PWD;
-    $dbname = DB_NAME;*/
-
-    $id;
-    if(empty($_POST['id']))
-        $id = $_GET['num'];
-    else
-        $id = $_POST['id'];
+    if(!isset($_SESSION['user-id']))
+        header("location:../login.php");
+    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
+        header("location:../home.php");
     
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $room = $_POST['room'];
-    $ext = $_POST['ext'];
-    $file_info = $_FILES['photo'];
-    $file_name = $file_info['name'];
-    $file_size = $file_info['size'];
-    $file_tmp = $file_info['tmp_name'];
-    $file_type = $file_info['type'];
-
-    updateUserData($id, $name, $email, $password, $room, $ext, $file_name, $file_tmp);
-
-
-    function updateUserData($id, $name, $email, $password, $room, $ext, $file_name, $file_tmp) {
-        $pic_name = uploadPhoto($name, $file_tmp, $file_name);
-        $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
-        try {
-            
-            $con = new \PDO($dsn, DB_USER, DB_PWD);
     
-            $query = "UPDATE users SET name=?, email=?, password=?, room=?, ext=?, pic=? WHERE id=?";
-            $stmt = $con->prepare($query);
-            $stmt->execute([$name, $email, $password, $room, $ext, $pic_name, $id]);
-            header("location:../admin/view-users.php");
-            $con = null;
-        } catch (\Throwable $th) {
-            echo "connection error"."<br>"."<br>";
+    require_once("../database/database.inc.php");
+    require_once("../models/user.php");
+
+    $user = new User();
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $user_id = $_POST['id'];
+        $name = $_POST['name'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$ext = $_POST['ext'];
+		$room = $_POST['room'];
+
+        var_dump($_POST);
+
+		if($name == "")
+			$errors["name"] = "Name field is required.<br>";
+		if($email != "") {
+			$pattern = "/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix";
+			$emailval1 = preg_match($pattern, $email);
+			$emailval2 = filter_var($email, FILTER_VALIDATE_EMAIL);
+			if($emailval2 == false || $emailval1 == false) 
+				$errors[] = "Wrong Email Format.<br>";
+		}
+		else {
+			$errors["email"] = "Email field is required.<br>";
+		}
+
+		if($password != "") {
+			$passwordval1 = preg_match("/^([a-z0-9]|_){8}$/ix", $password);
+			if($passwordval1 == false) 
+				$errors["password"] = "Unacceptable password format, password should contain 
+				exactly 8 lowercase letters, numbers and/or _.<br>";
+		}
+		else {
+			$errors["password"] = "Password field is required.<br>";
+		}
+
+		if($room == "") 
+			$errors["room"] = "Please enter the room number.<br>";
+
+	/*******************Data is validated and ready to be updated*******************/
+
+		if(!empty($errors)) {
+            error_log(print_r($errors, TRUE)); 
+            $_SESSION['errors'] = $errors;
+            header("location:update-user.php?num=$user_id"); 
         }
-    }
-
-    function uploadPhoto($name, $file_tmp, $file_name) {
-        $extension = explode('.', $file_name);
-        $file_ext = strtolower(end($extension));
-        $extensions = array("jpeg", "jpg", "png");
-        $pic_name;
-        if(in_array($file_ext, $extensions) === false)
-            header("location:update-form.php?num=$id&result=ext");
         else {
-            $pic_name = "../assets/images/".$name.".".$file_ext;
-
-            if(move_uploaded_file($file_tmp, $pic_name))
-                echo "User Registered Successfully and Image is uploaded.<br>";
-            else 
-                echo "Error uploading the image but user is registered.<br>";
+            $user->updateUserData($id, $name, $email, $password, $room, $ext);//, $file_name, $file_tmp);
+            unset($_SESSION['errors']);
+            header("location:../admin/view-users.php");
         }
-
-        return $pic_name;
     }
 
 ?>

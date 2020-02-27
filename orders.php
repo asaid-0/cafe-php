@@ -1,16 +1,13 @@
 <?php
-// include "database/config.php";
-require_once("./models/order.php");
-$orders = new Order();
+    require_once("database/database.inc.php");
+    require_once("models/order.php");
+    $orders = new Order();
 
-// $serverName = DB_HOST;
-// $userName = DB_USER;
-// $password = DB_PWD;
-// $dbName = DB_NAME;
-
-session_start();
-if(!isset($_SESSION['user-id']))
-    header("location:login.php");
+    session_start();
+    if(!isset($_SESSION['user-id']))
+        header("location:login.php");
+    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 1)
+        header("location:admin/index.php");
 
 ?>
 <!DOCTYPE html>
@@ -31,153 +28,29 @@ if(!isset($_SESSION['user-id']))
 
     <nav class="navbar">
         <ul class="menu-left">
-            <li><a href="#" class="logo">OS Coffee</a></li>
-            <li><a href="#">Home</a></li>
+            <li><a href="home.php" class="logo">OS Coffee</a></li>
+            <li><a href="home.php">Home</a></li>
             <li><a href="#" class="active">My Orders</a></li>
         </ul>
 
-        <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Islam Abdelhamid</span>
-        </a>
+        <span>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span><?php echo $_SESSION["name"]?></span>
+            </a>
+            <a href="logout.php">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+            </a>
+
+        </span>
     </nav>
 
     <section>
         <div class="container">
             <div class="content">
                 <!-- start all hidden popup orders -->
-                <div class="order" id="order_1">
-                    <div class="orderForm">
-                        <a href="#" class="fa fa-window-close"></a>
-                        <h1>order 1</h1>
-                        <div class="items">
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="dimm-anchor" href="#">
-                        <div class="dimmed"></div>
-                    </a>
-                </div>
-
-                <div class="order" id="order_2">
-                    <div class="orderForm">
-                        <a href="#" class="fa fa-window-close"></a>
-                        <h1>order 2</h1>
-                        <div class="items">
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="dimm-anchor" href="#">
-                        <div class="dimmed"></div>
-                    </a>
-                </div>
-
-
-                <div>
-                  <div class="order" id="order_3">
-                    <div class="orderForm">
-                        <a href="#" class="fa fa-window-close"></a>
-                        <h1>order 3</h1>
-                        <div class="items">
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- <a class="dimm-anchor" href="#"><div class="dimmed"></div></a> -->
-                </div>
+                
                 <!-- end all hidden popup orders -->
 
                 <!-- start hidden popup delete order successfully -->
@@ -214,7 +87,7 @@ if(!isset($_SESSION['user-id']))
                             <th>Action</th>
                         </tr>
                         <?php
-                        $userId = $_SESSION['id'];
+                        $userId = $_SESSION['user-id'];
                         // $userId = 2;
                         $total = 0;
                         $orders_data;
@@ -231,6 +104,36 @@ if(!isset($_SESSION['user-id']))
                             $amount = 0;
                             $orderId = $order_details["id"];
                             $order_products_data = $orders->getOrderProducts($orderId);
+
+                                echo "              <div class=\"order\" id=\"order_$orderId\">\n";
+                                echo "                    <div class=\"orderForm\">\n";
+                                echo "                        <a href=\"#\" class=\"fa fa-window-close\"></a>\n";
+                                echo "                        <h1>order $orderId</h1>\n";
+                                echo "                        <div class=\"items\">\n";
+
+
+                            foreach($order_products_data as $order_item){
+                                
+                                echo "                            <div class=\"item\">\n";
+                                echo "                                <img src=\"assets/images/tea.jpg\" alt=\"tea\" />\n";
+                                echo "                                <div class=\"item-details\">\n";
+                                echo "                                    <h2>{$order_item['name']}</h2>\n";
+                                echo "                                    <p>Price: <em>{$order_item['price']}</em>\n";
+                                echo "                                    </p>\n";
+                                echo "                                </div>\n";
+                                echo "                            </div>\n";
+
+                            }
+
+                            echo "                        </div>\n";
+                            echo "                    </div>\n";
+                            echo "                    <a class=\"dimm-anchor\" href=\"#\">\n";
+                            echo "                        <div class=\"dimmed\"></div>\n";
+                            echo "                    </a>\n";
+                            echo "                </div>";
+
+
+
                             foreach ($order_products_data as $product_details) {
                                 $amount += $product_details["price"] * $product_details["quantity"];
                             }
@@ -239,15 +142,15 @@ if(!isset($_SESSION['user-id']))
                                     <td>'.$order_details["status"].'</td>
                                     <td>'.$amount.'</td>';
                             if ($order_details["status"] == "processing") {
-                                echo'
-                                <td><a href="cancel-order.php?orderId='.$orderId.'">Cancel</a>
-                                    <a href="#order_1">View</a>
+                                echo"
+                                <td><a href=\"cancel-order.php?orderId=$orderId\">Cancel</a>
+                                    <a href=\"#order_$orderId\">View</a>
                                 </td>
-                                </tr>';
+                                </tr>";
                             }else{
-                                echo'
-                                <td><a href="#order_1">View</a></td>
-                                </tr>';
+                                echo"
+                                <td><a href=\"#order_$orderId\">View</a></td>
+                                </tr>";
                             }
                             $total += $amount;
                         }

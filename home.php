@@ -1,12 +1,15 @@
 <?php
-session_start();
-require_once("database/database.inc.php");
-require_once("models/products.php");
-$products = new Products();
+    session_start();
+    if(!isset($_SESSION['user-id']))
+        header("location:login.php");
+    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 1)
+        header("location:admin/index.php");
 
+    require_once("database/database.inc.php");
+    require_once("models/products.php");
+    $products = new Products();
+    $room = $_SESSION['room'];
 
-if (!isset($_SESSION['user-id']))
-    header("location:login.php");
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +30,7 @@ if (!isset($_SESSION['user-id']))
         <ul class="menu-left">
             <li><a href="#" class="logo">OS Coffee</a></li>
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">My Orders</a></li>
+            <li><a href="orders.php">My Orders</a></li>
         </ul>
 
         <span>
@@ -78,9 +81,8 @@ if (!isset($_SESSION['user-id']))
                     <div class="room">
                         <label for="room">Room</label>
                         <select name="room" id="room" required>
-                            <option value="room 1">Room 1</option>
-                            <option value="room 2">Room 2</option>
-                            <option value="room 3">Room 3</option>
+                            <option value="room 1"> <?php echo $room ?> </option>
+                          
                         </select>
                     </div>
                     <hr>

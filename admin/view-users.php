@@ -2,6 +2,9 @@
     session_start();
     if(!isset($_SESSION['user-id']))
         header("location:../login.php");
+    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
+        header("location:../home.php");
+            
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +26,8 @@
         <ul class="menu-left">
             <li><a href="index.php" class="logo">OS Coffee</a></li>
             <li><a href="view-products.php">Products</a></li>
-            <li><a href="#" class="active">Users</a></li>
-            <li><a href="#">Manual Order</a></li>
+            <li><a href="#">Users</a></li>
+            <li><a href="orders.php">Orders</a></li>
             <li><a href="checks.php">Checks</a></li>
         </ul>
         <span>
@@ -33,15 +36,13 @@
                 <span>Admin Dashboard</span>
             </a>
 
-
             <a href="../logout.php">
                 <i class="fa fa-sign-out"></i>
                 <span>Logout</span>
             </a>
-
-
         </span>
     </nav>
+
     <section>
         <div class="container">
             <header>
@@ -60,34 +61,20 @@
                     </tr>
                     <?php
                         require_once("../models/user.php");
-                        include "../database/config.php";
+                        require_once("../database/database.inc.php");
 
-                        $dbServername = DB_HOST;
-                        $dbUsername = DB_USER;
-                        $dbPassword = DB_PWD;
-                        $dbname = DB_NAME;
+                        $user = new User();
+                        $row = $user->selectAllUsers();
 
-                        $dsn = 'mysql:host='.$dbServername.';dbname='.$dbname;
-                        try {
-                            $con = new \PDO($dsn, DB_USER, DB_PWD);
-
-                            $user = new User($con);
-                            $row = $user->selectAllUsers();
-
-                            for ($i = 0; $i < count($row); $i++) {
-                                if($row[$i]['isAdmin'] == 0) {
-                                    $id = $row[$i]['id'];
-                                    echo "<tr><td>".$row[$i]['name']."</td> <td>".$row[$i]['email']."</td> <td> <img src=".$row[$i]['pic']." alt='photo'/></td> <td>".$row[$i]['ext']."</td> <td>".$row[$i]['room']."</td>";
-                                    echo"<td><a href ='update-form.php?num=$id'>Update</a></td>";
-                                    echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
-                                    echo "</tr>";
-                                }
+                        for ($i = 0; $i < count($row); $i++) {
+                            if($row[$i]['isAdmin'] == 0) {
+                                $id = $row[$i]['id'];
+                                echo "<tr><td>".$row[$i]['name']."</td> <td>".$row[$i]['email']."</td> <td> <img src=".$row[$i]['pic']." alt='photo'/></td> <td>".$row[$i]['ext']."</td> <td>".$row[$i]['room']."</td>";
+                                echo"<td><a href ='update-user.php?num=$id'>Update</a></td>";
+                                echo"<td><a href ='delete_action.php?num=$id'>Delete</a></td>";
+                                echo "</tr>";
                             }
-                        } catch(\Throwable $th) {
-                            echo "Connection Error"."<br>"."<br>";
                         }
-
-                        // $con = null;*/
                     ?>
                 </table>
             </div>
