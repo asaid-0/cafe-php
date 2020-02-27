@@ -49,7 +49,7 @@ class Order
 
     public function getOrderProducts($order_id){
         try {
-            $query_order_products = "select id , price , quantity from products , orders_products where order_id = ? and product_id = id ";
+            $query_order_products = "select id , name, pic, price , quantity from products , orders_products where order_id = ? and product_id = id ";
             $stmt_order_products = $this->conn->prepare($query_order_products);
             $stmt_order_products->execute([$order_id]);
             $data = $stmt_order_products->fetchAll();

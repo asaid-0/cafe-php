@@ -43,138 +43,7 @@
         <div class="container">
             <div class="content">
                 <!-- start all hidden popup orders -->
-                <div class="order" id="order_1">
-                    <div class="orderForm">
-                        <a href="#" class="fa fa-window-close"></a>
-                        <h1>order 1</h1>
-                        <div class="items">
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="dimm-anchor" href="#">
-                        <div class="dimmed"></div>
-                    </a>
-                </div>
-
-                <div class="order" id="order_2">
-                    <div class="orderForm">
-                        <a href="#" class="fa fa-window-close"></a>
-                        <h1>order 2</h1>
-                        <div class="items">
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="dimm-anchor" href="#">
-                        <div class="dimmed"></div>
-                    </a>
-                </div>
-
-
-                <div>
-                  <div class="order" id="order_3">
-                    <div class="orderForm">
-                        <a href="#" class="fa fa-window-close"></a>
-                        <h1>order 3</h1>
-                        <div class="items">
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="assets/images/tea.jpg" alt="tea" />
-                                <div class="item-details">
-                                    <h2>Tea</h2>
-                                    <p>Price: <em>$9</em>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- <a class="dimm-anchor" href="#"><div class="dimmed"></div></a> -->
-                </div>
+                
                 <!-- end all hidden popup orders -->
 
                 <!-- start hidden popup delete order successfully -->
@@ -228,6 +97,36 @@
                             $amount = 0;
                             $orderId = $order_details["id"];
                             $order_products_data = $orders->getOrderProducts($orderId);
+
+                                echo "              <div class=\"order\" id=\"order_$orderId\">\n";
+                                echo "                    <div class=\"orderForm\">\n";
+                                echo "                        <a href=\"#\" class=\"fa fa-window-close\"></a>\n";
+                                echo "                        <h1>order $orderId</h1>\n";
+                                echo "                        <div class=\"items\">\n";
+
+
+                            foreach($order_products_data as $order_item){
+                                
+                                echo "                            <div class=\"item\">\n";
+                                echo "                                <img src=\"assets/images/tea.jpg\" alt=\"tea\" />\n";
+                                echo "                                <div class=\"item-details\">\n";
+                                echo "                                    <h2>{$order_item['name']}</h2>\n";
+                                echo "                                    <p>Price: <em>{$order_item['price']}</em>\n";
+                                echo "                                    </p>\n";
+                                echo "                                </div>\n";
+                                echo "                            </div>\n";
+
+                            }
+
+                            echo "                        </div>\n";
+                            echo "                    </div>\n";
+                            echo "                    <a class=\"dimm-anchor\" href=\"#\">\n";
+                            echo "                        <div class=\"dimmed\"></div>\n";
+                            echo "                    </a>\n";
+                            echo "                </div>";
+
+
+
                             foreach ($order_products_data as $product_details) {
                                 $amount += $product_details["price"] * $product_details["quantity"];
                             }
@@ -236,15 +135,15 @@
                                     <td>'.$order_details["status"].'</td>
                                     <td>'.$amount.'</td>';
                             if ($order_details["status"] == "processing") {
-                                echo'
-                                <td><a href="cancel-order.php?orderId='.$orderId.'">Cancel</a>
-                                    <a href="#order_1">View</a>
+                                echo"
+                                <td><a href=\"cancel-order.php?orderId=$orderId\">Cancel</a>
+                                    <a href=\"#order_$orderId\">View</a>
                                 </td>
-                                </tr>';
+                                </tr>";
                             }else{
-                                echo'
-                                <td><a href="#order_1">View</a></td>
-                                </tr>';
+                                echo"
+                                <td><a href=\"#order_$orderId\">View</a></td>
+                                </tr>";
                             }
                             $total += $amount;
                         }
