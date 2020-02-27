@@ -1,5 +1,5 @@
 <?php
-
+    require_once("database/database.inc.php");
     require_once('models/order.php');
 
     session_start();

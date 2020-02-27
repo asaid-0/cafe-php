@@ -1,6 +1,4 @@
 <?php
-require_once("database/database.inc.php");
-
 class Order
 {
     private $conn;

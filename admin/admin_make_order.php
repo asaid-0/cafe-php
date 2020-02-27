@@ -5,6 +5,7 @@ if(!isset($_SESSION['user-id']))
 elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
     header("location:../home.php");
 
+require_once("../database/database.inc.php");
 require_once('../models/order.php');
 include "../database/config.php";
 

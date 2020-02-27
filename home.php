@@ -101,7 +101,7 @@
                 </form>
                 <div class="items">
                     <?php
-                        foreach($products->getProducts() as $p){
+                        foreach($products->getAvailableProducts() as $p){
                             echo "<div class=\"item\" id=\"{$p['id']}\">\n";
 echo "                        <img src=\"{$p['pic']}\" alt=\"{$p['name']}\" />\n";
 echo "                        <div class=\"item-details\">\n";

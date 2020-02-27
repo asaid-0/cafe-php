@@ -21,6 +21,11 @@ class Products
         $data = $this->conn->query($query);
         return $data;
     }
+    function getAvailableProducts(){
+        $query = "SELECT * FROM products WHERE isAvailable";
+        $data = $this->conn->query($query);
+        return $data;
+    }
     function getProduct($id){
         $query = "SELECT * FROM products where id = :id";
         $stmt = $this->conn->prepare($query);

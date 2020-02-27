@@ -8,7 +8,10 @@
 
     require_once("../database/database.inc.php");
     require_once("../models/products.php");
+    require_once("../models/user.php");
     $products = new Products();
+    $user = new User();
+    $users = $user->selectAllUsers();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,9 +67,11 @@
                     <div class="room">
                         <label for="room">Add To User</label>
                         <select name="user" id="room">
-                            <option value="1">User1</option>
-                            <option value="2">User2</option>
-                            <option value="3">User3</option>
+                            <?php 
+                                foreach($users as $u)
+                                    echo "<option value=\"{$u['id']}\">{$u['name']}</option>";
+                             ?>
+                     
                         </select>
                     </div>
 
@@ -90,9 +95,10 @@
                     <div class="room">
                         <label for="room">Room</label>
                         <select name="room" id="room" required>
-                            <option value="room 1">Room 1</option>
-                            <option value="room 2">Room 2</option>
-                            <option value="room 3">Room 3</option>
+                            <?php
+                                foreach($users as $u)
+                                    echo "<option value=\"{$u['id']}\">{$u['room']}</option>";
+                            ?>
                         </select>
                     </div>
                     <hr>
@@ -112,7 +118,7 @@
                 <div class="items">
 
                 <?php
-                        foreach($products->getProducts() as $p){
+                        foreach($products->getAvailableProducts() as $p){
                             echo "<div class=\"item\" id=\"{$p['id']}\">\n";
 echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
 echo "                        <div class=\"item-details\">\n";
