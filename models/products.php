@@ -109,7 +109,12 @@ class Products
         }
 
     }
-    
+
+    function getCategories(){
+        $query = "SELECT id, name FROM categories";
+        $data = $this->conn->query($query);
+        return $data;
+    }
 
 }
 ?>
