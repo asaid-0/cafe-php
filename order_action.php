@@ -2,7 +2,7 @@
 
     session_start();
     if(!isset($_SESSION['user-id']))
-        header("location:../login.php");
+        header("location:login.php");
     elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 1)
         header("location:admin/index.php");
         
@@ -45,21 +45,6 @@
                 <th>Actions</th>          
                 </tr>'; 
         
-        
-            // $action =  $row["status"];
-            // switch($action){
-            //     case "Done":
-            //         $status = "No Action";
-            //     break;
-            //     case "processing":
-            //         $status = "out-for-delivery";
-            //     break;
-            //     case "out-for-delivery":
-            //         $status = "Done";
-            //     break;
-            // }
-            
-            // $status = array("out-for-delivery","processing","No Action");
         foreach($data as $row)
         {
             $mystatus = "";
@@ -72,9 +57,6 @@
                 $mystatus = "Done";
             }
 
-            // echo $row["status"];
-
-        // $mystatus = $row["status"] == "Processing" ? 'Out-For-Delivery' : ($row["status"] == 'Out-For-Delivry') ? "Done" : ($row["status"] == 'Done') ? "No Action" : "";
             echo ' <tr>
                     <td>'.$row["date"].'</td>                 
                     <td>'.$row["name"].'</td>
