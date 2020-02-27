@@ -82,7 +82,7 @@ function calculateTotal() {
 }
 
 function getInt(currency) {
-    return parseFloat(currency)
+    return parseFloat(currency).toFixed(2);
 }
 
 function updateTotal() {
