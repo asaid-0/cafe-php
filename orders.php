@@ -5,7 +5,7 @@
 
     session_start();
     if(!isset($_SESSION['user-id']))
-        header("location:../login.php");
+        header("location:login.php");
     elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 1)
         header("location:admin/index.php");
 
@@ -33,10 +33,17 @@
             <li><a href="#" class="active">My Orders</a></li>
         </ul>
 
-        <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Islam Abdelhamid</span>
-        </a>
+        <span>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span><?php echo $_SESSION["name"]?></span>
+            </a>
+            <a href="logout.php">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+            </a>
+
+        </span>
     </nav>
 
     <section>

@@ -1,19 +1,20 @@
 <?php
     session_start();
     if(!isset($_SESSION['user-id']))
-        header("location:../login.php");
+        header("location:login.php");
     elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 1)
         header("location:admin/index.php");
 
     require_once("database/database.inc.php");
     require_once("models/products.php");
     $products = new Products();
+    $room = $_SESSION['room'];
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +36,7 @@
         <span>
             <a href="#">
                 <i class="fa fa-user"></i>
-                <span><?php echo $_SESSION["name"]?></span>
+                <span><?php echo $_SESSION["name"] ?></span>
             </a>
             <a href="logout.php">
                 <i class="fa fa-sign-out"></i>
@@ -80,9 +81,8 @@
                     <div class="room">
                         <label for="room">Room</label>
                         <select name="room" id="room" required>
-                            <option value="room 1">Room 1</option>
-                            <option value="room 2">Room 2</option>
-                            <option value="room 3">Room 3</option>
+                            <option value="room 1"> <?php echo $room ?> </option>
+                          
                         </select>
                     </div>
                     <hr>
@@ -93,30 +93,29 @@
                 </form>
             </div>
             <div class="content">
-                <form action="">
-                    <div class="search-group">
-                        <input type="text" class="search-input" placeholder="search...">
-                        <button type="submit" class="search-btn"><i class="fa fa-search search-icon"></i></button>
-                    </div>
-                </form>
-                <div class="items">
-                    <?php
-                        foreach($products->getAvailableProducts() as $p){
+                <div class="search-group">
+                    <input type="text" class="search-input" placeholder="search..." id="search-input">
+                    <button type="submit" class="search-btn"><i class="fa fa-search search-icon" id="search-icon"></i></button>
+                </div>
+                <div class="items-container">
+                    <div class="items">
+                        <?php
+                        foreach ($products->getProducts() as $p) {
                             echo "<div class=\"item\" id=\"{$p['id']}\">\n";
-echo "                        <img src=\"{$p['pic']}\" alt=\"{$p['name']}\" />\n";
-echo "                        <div class=\"item-details\">\n";
-echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
-echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";
-echo "                            </p>\n";
-echo "                        </div>\n";
-echo "                        <button class=\"add-to-cart\" type=\"button\">Add to cart</button>\n";
-echo "                    </div>";
-
+                            echo "                        <img src=\"{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+                            echo "                        <div class=\"item-details\">\n";
+                            echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
+                            echo "                            <p>Price: <em class=\"item-price\"> <span>{$p['price']}</span> EGP</em>\n";
+                            echo "                            </p>\n";
+                            echo "                        </div>\n";
+                            echo "                        <button class=\"add-to-cart\" type=\"button\">Add to cart</button>\n";
+                            echo "                    </div>";
                         }
-                    ?>
-                    
+                        ?>
 
-                    
+
+
+                    </div>
                 </div>
             </div>
 

@@ -9,10 +9,6 @@ require_once("../database/database.inc.php");
 require_once('../models/order.php');
 include "../database/config.php";
 
-//session_start();
-
-//$_SESSION["user_id"] = 1;
-
 $serverName = DB_HOST;
 $username = DB_USER;
 $password = DB_PWD;

@@ -59,10 +59,7 @@ $product = new Products();
   else {
     error_log(print_r($errors, TRUE)); 
     $_SESSION['errors'] = $errors;
-    #handling validation errors
-    /*foreach($errors as $error) {
-      echo $error;
-    }*/
+
   }
 }
 
@@ -83,19 +80,27 @@ $product = new Products();
 
 </head>
 <body>
-    <nav class="navbar">
+<nav class="navbar">
         <ul class="menu-left">
-            <li><a href="#" class="logo">OS Coffee</a></li>
-            <li><a href="#" class="active">Products</a></li>
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Manual Order</a></li>
-            <li><a href="#">Checks</a></li>
+            <li><a href="index.php" class="logo">OS Coffee</a></li>
+            <li><a href="view-products.php">Products</a></li>
+            <li><a href="view-users.php">Users</a></li>
+            <li><a href="orders.php">Orders</a></li>
+            <li><a href="checks.php">Checks</a></li>
         </ul>
-        <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Admin Dashboard</span>
-        </a>
+        <span>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Admin Dashboard</span>
+            </a>
+
+            <a href="../logout.php">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+            </a>
+        </span>
     </nav>
+
     <section>
         <div class="add-container">
             <div class="main-title">Add Product</div>
@@ -123,9 +128,16 @@ $product = new Products();
                     <label class='input-select'>
                         <select name='cat_id'>
                           <option selected='selected'>- Select -</option>
-                          <option value='1'>Hot Drinks</option>
-                          <option value='2'>Soft Drinks</option>
-                          <option value='3'>Juice</option>
+                          <?php
+
+                            foreach($product->getCategories() as $cat){
+                              echo  "<option value=\"{$cat['id']}\">{$cat['name']}</option>";
+                            }
+
+
+                          ?>
+                         
+                        
                         </select>
                       </label>
                   </fieldset>

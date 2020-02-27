@@ -1,17 +1,17 @@
 <?php
 
-    session_start();
-    if(!isset($_SESSION['user-id']))
-        header("location:../login.php");
-    elseif(isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
-        header("location:../home.php");
+session_start();
+if (!isset($_SESSION['user-id']))
+    header("location:../login.php");
+elseif (isset($_SESSION['user-id']) && $_SESSION['admin'] == 0)
+    header("location:../home.php");
 
-    require_once("../database/database.inc.php");
-    require_once("../models/products.php");
-    require_once("../models/user.php");
-    $products = new Products();
-    $user = new User();
-    $users = $user->selectAllUsers();
+require_once("../database/database.inc.php");
+require_once("../models/products.php");
+require_once("../models/user.php");
+$products = new Products();
+$user = new User();
+$users = $user->selectAllUsers();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +33,8 @@
             <li><a href="#" class="logo">OS Coffee</a></li>
             <li><a href="view-products.php">Products</a></li>
             <li><a href="view-users.php">Users</a></li>
-            <li><a href="#">Manual Order</a></li>
-            <li><a href="#">Checks</a></li>
+            <li><a href="orders.php">Orders</a></li>
+            <li><a href="checks.php">Checks</a></li>
         </ul>
         <span>
             <a href="#">
@@ -42,13 +42,10 @@
                 <span>Admin Dashboard</span>
             </a>
 
-
             <a href="../logout.php">
                 <i class="fa fa-sign-out"></i>
                 <span>Logout</span>
             </a>
-
-
         </span>
     </nav>
     <?php
@@ -67,11 +64,11 @@
                     <div class="room">
                         <label for="room">Add To User</label>
                         <select name="user" id="room">
-                            <?php 
-                                foreach($users as $u)
-                                    echo "<option value=\"{$u['id']}\">{$u['name']}</option>";
-                             ?>
-                     
+                            <?php
+                            foreach ($users as $u)
+                                echo "<option value=\"{$u['id']}\">{$u['name']}</option>";
+                            ?>
+
                         </select>
                     </div>
 
@@ -96,8 +93,8 @@
                         <label for="room">Room</label>
                         <select name="room" id="room" required>
                             <?php
-                                foreach($users as $u)
-                                    echo "<option value=\"{$u['id']}\">{$u['room']}</option>";
+                            foreach ($users as $u)
+                                echo "<option value=\"{$u['id']}\">{$u['room']}</option>";
                             ?>
                         </select>
                     </div>
@@ -109,29 +106,29 @@
                 </form>
             </div>
             <div class="content">
-                <form action="">
-                    <div class="search-group">
-                        <input type="text" class="search-input" placeholder="search...">
-                        <button type="submit" class="search-btn"><i class="fa fa-search search-icon"></i></button>
-                    </div>
-                </form>
-                <div class="items">
+                <div class="search-group">
+                    <input type="text" class="search-input" placeholder="search..." id="search-input">
+                    <button type="submit" class="search-btn"><i class="fa fa-search search-icon" id="search-icon"></i></button>
+                </div>
+                <div class="items-container">
 
-                <?php
-                        foreach($products->getAvailableProducts() as $p){
+                    <div class="items">
+
+                        <?php
+                        foreach ($products->getAvailableProducts() as $p) {
                             echo "<div class=\"item\" id=\"{$p['id']}\">\n";
-echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
-echo "                        <div class=\"item-details\">\n";
-echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
-echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";
-echo "                            </p>\n";
-echo "                        </div>\n";
-echo "                        <button class=\"add-to-cart\" type=\"button\">Add to cart</button>\n";
-echo "                    </div>";
-
+                            echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+                            echo "                        <div class=\"item-details\">\n";
+                            echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
+                            echo "                            <span>Price: <em class=\"item-price\"><span>{$p['price']}</span> EGP</em>\n";
+                            echo "                            </p>\n";
+                            echo "                        </div>\n";
+                            echo "                        <button class=\"add-to-cart\" type=\"button\">Add to cart</button>\n";
+                            echo "                    </div>";
                         }
-                    ?>
+                        ?>
 
+                    </div>
                 </div>
             </div>
 
