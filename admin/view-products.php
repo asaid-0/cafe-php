@@ -28,11 +28,11 @@ $products = new Products();
 <body>
     <nav class="navbar">
         <ul class="menu-left">
-            <li><a href="#" class="logo">OS Coffee</a></li>
+            <li><a href="index.php" class="logo">OS Coffee</a></li>
             <li><a href="#" class="active">Products</a></li>
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Manual Order</a></li>
-            <li><a href="#">Checks</a></li>
+            <li><a href="view-users.php">Users</a></li>
+            <li><a href="orders.php">Orders</a></li>
+            <li><a href="checks.php">Checks</a></li>
         </ul>
         <span>
             <a href="#">
@@ -45,15 +45,17 @@ $products = new Products();
                 <i class="fa fa-sign-out"></i>
                 <span>Logout</span>
             </a>
-
-
         </span>
     </nav>
+
+
+
+    
     <section>
         <div class="container">
             <header>
                 <h2>All Products</h2>
-                <a href="">Add product</a>
+                <a href="add-product.php">Add product</a>
             </header>
             <div class="items">
 

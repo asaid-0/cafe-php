@@ -29,7 +29,7 @@
             <li><a href="index.php" class="logo">OS Coffee</a></li>
             <li><a href="view-products.php">Products</a></li>
             <li><a href="view-users.php">Users</a></li>
-            <li><a href="#" active>Orders</a></li>
+            <li><a href="#" class="active">Orders</a></li>
             <li><a href="checks.php">Checks</a></li>
         </ul>
         <span>

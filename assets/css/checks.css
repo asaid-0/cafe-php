@@ -90,7 +90,7 @@
   }
   
   .collapse:target .content {
-    max-height: 15em;
+    max-height: 20rem;
   }
   
   .collapse:target a:before {

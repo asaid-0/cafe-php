@@ -48,7 +48,7 @@ $allChecks = $checks->getChecks($user_id, $from, $to);
             <li><a href="view-products.php">Products</a></li>
             <li><a href="view-users.php">Users</a></li>
             <li><a href="orders.php">Orders</a></li>
-            <li><a href="#" active>Checks</a></li>
+            <li><a href="#" class="active">Checks</a></li>
         </ul>
         <span>
             <a href="#">

@@ -26,7 +26,7 @@
         <ul class="menu-left">
             <li><a href="index.php" class="logo">OS Coffee</a></li>
             <li><a href="view-products.php">Products</a></li>
-            <li><a href="#">Users</a></li>
+            <li><a href="#" class="active">Users</a></li>
             <li><a href="orders.php">Orders</a></li>
             <li><a href="checks.php">Checks</a></li>
         </ul>
