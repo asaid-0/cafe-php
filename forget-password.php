@@ -10,17 +10,8 @@
         $isUpdated = $user->updateUserPassword($email , $password);
         if($isUpdated){
         header("location:login.php");
-        }else{
-            header("location:forget-password.php");
         }
-<<<<<<< HEAD
     }
-=======
-   }
-   else{
-        // header("location:./forget-password.php");
-   }
->>>>>>> 864957d6f98e0599ff96fdde57065246a9a2f9d3
 ?>
     
 <!DOCTYPE html>
