@@ -50,6 +50,15 @@ $products = new Products();
 
 
 
+    <?php if (isset($_SESSION['flash'])) : ?>
+        <div class="success-message">
+            <p>Product has been addedd successfuly !!</p>
+        </div>
+    <?php endif;
+    unset($_SESSION['flash']); ?>
+
+
+
     
     <section>
         <div class="container">
@@ -63,9 +72,10 @@ $products = new Products();
 
                 <?php
                 foreach ($products->getProducts() as $p) {
+                    $image = (file_exists($p['pic'])) ? $p['pic'] : "../assets/images/product_default.jpg";
                     $statusBtn = $p['isAvailable'] ? "Unavailable" : "Available";
                     echo "<div class=\"item\" id=\"{$p['id']}\">\n";
-                    echo "                        <img src=\"../{$p['pic']}\" alt=\"{$p['name']}\" />\n";
+                    echo "                        <img src=\"{$image}\" alt=\"{$p['name']}\" />\n";
                     echo "                        <div class=\"item-details\">\n";
                     echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
                     echo "                            <p>Price: <em class=\"item-price\">{$p['price']} EGP</em>\n";

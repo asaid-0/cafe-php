@@ -24,8 +24,10 @@ $product = new Products();
       $file_tmp = $file_info['tmp_name'];
       $file_type = $file_info['type'];
     
-      if($name == "")
+      if(empty($name) || $name == "")
           $errors["name"] = "Name field is required.<br>";
+      if(empty($price) || $price == "" )
+          $errors["price"] = "Price is required.<br>";
 
       if(!empty($file_name)) {
           $extens = explode('.', $file_name);
@@ -53,8 +55,9 @@ $product = new Products();
     }else{
       $category = $_POST['cat_name'];
       $product->addProduct($category, $name, $price, $pic_name, true);
-      
     }
+    $_SESSION['flash'] = "Product has been addedd successfuly";
+    header("location: view-products.php");
   }
   else {
     error_log(print_r($errors, TRUE)); 
@@ -110,11 +113,13 @@ $product = new Products();
                   <fieldset>
                     <legend>NAME</legend>
                     <input type='text' name='name' placeholder='Name' />
+                    <span class="error"><?php echo !empty($_SESSION['errors']["name"]) ? $_SESSION['errors']["name"] : ""; ?></span>
                   </fieldset>
 
                   <fieldset>
                     <legend>PRICE</legend>
                     <input type='text' name='price' placeholder='0.00' />
+                    <span class="error"><?php echo !empty($_SESSION['errors']["price"]) ? $_SESSION['errors']["price"] : ""; ?></span>
                   </fieldset>
               
                   <fieldset id="new_cat">
@@ -151,6 +156,7 @@ $product = new Products();
                       <span class="fa fa-cloud-upload"><span> Upload
                     </label>
                     <input type='file' name='file' id="file" />
+                    <span class="error"><?php echo !empty($_SESSION['errors']["file"]) ? $_SESSION['errors']["file"] : ""; if(isset($_SESSION['errors'])) unset($_SESSION['errors']); ?></span>
                    
                     
                   </fieldset>
