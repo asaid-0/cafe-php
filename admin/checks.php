@@ -125,9 +125,10 @@ $allChecks = $checks->getChecks($user_id, $from, $to);
 				echo "            \n";
 
 				foreach($items as $item){
+					$image = (file_exists("../".$item['pic'])) ? $item['pic'] : "assets/images/product_default.jpg";
 
 				  echo "            <div class=\"item\">\n";
-				echo "                <img src=\"../{$item["pic"]}\" alt=\"{$item["name"]}\" />\n";
+				echo "                <img src=\"../{$image}\" alt=\"{$item["name"]}\" />\n";
 				echo "                <div class=\"item-details\">\n";
 				echo "                    <h2>{$item["name"]}</h2>\n";
 				echo "                    <p>Price: <em>{$item["price"]}</em>\n";

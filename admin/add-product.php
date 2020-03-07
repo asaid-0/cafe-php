@@ -46,8 +46,8 @@ $product = new Products();
 
   if(empty($errors)) {
     
-    $pic_name = "../assets/images/"."product_".$name."_".time().".".$file_ext;
-    move_uploaded_file($file_tmp, $pic_name);
+    $pic_name = "assets/images/"."product_".$name."_".time().".".$file_ext;
+    move_uploaded_file($file_tmp, "../".$pic_name);
 
     if(isset($_POST['cat_id']) && !empty($_POST['cat_id'])){
       $category = $_POST['cat_id'];

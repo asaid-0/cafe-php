@@ -13,7 +13,7 @@
     $user = new User();
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $user_id = $_POST['id'];
+        $id = $_REQUEST['id'];
         $name = $_POST['name'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];

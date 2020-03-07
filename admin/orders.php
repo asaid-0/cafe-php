@@ -93,9 +93,10 @@
 
 
                             foreach($order_products_data as $order_item){
+                                $image = (file_exists("../".$order_item['pic'])) ? $order_item['pic'] : "assets/images/product_default.jpg";
                                 
                                 echo "                            <div class=\"item\">\n";
-                                echo "                                <img src=\"assets/images/tea.jpg\" alt=\"tea\" />\n";
+                                echo "                                <img src=\"../{$image}\" alt=\"{$order_item['name']}\" />\n";
                                 echo "                                <div class=\"item-details\">\n";
                                 echo "                                    <h2>{$order_item['name']}</h2>\n";
                                 echo "                                    <p>Price: <em>{$order_item['price']}</em>\n";

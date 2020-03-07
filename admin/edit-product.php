@@ -55,7 +55,7 @@ die();
 
   if(empty($errors)) {
     if($isNewFile){
-      $pic_name = "../assets/images/"."product_".$name."_".time().".".$file_ext;
+      $pic_name = "assets/images/"."product_".$name."_".time().".".$file_ext;
       move_uploaded_file($file_tmp, $pic_name);
       $p['pic'] = $pic_name;
     }

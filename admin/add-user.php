@@ -83,9 +83,9 @@
 	}
 	function uploadPhoto($name, $file_tmp, $file_ext) {
 	
-		$pic_name = "../assets/images/"."user_".$name."_".time().".".$file_ext;
+		$pic_name = "assets/images/"."user_".$name."_".time().".".$file_ext;
 
-		if(move_uploaded_file($file_tmp, $pic_name))
+		if(move_uploaded_file($file_tmp, "../".$pic_name))
 			echo "User Registered Successfully and Image is uploaded.<br>";
 		else 
 			echo "Error uploading the image but user is registered.<br>";

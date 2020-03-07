@@ -116,9 +116,9 @@ $users = $user->selectAllUsers();
 
                         <?php
                         foreach ($products->getAvailableProducts() as $p) {
-                            $image = (file_exists($p['pic'])) ? $p['pic'] : "../assets/images/product_default.jpg";
+                            $image = (file_exists("../".$p['pic'])) ? $p['pic'] : "assets/images/product_default.jpg";
                             echo "<div class=\"item\" id=\"{$p['id']}\">\n";
-                            echo "                        <img src=\"{$image}\" alt=\"{$p['name']}\" />\n";
+                            echo "                        <img src=\"../{$image}\" alt=\"{$p['name']}\" />\n";
                             echo "                        <div class=\"item-details\">\n";
                             echo "                            <h2 class=\"item-name\">{$p['name']}</h2>\n";
                             echo "                            <span>Price: <em class=\"item-price\"><span>{$p['price']}</span> EGP</em>\n";
