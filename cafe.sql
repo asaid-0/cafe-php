@@ -3,14 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 26, 2020 at 10:55 PM
--- Server version: 10.1.29-MariaDB-6
+-- Generation Time: Mar 07, 2020 at 12:36 PM
+-- Server version: 10.1.44-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.28-3+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-CREATE DATABASE IF NOT EXISTS cafe;
-use cafe;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,6 +25,8 @@ use cafe;
 --
 -- Table structure for table `categories`
 --
+CREATE DATABASE IF NOT EXISTS `cafe`;
+USE cafe;
 
 CREATE TABLE `categories` (
   `id` int(64) NOT NULL,
@@ -38,13 +38,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Soft drinks'),
-(2, 'Hard drinks'),
-(3, 'Hot drinks'),
-(4, 'Juice'),
-(5, 'afsmf'),
-(6, 'newCATT'),
-(7, 'tesssskkkkkmmsd');
+(9, 'Juice'),
+(10, 'hot drinks');
 
 -- --------------------------------------------------------
 
@@ -65,16 +60,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `status`, `user_id`, `date`, `notes`) VALUES
-(2, 'out-for-delivery', 2, '2020-02-18 15:41:00', NULL),
-(14, 'processing', 1, '2020-02-24 15:55:15', ''),
-(15, 'processing', 1, '2020-02-24 15:55:17', ''),
-(16, 'processing', 1, '2020-02-24 16:52:50', ''),
-(17, 'processing', 1, '2020-02-25 11:43:52', ''),
-(18, 'processing', 2, '2020-02-25 14:58:13', ''),
-(19, 'processing', 2, '2020-02-25 15:02:55', ''),
-(20, 'processing', 2, '2020-02-25 15:03:31', ''),
-(21, 'processing', 2, '2020-02-25 15:04:31', ''),
-(22, 'processing', 1, '2020-02-26 19:08:20', '');
+(8, 'processing', 5, '2020-03-07 18:32:48', ''),
+(9, 'processing', 4, '2020-03-07 18:32:59', '');
 
 -- --------------------------------------------------------
 
@@ -93,28 +80,11 @@ CREATE TABLE `orders_products` (
 --
 
 INSERT INTO `orders_products` (`order_id`, `product_id`, `quantity`) VALUES
-(2, 2, 8),
-(2, 3, 7),
-(14, 1, 1),
-(14, 2, 5),
-(15, 2, 1),
-(16, 1, 1),
-(17, 1, 1),
-(17, 2, 1),
-(17, 3, 1),
-(18, 1, 111),
-(18, 2, 53),
-(18, 3, 18),
-(19, 1, 1),
-(19, 2, 1),
-(20, 1, 1),
-(20, 2, 1),
-(20, 3, 1),
-(21, 1, 1),
-(21, 2, 1),
-(21, 3, 1),
-(22, 1, 1),
-(22, 2, 1);
+(8, 12, 8),
+(8, 13, 4),
+(9, 12, 3),
+(9, 13, 1),
+(9, 14, 7);
 
 -- --------------------------------------------------------
 
@@ -136,13 +106,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `cat_id`, `name`, `price`, `pic`, `isAvailable`) VALUES
-(1, 3, 'MINT', '3.55', 'assets/images/tea.jpg', 1),
-(2, 1, 'sdkvnsvk', '10.92', '../assets/images/product__1582711558.jpg', 0),
-(3, 4, 'lemon', '15.99', 'assets/images/lemon.png', 1),
-(4, 2, 'test', '14.85', '../assets/images/product_test_1582664843.jpg', 1),
-(5, 5, 'efef', '4.87', '../assets/images/product_efef_1582664953.jpg', 1),
-(6, 3, 'nopro', '41.05', '../assets/images/product_nopro_1582710254.jpg', 1),
-(7, 6, 'iojioj', '77.55', '../assets/images/product_iojioj_1582710362.jpg', 1);
+(12, 9, 'Pina Colada', '9.00', 'assets/images/product_Pina Colada_1583605886.jpg', 1),
+(13, 9, 'Lemon', '20.50', 'assets/images/product_Lemon_1583605922.png', 1),
+(14, 10, 'Coffee', '10.94', 'assets/images/product_Coffee_1583605941.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -166,9 +132,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `isAdmin`, `ext`, `room`, `pic`) VALUES
-(1, 'ahmed', 'ahmed@mail.com', '123456', 0, '1416', 'cloud', 'images/users/ahmed.png'),
-(2, 'admin', 'admin@mail.com', '123456', 1, '145', 'main', 'images/users/admin.png'),
-(3, 'knsvd', 'test@test.com', '1234567_', 0, '2', '4', '../assets/images/knsvd.jpg');
+(4, 'user', 'user@test.com', '12345678', 0, '44', '474785', 'assets/images/user_user_1583605841.png'),
+(5, 'user2', 'user2@test.com', '12345678', 0, '1', '6966', 'assets/images/user_user2_1583605861.png'),
+(6, 'admin', 'admin@test.com', '12345678', 1, '11', '14141', 'assets/images/user_admin_1583606060.jpg');
 
 --
 -- Indexes for dumped tables
@@ -215,22 +181,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(64) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -239,7 +205,7 @@ ALTER TABLE `users`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders_products`
